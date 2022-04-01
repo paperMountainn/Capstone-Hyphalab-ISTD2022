@@ -13,7 +13,8 @@ const Stuff = () => {
     // 1. create reference to the collection, as you can have multiple of this
     // specify which collection you want to grab data from: users
     // const usersCollectionRef = collection(db, 'user');
-    const datasCollectionRef = collection(db, 'data');
+    const datasCollectionRef = collection(db, 'humidity');
+    const tempCollectionRef = collection(db, 'temp');
 
     // called whenever page renders, like lifecycle 
     // everytime you make API req, it always return a promise,
@@ -49,8 +50,8 @@ const Stuff = () => {
           { datas.map((data)=> {
               return(
                   <div key={data.key}>
-                      <h1>Name: {data.name}</h1>
-                      <h2>Age: {data.age}</h2>
+                      <h1>humidity: {data.humidity}</h1>
+                      {/* <h2>Age: {data.age}</h2> */}
                       {/* <h3>{data.key}</h3> */}
                   </div>
               );
