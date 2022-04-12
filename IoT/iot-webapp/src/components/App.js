@@ -10,6 +10,7 @@ import Camera from './pages/Camera';
 import Navbar from './common/Navbar';
 import SideBar from './common/SideBar';
 import { sideBarFarmList } from './common/sideBarFarmList';
+import Form from './Form';
 
 
 const App = () => {
@@ -23,7 +24,9 @@ const App = () => {
                     <Route path="/farm/humid" exact component={Humid} />
                     <Route path="/farm/light" exact component={Light} />
                     <Route path="/farm/cam" exact component={Camera} />
+
                     <Route path="/stuffs" exact component={Stuff} />
+                    <Route path="/form" exact component={Form} />
                 </SideBar >
             </div>
         );

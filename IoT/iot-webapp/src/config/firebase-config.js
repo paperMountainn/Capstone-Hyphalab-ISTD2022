@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from '@firebase/firestore'
+
+// import { getDatabase } from "@firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,6 +12,7 @@ import { getFirestore } from '@firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyCxmpcLlUepJMCTPL_xjkLMtpcq2Y3pvDo",
   authDomain: "iot-webapp-28f3a.firebaseapp.com",
+  databaseURL: "https://iot-webapp-28f3a-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "iot-webapp-28f3a",
   storageBucket: "iot-webapp-28f3a.appspot.com",
   messagingSenderId: "339993406396",
@@ -18,6 +21,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const db = getFirestore(app);
+export const firebase = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebase);
+
+export const db = getFirestore(firebase);
+// export const realtime_database = getDatabase();
