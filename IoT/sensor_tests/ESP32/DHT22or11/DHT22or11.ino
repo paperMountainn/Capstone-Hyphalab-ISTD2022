@@ -5,6 +5,7 @@
 // REQUIRES the following Arduino libraries:
 // - DHT Sensor Library: https://github.com/adafruit/DHT-sensor-library
 // - Adafruit Unified Sensor Lib: https://github.com/adafruit/Adafruit_Sensor
+// works when there is no 10k resistor
 
 // unable to output humidity, T in F and C consistently
 
