@@ -16,6 +16,9 @@
   BSD license, all text above must be included in any redistribution
  ***************************************************************************/
 
+// please download library called CCS811 by adafruit
+// code is one of the sample provided
+// https://innovatorsguru.com/ccs811-arduino-code/ 
 // https://learn.adafruit.com/adafruit-ccs811-air-quality-sensor?view=all
 
 // sensor works well. Prints data like this
