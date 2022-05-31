@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Phase = require('./phase');
+const Rack = require('./rack');
 // define the schema
 const cycleSchema = new Schema({
     cycleDescr: {
@@ -17,17 +18,17 @@ const cycleSchema = new Schema({
     },
     cycleDuration: {
         type: String,
-        required: true,
+        // required: true,
     },
     completed:{
         type: Boolean,
         required: true,
     },
-    belongsToRack: {
+    belongToRack: {
         type: Schema.Types.ObjectId,
         ref: 'Rack'
     },
-    containsPhases: [
+    containPhases: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Phase'

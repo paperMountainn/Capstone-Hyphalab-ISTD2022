@@ -6,11 +6,13 @@ const rackSchema = new Schema({
     locatedIn: {
         type: String,
         required: true,
+        enum: ['incubation', 'farming']
     },
-    containsCycles: [
+    containCycles: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Cycle'
+            ref: 'Cycle',
+            
         }
     ]
 })
