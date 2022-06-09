@@ -7,7 +7,7 @@ import './home.scss';
 export const Home = () => {
   return (
     <div className='home'>
-      <Sidebar>
+      {/* <Sidebar> */}
         <div className="homeContainer">
           <Navbar />
           <div className="chartContainer">
@@ -44,7 +44,7 @@ export const Home = () => {
           </div>
         </div>
         
-      </Sidebar>
+      {/* </Sidebar> */}
       
     </div>
   )

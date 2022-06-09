@@ -66,7 +66,7 @@ export const Sidebar = ({children}) => {
     
     ]
 
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     
         
         return (
@@ -80,23 +80,23 @@ export const Sidebar = ({children}) => {
                
               </div>
               <Menu theme="light" defaultSelectedKeys={['1']} mode="inline" >
-              <Menu.Item> 
-                <div>
-                  <Link to="/"></Link>
-                  <DashboardIcon /> 
+              <Menu.Item icon={<DashboardIcon />}> 
+
+                  <Link to="/">HomePage</Link>
+                  {/* <DashboardIcon />  */}
                   {/* <h3>HyphaAPP</h3> */}
-                </div>
+                
               </Menu.Item>
               {/* <Menu.Item >
                   <p className='title'></p>
               </Menu.Item> */}
               <hr />
                 {sideBarList.map((item)=> {
-                            return (
-                                <Menu.Item key={item.title} icon={item.icon}>
-                                    <Link to={item.link}>{item.title}</Link>
-                                </Menu.Item>
-                            );
+                      return (
+                          <Menu.Item key={item.title} icon={item.icon}>
+                              <Link to={item.link}>{item.title}</Link>
+                          </Menu.Item>
+                      );
                 })}
               </Menu>
             </Sider>
@@ -136,7 +136,7 @@ export const Sidebar = ({children}) => {
                   textAlign: 'center',
                 }}
               >
-                Ant Design ©2018 Created by Ant UED
+                T-rackerApp ©2022 Created by HyphaLab
               </Footer>
             </Layout>
           </Layout>

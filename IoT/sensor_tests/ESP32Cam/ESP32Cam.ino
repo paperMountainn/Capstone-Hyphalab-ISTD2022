@@ -7,11 +7,14 @@
 //            Partial images will be transmitted if image exceeds buffer size
 
 
-// This is a sample default file found in arduino alr
+// This is a sample default file found in file -> examples -> esp32 -> Camera, when you open the sample file, will
+// Then go to Tools -> partition scheme -> choose HUGE APP, according to this link : https://github.com/SensorsIot/Bluetooth-BLE-on-Arduino-IDE/issues/3
+/// will open 3 libraries to the side too. Just copy paste this into the CameraWebServer.ino file.
 // Just need to connect via microUSB
 // Link used: https://randomnerdtutorials.com/esp32-cam-video-streaming-web-server-camera-home-assistant/
-// Please comment out line 12 that says: //#define CAMERA_MODEL_WROVER_KIT // Has PSRAM
+// Please comment out line that says: //#define CAMERA_MODEL_WROVER_KIT // Has PSRAM
 // change the wifi ssid and password, must ensure that the device accessing the streaming is connected to the same network
+
 
 
 
