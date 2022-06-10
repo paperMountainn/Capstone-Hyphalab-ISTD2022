@@ -112,6 +112,7 @@ import { NewPhaseForm } from './pages/newPhaseForm/NewPhaseForm';
 import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
+import { Tasks } from './pages/tasks/Tasks';
 
 const App = () => {
     return (
@@ -152,6 +153,9 @@ const App = () => {
                             {/* /products/new renders New */}
                             
                             <Route path=":rackId" element={<RackDetail />} />
+                        </Route>
+                        <Route path="tasks">
+                            <Route index element={<Tasks/>} />
                         </Route>
                     </Route>
                 </Routes>

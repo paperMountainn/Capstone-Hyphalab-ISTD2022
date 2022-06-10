@@ -1,27 +1,79 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Menu } from 'antd';
-// import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 
-import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
-import { AiFillHome } from "react-icons/ai";
-
-import { IoFileTrayStacked } from "react-icons/io5";
 import './navbar.scss'
 const { SubMenu } = Menu;
 
-export const Navbar = () => {
+export const Navbar = ({navItems}) => {
     const [mail, setMail] = useState('mail');
     const handleClick = (e) => {
         setMail(e.key)
     }
 
+    // function getItem(label, key, icon, children, type) {
+    //     return {
+    //       key,
+    //       icon,
+    //       children,
+    //       label,
+    //       type,
+    //     };
+    //   }
+      
+    // //   const items = [
+    // //     getItem('Temperature', 'sub1', <RiTempHotLine />, [
+    // //       getItem('Option 1', '1'),
+    // //       getItem('Option 2', '2'),
+    // //       getItem('Option 3', '3'),
+    // //       getItem('Option 4', '4'),
+    // //     ]),
+    // //     getItem('Humidity', 'sub2', <FaCloudversify />, [
+    // //       getItem('Option 5', '5'),
+    // //       getItem('Option 6', '6'),
+    // //       getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+    // //     ]),
+    // //     getItem('Observation Images', 'sub4', <AiOutlineCamera />, [
+    // //       getItem('Option 9', '9'),
+    // //       getItem('Option 10', '10'),
+    // //       getItem('Option 11', '11'),
+    // //       getItem('Option 12', '12'),
+    // //     ]),
+    // //   ];
+    // const farmNavItems = [
+    //     getItem(<Link to="/farm/temperature">Temperature</Link>, '1', <RiTempHotLine />),
+    //     getItem(<Link to="/farm/humidity">Humidity</Link>, '2', <Icon name="cloud" />),
+    //     getItem(<Link to="/farm/observations">Observation Images</Link>, '3', <Icon name="camera" />),
+    //   ];
+
+    // const incubationNavItems = [
+    //     getItem(<Link to="/incubation/temperature">Temperature</Link>, '1', <RiTempHotLine />),
+    //     getItem(<Link to="/incubation/humidity">Humidity</Link>, '2', <Icon name="cloud" />),
+    //     getItem(<Link to="/incubation/contaminations">Contamination Checks</Link>, '3', <Icon name="bug" />),
+    //     getItem(<Link to="/incubation/observations">Observation Images</Link>, '4', <Icon name="camera" />),
+    // ];
+    // const rackNavItems = [
+    //     getItem(<Link to="/rack-phases">Rack Phases</Link>, '1', <IoFileTrayStacked />),
+    //     getItem(<Link to="/rack-phases/new">Add a New Rack</Link>, '2', <Icon  name="add" />),
+    //     getItem(<Link to="/rack-phases/rack-cycles">Rack Cycles</Link>, '3', <Icon name="circle notch" />),
+    //     // getItem(<Link to="/rack-phases/:rackId">Rack Details</Link>, '4', <Icon name="camera" />),
+    // ];
+    
+    // const mainPageNavItems = [
+    //     getItem('hi', '1'),  
+        
+    // ]
+    
+    
   return (
     <div>
-        <Menu onClick={handleClick} selectedKeys={mail} mode="horizontal">
+        <Menu 
+            onClick={handleClick} 
+            selectedKeys={mail} 
+            mode="horizontal" 
+            items={navItems}>
             {/* empty title */}
             {/* <Menu.Item>
                 <h1>Farm</h1>
@@ -31,7 +83,7 @@ export const Navbar = () => {
             
             </Menu.Item> */}
 
-            <Menu.Item key="incubation" icon={<GiMushroomGills />}>
+            {/* <Menu.Item key="incubation" icon={<GiMushroomGills />}>
             
             <Link to="/incubation">Incubation</Link>
             </Menu.Item>
@@ -40,7 +92,7 @@ export const Navbar = () => {
             </Menu.Item>
             <Menu.Item key="rackPhases" icon={<IoFileTrayStacked />}>
             <Link to="/rack-phases">Rack Phases</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             {/* <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Navigation Three - Submenu">
             <Menu.ItemGroup title="Item 1">
                 <Menu.Item key="setting:1">Option 1</Menu.Item>

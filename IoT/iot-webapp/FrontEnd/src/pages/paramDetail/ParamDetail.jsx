@@ -8,7 +8,7 @@ import { MyCard } from '../../components/card/Card';
 import { RiTempHotLine } from "react-icons/ri";
 import { Icon } from 'semantic-ui-react';
 import { FaCloudversify } from "react-icons/fa";
-
+import { farmNavItems } from '../../components/navbar/navbarLists';
 const cardDetails = [
   {
     color: "green",
@@ -36,7 +36,7 @@ export const ParamDetail = () => {
     <div className='paramDetail'>
       <Sidebar>
         <div className="paramDetailContainer">
-          <Navbar />
+          <Navbar navItems={farmNavItems}/>
           <div className="top">
             <div className="container">
               <div className="row">

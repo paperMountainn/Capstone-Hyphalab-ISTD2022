@@ -3,13 +3,14 @@ import { Chart } from '../../components/chart/Chart';
 import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import './farmSummary.scss';
+import { farmNavItems } from '../../components/navbar/navbarLists';
 
 export const FarmSummary = () => {
   return (
     <div className='farmSummary'>
       <Sidebar>
         <div className="farmSummaryContainer">
-          <Navbar />
+          <Navbar navItems={farmNavItems} />
           <div className="charts">
             <div className="container">
               <div className="row">

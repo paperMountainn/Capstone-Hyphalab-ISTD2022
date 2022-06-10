@@ -1,72 +1,93 @@
 import React, { useState } from 'react'
 import { Icon } from 'semantic-ui-react';
-import { RiTempHotLine } from "react-icons/ri";
-import { AiOutlineCamera } from "react-icons/ai";
+
 import { Link } from 'react-router-dom';
 import './sidebar.scss'
 import '../../styles/charts.css'
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-  } from '@ant-design/icons';
+import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
+import { IoFileTrayStacked } from "react-icons/io5";
 import 'antd/dist/antd.css';
 // import './index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { FaCloudversify } from "react-icons/fa";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-function getItem(label, key, icon, children) {
-    return {
-      key,
-      icon,
-      children,
-      label,
-    };
-  }
-  
-  const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
-      getItem('Tom', '3'),
-      getItem('Bill', '4'),
-      getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
-  ];
 
 const { Header, Content, Footer, Sider } = Layout;
-export const Sidebar = ({children}) => {
-    const sideBarList = [
-        {
-            title:"Temperature",
-            link:"/farm/temperature/",
-            icon:<Icon circular inverted color='grey'><RiTempHotLine /></Icon>
-    
-        }, 
-        {
-            title:"Humidity",
-            link:"/farm/humidity/",
-            icon:<Icon name="cloud" circular inverted color='grey'/>
-        }, 
-        {
-            title:"CO2",
-            link:"/farm/co2/",
-            icon:<Icon circular inverted color='grey'><FaCloudversify /></Icon>
-        }, 
-        {
-            title:"Observations",
-            link:"/farm/observations",
-            icon:<Icon circular inverted color='grey'><AiOutlineCamera /></Icon>
-        }
-    
-    ]
 
-    const [collapsed, setCollapsed] = useState(true);
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
+
+export const Sidebar = ({children}) => {
+
+    const monitoringSubList = [
+      {
+        title:"Incubation Stage",
+        link:"/incubation",
+        icon: <GiMushroomGills />
+      },
+      {
+        title:"Farming Stage",
+        link:"/farm",
+        icon: <GiMushroomsCluster />
+      },
+      {
+        title:"Rack Phases",
+        link:"/rack-phases",
+        icon: <IoFileTrayStacked />
+      },
+    ]
+    // const sideBarMainList = [
+    //     {
+    //         title:"Temperature",
+    //         link:"/farm/temperature/",
+    //         icon:<Icon circular inverted color='grey'><RiTempHotLine /></Icon>
+    
+    //     }, 
+    //     {
+    //         title:"Humidity",
+    //         link:"/farm/humidity/",
+    //         icon:<Icon name="cloud" circular inverted color='grey'/>
+    //     }, 
+    //     {
+    //         title:"CO2",
+    //         link:"/farm/co2/",
+    //         icon:<Icon circular inverted color='grey'><FaCloudversify /></Icon>
+    //     }, 
+    //     {
+    //         title:"Observations",
+    //         link:"/farm/observations",
+    //         icon:<Icon circular inverted color='grey'><AiOutlineCamera /></Icon>
+    //     }
+    
+    // ]
+    const sideBarMainList = [
+      {
+          title:"My Tasks",
+          link:"/tasks",
+          icon:<Icon name="tasks" circular inverted color='grey'/>
+      }, 
+      {
+          title:"User",
+          link:"/",
+          icon:<Icon name="setting" circular inverted color='grey'></Icon>
+      },
+      {
+        title:"Settings",
+        link:"/",
+        icon:<Icon name="user circle" circular inverted color='grey'></Icon>
+      }
+  
+  ]
+
+    const [collapsed, setCollapsed] = useState(false);
     
         
         return (
@@ -79,19 +100,32 @@ export const Sidebar = ({children}) => {
               <div >
                
               </div>
-              <Menu theme="light" defaultSelectedKeys={['1']} mode="inline" >
-              <Menu.Item icon={<DashboardIcon />}> 
+              <Menu theme="light" defaultSelectedKeys={['3']} mode="inline" >
 
-                  <Link to="/">HomePage</Link>
-                  {/* <DashboardIcon />  */}
+              <Menu.Item icon={<DashboardIcon />}> 
+                  
+                  <Link to="/"><h5>HyphaLab</h5></Link>
+                   
                   {/* <h3>HyphaAPP</h3> */}
-                
+                  
               </Menu.Item>
-              {/* <Menu.Item >
-                  <p className='title'></p>
-              </Menu.Item> */}
               <hr />
-                {sideBarList.map((item)=> {
+
+              <Menu.Item icon={<Icon circular inverted color='grey' name="home"/>}>
+                <Link to="/">Summary</Link>
+              </Menu.Item>
+              
+                <Menu.SubMenu icon={<Icon name="line graph" circular inverted color='grey'/>} title="Monitoring">
+                  {/* <Menu.Item>item 3</Menu.Item> */}
+                  {monitoringSubList.map((item)=> {
+                      return (
+                          <Menu.Item key={item.title} icon={item.icon}>
+                              <Link to={item.link}>{item.title}</Link>
+                          </Menu.Item>
+                      );
+                })}
+                </Menu.SubMenu>
+                {sideBarMainList.map((item)=> {
                       return (
                           <Menu.Item key={item.title} icon={item.icon}>
                               <Link to={item.link}>{item.title}</Link>
@@ -118,7 +152,7 @@ export const Sidebar = ({children}) => {
                   }}
                 >
                   <Breadcrumb.Item>User</Breadcrumb.Item>
-                  <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                  <Bfreadcrumb.Item>Bill</Breadcrumb.Item>
                 </Breadcrumb>
                 <div
                   className="site-layout-background"

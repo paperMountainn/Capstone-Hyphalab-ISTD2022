@@ -2,38 +2,82 @@ import React from 'react'
 import { Chart } from '../../components/chart/Chart';
 import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
+import { mainPageNavItems } from '../../components/navbar/navbarLists';
 import './home.scss';
+import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
+import { MyCarousel } from '../../components/carousel/Carousel';
+import { Icon } from 'semantic-ui-react';
+
+
+const COLORS = {
+  temp: '#8884d8',
+  humidity: '#0088FE',
+  co2: '#82ca9d'
+}
+
 
 export const Home = () => {
+  console.log("home")
   return (
     <div className='home'>
-      {/* <Sidebar> */}
+      <Sidebar>
         <div className="homeContainer">
-          <Navbar />
+          <Navbar navItems={mainPageNavItems}/>
           <div className="chartContainer">
             <div className="container">
-              
               <div className="row">
                 
                 <div className="col-6">
-                  <div className="stageTitle">Incubation Stage Summary</div>
-                  <div className="row">
-                    <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time"/></div>
-                    <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time"/></div>
-                    contamination images
-                    observation images
+                  <div className="top row">
+                    <div className="stageTitle">
+                      <GiMushroomGills className='icon'/>
+                      Incubation Stage Summary
+                    </div>
+                    <div className="row">
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp}/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity}/></div>
+                      
+                  </div>
+                  <div className="bottom row">
+                    <div className="col-6">
+                      <div className="stageTitle">
+                        <Icon name="camera" className='icon'/>
+                        Contamination Images
+                      </div>
+                      <MyCarousel />
+                    </div>
+                    <div className="col-6">
+                      <div className="stageTitle">
+                        <Icon name="camera" className='icon'/>
+                        Observation Images
+                      </div>
+                      <MyCarousel />
+                    </div>
+                    
+                  </div>
+              
+                    
                     {/* <div className="col-6"><Chart aspect={3/1} title="Humidity Against Time"/></div> */}
                   </div>
                 </div>
-
+                {/* <div className='col-1'></div> */}
                 <div className="col-6">
-                  <div className="stageTitle">Farm Stage Summary</div>
-                  <div className="row">
-                    <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time"/></div>
-                    <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time"/></div>
-                    <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time"/></div>
-                    observation images
-
+                  <div className="top row">
+                    <div className="stageTitle"><GiMushroomsCluster className='icon'/>Farm Stage Summary</div>
+                    <div className="row">
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp}/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity}/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2}/></div>
+                    </div>
+                  </div>
+                  <div className="bottom row">
+                  <div className="col-10">
+                      <div className="stageTitle">
+                        <Icon name="camera" className='icon'/>
+                        Observation Images
+                      </div>
+                      <MyCarousel />
+                  </div>
                   </div>
                 </div>
               </div>
@@ -44,7 +88,7 @@ export const Home = () => {
           </div>
         </div>
         
-      {/* </Sidebar> */}
+      </Sidebar>
       
     </div>
   )
