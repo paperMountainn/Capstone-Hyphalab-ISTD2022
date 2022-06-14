@@ -21,7 +21,7 @@ const SideBar = (props) => {
 
     return (
         <div>
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout style={{ minHeight: '100vh' }} >
                 <Sider 
                     collapsible 
                     collapsed={collapsed} 
@@ -34,6 +34,10 @@ const SideBar = (props) => {
                         mode="inline"
                         style={{ height: '100%', borderRight: 0 }}
                     >
+                        {/* <Menu.Item key="1" icon={<Icon name="info" circular inverted color='blue'/>}>
+                            Introduction
+                            <Link to="/metrics/"></Link>
+                        </Menu.Item> */}
                        {props.sideBarList.map((item)=> {
                             return (
                                 <Menu.Item key={item.title} icon={item.icon}>

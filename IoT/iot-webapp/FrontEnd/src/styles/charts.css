@@ -2,6 +2,9 @@
     margin: 10px 100px ;
     border-radius: 10%;
 }
-.ant-layout-sider-trigger {
-    background: #8F749D;
+.ant-layout{
+    background-color: white;
+}
+.ant-layout-sider {
+    background-color: white;
 }

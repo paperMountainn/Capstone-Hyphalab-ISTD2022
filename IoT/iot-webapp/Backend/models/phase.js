@@ -31,10 +31,10 @@ const phaseSchema = new Schema({
             }
         }
     ],
-    belongsToCycle: {
-        type: Schema.Types.ObjectId,
-        ref:'Cycle'
-    }
+    // belongsToCycle: {
+    //     type: Schema.Types.ObjectId,
+    //     ref:'Cycle'
+    // }
 
 })
 
