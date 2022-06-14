@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from '@firebase/firestore'
+import * as firebase from 'firebase/app'
+import 'firebase/storage'
+import 'firebase/firestore'
+import 'firebase/database'
 
 // import { getDatabase } from "@firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -21,8 +22,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const firebase = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+firebase.initializeApp(firebaseConfig)
+const projectStorage = firebase.storage()
+const projectFirestore = firebase.firestore()
+const projectRealtimeDb = firebase.database()
 
-export const db = getFirestore(firebase);
-// export const realtime_database = getDatabase();
+// export the services
+export { projectStorage, projectFirestore, timestamp, projectRealtimeDb}
