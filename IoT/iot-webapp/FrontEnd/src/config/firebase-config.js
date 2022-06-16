@@ -28,4 +28,4 @@ const projectFirestore = firebase.firestore()
 const projectRealtimeDb = firebase.database()
 
 // export the services
-export { projectStorage, projectFirestore, timestamp, projectRealtimeDb}
+export { projectStorage, projectFirestore, projectRealtimeDb}

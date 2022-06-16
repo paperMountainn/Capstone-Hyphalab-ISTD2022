@@ -113,7 +113,13 @@ import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
 import { Tasks } from './pages/tasks/Tasks';
+
+// dbtests
 import { MyForm } from './pages/dbtest/Form';
+import { TodoList } from './pages/dbtest/TodoList';
+import { PutImg } from './pages/dbtest/PutImg';
+import { MyButton } from './pages/reacttest/button/Button';
+import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 
 const App = () => {
     return (
@@ -161,6 +167,13 @@ const App = () => {
                         {/* test db */}
                         <Route path="dbtest">
                             <Route index element={<MyForm/>} />
+                            <Route path="todolist" element={<TodoList/>} />
+                            <Route path="putimg" element={<PutImg/>} />
+                            <Route path="retrieveData" element={<DataRetrieve/>} />
+                        </Route>
+                        <Route path="reacttest">
+                            <Route index element={<MyButton label="click me"/>} />
+                            {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
                     </Route>
                 </Routes>
