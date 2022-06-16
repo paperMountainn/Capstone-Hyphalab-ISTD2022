@@ -15,13 +15,13 @@ export const FarmSummary = () => {
             <div className="container">
               <div className="row">
                 <div className="col-4">
-                  <Chart aspect={2/1} title="Temperature Against Time"/>     
+                  <Chart aspect={2/1} title="Temperature Against Time" parameter="temperature"/>     
                 </div>
                 <div className="col-4">
-                  <Chart aspect={2/1} title="Humidity Against Time"/>     
+                  <Chart aspect={2/1} title="Humidity Against Time" parameter="humidity"/>     
                 </div>
                 <div className="col-4">
-                  <Chart aspect={2/1} title="CO2 Against Time"/>     
+                  <Chart aspect={2/1} title="CO2 Against Time" parameter="humidity"/>     
                 </div>
               </div>
             </div>

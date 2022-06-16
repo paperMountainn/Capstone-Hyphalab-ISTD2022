@@ -15,7 +15,7 @@ export const DataRetrieve = () => {
           const dataList = [];
           for (let timestamp in datas){
             const oneData = datas[timestamp]
-            dataList.push(oneData)
+            dataList.push({humidity: oneData.humidity, timestamp})
           }
         //   for (let data in datas) {
         //     // console.log(id)

@@ -7,6 +7,7 @@ import './home.scss';
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { MyCarousel } from '../../components/carousel/Carousel';
 import { Icon } from 'semantic-ui-react';
+import { DataRetrieve } from '../dbtest/DataRetrieve';
 
 
 const COLORS = {
@@ -34,8 +35,9 @@ export const Home = () => {
                       Incubation Stage Summary
                     </div>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp}/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity}/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity"/></div>
+                      {/* <DataRetrieve /> */}
                       
                   </div>
                   <div className="bottom row">
@@ -65,9 +67,9 @@ export const Home = () => {
                   <div className="top row">
                     <div className="stageTitle"><GiMushroomsCluster className='icon'/>Farm Stage Summary</div>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp}/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity}/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2}/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2} parameter="co2"/></div>
                     </div>
                   </div>
                   <div className="bottom row">
