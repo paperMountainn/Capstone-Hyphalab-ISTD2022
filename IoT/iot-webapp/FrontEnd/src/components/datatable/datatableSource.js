@@ -1,3 +1,6 @@
+import React, { useState, useEffect} from 'react'
+import axios from "axios";
+
 export const userCol = [
     { field: "id", headerName: "ID", width: 70 },
     {
@@ -40,9 +43,9 @@ export const userCol = [
   ];
 
   export const taskColumns = [
-    { field: "id", headerName: "ID", width: 10 },
+    { field: "_id", headerName: "ID", width: 10 },
     {
-      field: "taskname",
+      field: "taskName",
       headerName: "Task Name",
       width: 200,
     },
@@ -52,8 +55,8 @@ export const userCol = [
       width: 300,
     },
     {
-      field: "assignee",
-      headerName: "Assignee",
+      field: "assignedByUser",
+      headerName: "Assigned By",
       width: 100,
     },
     {
@@ -62,18 +65,19 @@ export const userCol = [
       width: 120,
     },
     {
-      field: "dateOverdue",
-      headerName: "dateOverdue",
+      field: "dateDue",
+      headerName: "Date Due",
       width: 120,
     },
     {
-      field: "status",
-      headerName: "Status",
+      field: "completionStatus",
+      headerName: "Completion Status",
       width: 160,
       renderCell: (params) => {
         return (
-          <div className={`cellWithStatus ${params.row.status}`}>
-            {params.row.status}
+          <div className={`cellWithStatus ${params.row.completionStatus}`}>
+            {params.row.completionStatus}
+            
           </div>
         );
       },
@@ -81,53 +85,58 @@ export const userCol = [
     
   ];
   
-  export const taskRows = [
-    {
-      id: 1,
-      taskname:"Rack movement",
-      taskDescr:"Move Rack 1.23 into Farm space",
-      status:"completed",
-      assignee:"Benji",
-      dateAssigned:"04/05/2022",
-      dateOverdue:"12/05/2022",
-    },
-    {
-      id: 2,
-      taskname:"Rack movement",
-      taskDescr:"Move Rack 1.23 into Farm space",
-      status:"issues",
-      assignee:"self",
-      dateAssigned:"04/05/2022",
-      dateOverdue:"12/05/2022",
-    },
-    {
-      id: 3,
-      taskname:"Rack movement",
-      taskDescr:"Move Rack 1.23 into Farm space",
-      status:"overdue",
-      assignee:"self",
-      dateAssigned:"04/05/2022",
-      dateOverdue:"12/05/2022",
-    },
-    {
-      id: 4,
-      taskname:"Room cleanliness",
-      taskDescr:"Move Rack 1.23 into Farm space",
-      status:"completed",
-      assignee:"Steph",
-      dateAssigned:"04/05/2022",
-      dateOverdue:"12/05/2022",
-    },
-    {
-      id: 5,
-      taskname:"Harvesting",
-      taskDescr:"Move Rack 1.23 into Farm space",
-      status:"issues",
-      assignee:"Sze Jia",
-      dateAssigned:"04/05/2022",
-      dateOverdue:"12/05/2022",
-    },
-  ]
+  // export const taskRows = [
+  //   {
+  //     id: 1,
+  //     taskname:"Rack movement",
+  //     taskDescr:"Move Rack 1.23 into Farm space",
+  //     status:"completed",
+  //     assignee:"Benji",
+  //     dateAssigned:"04/05/2022",
+  //     dateOverdue:"12/05/2022",
+  //   },
+  //   {
+  //     id: 2,
+  //     taskname:"Rack movement",
+  //     taskDescr:"Move Rack 1.23 into Farm space",
+  //     status:"issues",
+  //     assignee:"self",
+  //     dateAssigned:"04/05/2022",
+  //     dateOverdue:"12/05/2022",
+  //   },
+  //   {
+  //     id: 3,
+  //     taskname:"Rack movement",
+  //     taskDescr:"Move Rack 1.23 into Farm space",
+  //     status:"overdue",
+  //     assignee:"self",
+  //     dateAssigned:"04/05/2022",
+  //     dateOverdue:"12/05/2022",
+  //   },
+  //   {
+  //     id: 4,
+  //     taskname:"Room cleanliness",
+  //     taskDescr:"Move Rack 1.23 into Farm space",
+  //     status:"completed",
+  //     assignee:"Steph",
+  //     dateAssigned:"04/05/2022",
+  //     dateOverdue:"12/05/2022",
+  //   },
+  //   {
+  //     id: 5,
+  //     taskname:"Harvesting",
+  //     taskDescr:"Move Rack 1.23 into Farm space",
+  //     status:"issues",
+  //     assignee:"Sze Jia",
+  //     dateAssigned:"04/05/2022",
+  //     dateOverdue:"12/05/2022",
+  //   },
+  // ]
+
+
+
+
+
   //temporary data
   // export const userRows = [
   //   {

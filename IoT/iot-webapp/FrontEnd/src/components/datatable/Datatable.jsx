@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
 import './datatable.scss';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { taskColumns, taskRows } from './datatableSource';
+import React, { useState, useEffect} from 'react'
+import axios from "axios";
+// import { taskColumns, taskRows } from './datatableSource';
+import { taskColumns, TaskRowsAPI } from './datatableSource';
 import { Link } from 'react-router-dom';
 // these are defined in datatablesource.js
 // const columns: GridColDef[] = [
@@ -52,11 +54,41 @@ import { Link } from 'react-router-dom';
 
 
 export const Datatable = () => {
-  const [data, setData] = useState(taskRows);
-  const handleDelete = (id) => {
-    setData(data.filter(item => item.id !== id));
+  // const [data, setData] = useState(taskRows);
+  const [taskList, setTaskList] = useState([]);
+  const hardcodeEngineerUID = '62b295f033d4ff5e8595557e'
+  const hardcodeOperatorUID = '62b2bbdeac975868bcd813c4'
+  
+  useEffect(() => {
+    const fetchResults = async() => {
+      // const response = await axios.get(`/user/${hardcodeOperatorUID}`)  
+      const response = await axios.get(`/task/${hardcodeOperatorUID}/myTasks`) 
+      // setStuffs(response.data)
+      const tasks = response.data
+      // console.log(tasks)
+      let taskList = []
+      for (let task of tasks){
+        // console.log(task)
+        const {_id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } = task
+        const assignedByUser = assignedBy.userName
+        taskList.push({id: _id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedByUser } )
+      }
+      // console.log(taskList)
+      setTaskList(taskList)
+      
+    }
+
+    fetchResults()
     
+ }, []);
+
+
+  const handleDelete = async (id) => {
+    setTaskList(taskList.filter(item => item.id !== id));
+    const response = await axios.delete(`task/${hardcodeOperatorUID}/${id}`)
+    console.log(response.data)
   }
+
   const actionColumn = [
     {
       field: "action",
@@ -87,7 +119,7 @@ export const Datatable = () => {
       <div style={{ height: 500, width: '100%' }}>
         <DataGrid
           className='datagrid'
-          rows={data}
+          rows={taskList && taskList}
           // concatenate the columns tgt!
           columns={taskColumns.concat(actionColumn)}
           pageSize={7}

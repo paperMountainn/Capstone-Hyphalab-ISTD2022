@@ -113,6 +113,15 @@ import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
 import { Tasks } from './pages/tasks/Tasks';
+import { AssignTasks } from './pages/assignTasks/AssignTasks';
+
+// dbtests
+import { MyForm } from './pages/dbtest/Form';
+import { TodoList } from './pages/dbtest/TodoList';
+import { PutImg } from './pages/dbtest/PutImg';
+import { MyButton } from './pages/reacttest/button/Button';
+import { DataRetrieve } from './pages/dbtest/DataRetrieve';
+import { MongoTry } from './pages/mongotry/MongoTry';
 
 const App = () => {
     return (
@@ -156,6 +165,25 @@ const App = () => {
                         </Route>
                         <Route path="tasks">
                             <Route index element={<Tasks/>} />
+                            
+                        </Route>
+                        <Route path="engineer">
+                            <Route index element={<AssignTasks/>} />   
+                        </Route>
+                        {/* test db */}
+                        <Route path="dbtest">
+                            <Route index element={<MyForm/>} />
+                            <Route path="todolist" element={<TodoList/>} />
+                            <Route path="putimg" element={<PutImg/>} />
+                            <Route path="retrieveData" element={<DataRetrieve/>} />
+                        </Route>
+                        <Route path="reacttest">
+                            <Route index element={<MyButton label="click me"/>} />
+                            {/* <Route path="testButton" element={<TodoList/>} /> */}
+                        </Route>
+                        <Route path="mongoTry">
+                            <Route index element={<MongoTry />} />
+                            {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
                     </Route>
                 </Routes>

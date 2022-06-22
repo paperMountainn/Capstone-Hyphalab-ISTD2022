@@ -27,8 +27,8 @@ export const IncubationSummary = () => {
                   <GiMushroomGills className='icon'/>
                   Incubation Stage Summary
                 </div>
-                <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp}/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity}/></div>
+                <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity"/></div>
                   {/* <div className="col-6">
                     <Chart aspect={2/1} title="CO2 Against Time"/>     
                   </div> */}

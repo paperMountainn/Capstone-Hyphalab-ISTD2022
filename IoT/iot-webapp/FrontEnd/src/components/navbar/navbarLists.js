@@ -63,3 +63,7 @@ export const mainPageNavItems = [
 export const taskPageNavItems = [
     getItem(<Link to="/">Add New Task</Link>, '1', <Icon name="add" />),
 ]
+
+export const engineerPageNavItems = [
+    getItem(<Link to="/">Assign New Task</Link>, '1', <Icon name="add" />),
+]

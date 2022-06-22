@@ -75,6 +75,11 @@ export const Sidebar = ({children}) => {
           icon:<Icon name="tasks" circular inverted color='grey'/>
       }, 
       {
+        title:"Assign Tasks",
+        link:"/engineer",
+        icon:<Icon name="tasks" circular inverted color='orange'/>
+      }, 
+      {
           title:"User",
           link:"/",
           icon:<Icon name="setting" circular inverted color='grey'></Icon>
