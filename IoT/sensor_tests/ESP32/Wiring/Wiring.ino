@@ -4,10 +4,12 @@
 
 // Defining all the pins
 #define DHTPIN1 23     // Temp & Hum sensor 1
-#define DHTPIN2 34     // Temp & Hum Sensor 2
+#define DHTPIN2 19     // Temp & Hum Sensor 2       pin 34 doesn't work for some reason
 #define HUM 32          // Ultrasonic Humidifier 1
 #define VENT 33         // Ventilation fan
 #define CCS811_ADDR 0x5A  //Alternate I2C Adress for CO2
+
+
 
 // Defining Parameters
 // Incubation Parameters
@@ -81,7 +83,7 @@ void loop(){
   TempHumReadingExt();  // Temp & Hum Reading outside the controlled environment
   CO2Reading(); // Co2 Reading
   digitalWrite(HUM, HIGH);
-  digitalWrite(VENT, LOW);  
+  digitalWrite(VENT, HIGH);  
 //  Serial print temp and hum, uncomment if required
   Serial.print(F("Internal Humidity: "));
   Serial.print(hi);
