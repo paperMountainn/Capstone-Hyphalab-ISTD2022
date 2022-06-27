@@ -11,7 +11,7 @@ import 'antd/dist/antd.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { FaCloudversify } from "react-icons/fa";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
+import hyphaIcon from '../../static/hypha-new.png'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -70,12 +70,12 @@ export const Sidebar = ({children}) => {
     // ]
     const sideBarMainList = [
       {
-          title:"My Tasks",
+          title:"My Tasks (Operator)",
           link:"/tasks",
-          icon:<Icon name="tasks" circular inverted color='grey'/>
+          icon:<Icon name="tasks" circular inverted color='blue'/>
       }, 
       {
-        title:"Assign Tasks",
+        title:"Assign Tasks (Engineer)",
         link:"/engineer",
         icon:<Icon name="tasks" circular inverted color='orange'/>
       }, 
@@ -107,7 +107,7 @@ export const Sidebar = ({children}) => {
               </div>
               <Menu theme="light" defaultSelectedKeys={['3']} mode="inline" >
 
-              <Menu.Item icon={<DashboardIcon />}> 
+              <Menu.Item icon={<DashboardIcon/>}> 
                   
                   <Link to="/"><h5>HyphaLab</h5></Link>
                    
