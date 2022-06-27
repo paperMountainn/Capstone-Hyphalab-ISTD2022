@@ -3,6 +3,7 @@ import { projectRealtimeDb } from '../../config/firebase-config'
 import { Link } from 'react-router-dom';
 import './chart.scss'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { dateHelper } from '../../utils/dateHelper'
 
 const data1 = [
   {
@@ -31,18 +32,20 @@ const data1 = [
 
 export const Chart = ({ aspect, title, color, parameter }) => {
   const [data, setData] = useState();
+  const [realtimeValue, setRealtimeValue] = useState();
   // run only during first render
   useEffect(() => {
     const dataRef = projectRealtimeDb.ref('ESP32-Incubation-6C96CE57DDC4');
-    dataRef
+    dataRef.limitToLast(10)
     .on('value', (snapshot) => {
       const datas = snapshot.val();
       console.log(datas) 
       const dataList = [];
       for (let timestamp in datas){
         const oneData = datas[timestamp]
-
-        dataList.push({ [parameter]: oneData[parameter], timestamp})
+        const timestampConverted = dateHelper(timestamp, "time")
+        dataList.push({ [parameter]: oneData[parameter], timestamp: timestampConverted})
+        // dataList.push({ [parameter]: oneData[parameter], timestamp})
       }
     //   for (let data in datas) {
     //     // console.log(id)
@@ -50,6 +53,17 @@ export const Chart = ({ aspect, title, color, parameter }) => {
     //   }
     //   console.log(todos)
       setData(dataList);
+      // setRealtimeValue(dataList[0].parameter);
+      console.log("hiiiii")
+      // console.log(dataList)
+      if (dataList){
+        // access the last data = latest value!
+        // console.log(dataList.slice(-1)[0][[parameter]])
+        const realtimeVal = dataList.slice(-1)[0][parameter]
+        setRealtimeValue(realtimeVal)
+      }
+      
+      console.log(realtimeValue)
     });
   }, []);
 
@@ -63,7 +77,7 @@ export const Chart = ({ aspect, title, color, parameter }) => {
   // } 
   console.log("hi")
   console.log(color)
-  console.log(data)
+  // console.log(realtimeValue && realtimeValue)
   
   // function optimalValue() {
   //   if (parameter == "temperature"){
@@ -78,9 +92,10 @@ export const Chart = ({ aspect, title, color, parameter }) => {
   // }
   return (
     <Link to="/" params={{ aspect, title, color, parameter}}>
+      <div>{realtimeValue}</div>
     <div className='chart'>
       <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" aspect={ aspect }>
+      <ResponsiveContainer width="100%" aspect={ aspect } styles >
       <AreaChart width={730} height={250} data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
         <defs>
@@ -89,8 +104,9 @@ export const Chart = ({ aspect, title, color, parameter }) => {
             <stop offset="95%" stopColor={color} stopOpacity={0}/>
           </linearGradient>
         </defs>
-        <XAxis dataKey="timestamp" stroke='gray' />
-        <YAxis  domain={['auto', 'auto']}/>
+        <XAxis dataKey="timestamp" stroke='gray' label={{ value: "time", offset: 0,  position: "insideBottom" }} domain={['auto', 'auto']} />
+        {/* <YAxis  domain={['auto', 'auto']}/> */}
+        <YAxis style={{margin: "10px"}} label={{ value: parameter, angle: -90, position: 'insideLeft' }} domain={['auto', 'auto']}/>
       
         <CartesianGrid strokeDasharray="3 3" className='chartGrid'/>
         <Tooltip />

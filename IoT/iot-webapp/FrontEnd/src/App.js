@@ -114,7 +114,7 @@ import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
 import { Tasks } from './pages/tasks/Tasks';
 import { AssignTasks } from './pages/assignTasks/AssignTasks';
-
+import { TasksEngineer } from './pages/tasksEngineer/TasksEngineer';
 // dbtests
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
@@ -169,6 +169,7 @@ const App = () => {
                         </Route>
                         <Route path="engineer">
                             <Route index element={<AssignTasks/>} />   
+                            <Route path="engineerTasks" element={<TasksEngineer />} />   
                         </Route>
                         {/* test db */}
                         <Route path="dbtest">
