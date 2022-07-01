@@ -16,7 +16,7 @@ export const MyCarousel = ({ images }) => {
     };
   
     return (
-      <Carousel fade className='carousel' activeIndex={index} onSelect={handleSelect} interval={null}>
+      <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -24,7 +24,7 @@ export const MyCarousel = ({ images }) => {
             alt="First slide"
           />
           {/* <Carousel.Caption> */}
-          <h3>Rack 1.23</h3>
+          <h3>Rack 1</h3>
           <p>Growth Date: 10/06/2022</p>
           {/* </Carousel.Caption> */}
         </Carousel.Item>
@@ -35,11 +35,10 @@ export const MyCarousel = ({ images }) => {
             src={s2}
             alt="Second slide"
           />
-  
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
+          {/* <Carousel.Caption> */}
+            <h3>Rack 2</h3>
+            <p>Growth Date: 10/06/2022</p>
+          {/* </Carousel.Caption> */}
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -48,12 +47,10 @@ export const MyCarousel = ({ images }) => {
             alt="Third slide"
           />
   
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
+          {/* <Carousel.Caption> */}
+            <h3>Rack 3</h3>
+            <p>Growth Date: 10/06/2022</p>
+          {/* </Carousel.Caption> */}
         </Carousel.Item>
       </Carousel>
   )
