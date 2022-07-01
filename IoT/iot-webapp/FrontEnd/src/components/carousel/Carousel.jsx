@@ -16,18 +16,19 @@ export const MyCarousel = ({ images }) => {
     };
   
     return (
-      <Carousel className='carousel' activeIndex={index} onSelect={handleSelect} interval={null}>
+      <Carousel fade className='carousel' activeIndex={index} onSelect={handleSelect} interval={null}>
         <Carousel.Item>
           <img
             className="d-block w-100"
             src={s1}
             alt="First slide"
           />
-          <Carousel.Caption>
-            <h3>Rack 1.23</h3>
-            <p>Growth Date: 10/06/2022</p>
-          </Carousel.Caption>
+          {/* <Carousel.Caption> */}
+          <h3>Rack 1.23</h3>
+          <p>Growth Date: 10/06/2022</p>
+          {/* </Carousel.Caption> */}
         </Carousel.Item>
+        
         <Carousel.Item>
           <img
             className="d-block w-100 h-75"

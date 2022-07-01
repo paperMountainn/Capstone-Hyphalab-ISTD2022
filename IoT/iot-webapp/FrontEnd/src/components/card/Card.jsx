@@ -3,9 +3,8 @@ import { Card } from 'semantic-ui-react';
 import './card.scss';
 import { RiTempHotLine } from "react-icons/ri";
 // import {Grid, Row, Col} from "react-bootstrap";
-import Grid from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
-import "./card.css";
 
 export const MyCard = ({header, meta, icon, color}) => {
   return (
@@ -20,7 +19,8 @@ export const MyCard = ({header, meta, icon, color}) => {
             </Card.Description>
           </Grid>
           <Grid item>
-            <Card.Header >{header}</Card.Header>
+            {/* <Card.Header >{header}</Card.Header> */}
+            <h2>{header}</h2>
           </Grid>
           <Grid item>
           <Card.Meta>{meta}</Card.Meta>
