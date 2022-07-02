@@ -115,6 +115,7 @@ import { Sidebar } from 'semantic-ui-react';
 import { Tasks } from './pages/tasks/Tasks';
 import { AssignTasks } from './pages/assignTasks/AssignTasks';
 import { TasksEngineer } from './pages/tasksEngineer/TasksEngineer';
+import { Contaminations } from './pages/contaminations/Contaminations';
 // dbtests
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
@@ -148,7 +149,7 @@ const App = () => {
                             <Route path="temperature" element={<ParamDetail />} />
                             {/* /users/new renders New */}
                             <Route path="humidity" element={<ParamDetail />} />
-                            <Route path="contaminations" element={<ParamDetail />} />
+                            <Route path="contaminations" element={<Contaminations />} />
                             <Route path="observations" element={<ParamDetail />} />
                         </Route>
                         <Route path="rack-phases">
