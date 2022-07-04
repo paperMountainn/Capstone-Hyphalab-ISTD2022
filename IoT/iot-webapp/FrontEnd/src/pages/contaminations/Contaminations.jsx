@@ -8,7 +8,7 @@ import { ActuatorForm } from '../../components/actuatorForm/ActuatorForm';
 
 import { RiTempHotLine } from "react-icons/ri";
 import { Icon } from 'semantic-ui-react';
-
+import { ContamFormModal } from '../../components/contamModal/ContamFormModal';
 import { FaCloudversify } from "react-icons/fa";
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 
@@ -19,6 +19,10 @@ export const Contaminations = () => {
         <div className="container"><div className="top row">
 
         <div className="stageTitle">Contamination images</div>
+
+        <div className="row">
+        <div className="col-md-4 pb-4"><ContamFormModal/></div>
+        </div>
 
         <div className="row">
             <div className="col-md-4 pb-4"><ContamCarousel color="card bg-danger" header="Rack 4" meta="Growth Date: 10/06/2022"/></div>
