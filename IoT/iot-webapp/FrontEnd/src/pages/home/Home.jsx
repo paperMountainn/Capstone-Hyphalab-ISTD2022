@@ -8,6 +8,7 @@ import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { MyCarousel } from '../../components/carousel/Carousel';
 import { Icon } from 'semantic-ui-react';
 import { DataRetrieve } from '../dbtest/DataRetrieve';
+import { Link } from 'react-router-dom';
 
 
 const COLORS = {

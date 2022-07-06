@@ -74,14 +74,17 @@ export const Navbar = ({navItems}) => {
             selectedKeys={mail} 
             mode="horizontal" 
             items={navItems}>
+            {/* <Menu.Item key="mail">
+            Navigation One
+            </Menu.Item> */}
+
             {/* empty title */}
             {/* <Menu.Item>
                 <h1>Farm</h1>
             </Menu.Item> */}
-            {/* <Menu.Item key="home" icon={<AiFillHome />}>
-                <Link to="/farm/">Home</Link>
-            
-            </Menu.Item> */}
+            {/* <Menu.Item key="home" icon={<AiFillHome />}> */}
+                {/* <Link to="/farm/">Home</Link> */}
+            {/* </Menu.Item> */}
 
             {/* <Menu.Item key="incubation" icon={<GiMushroomGills />}>
             
@@ -108,6 +111,7 @@ export const Navbar = ({navItems}) => {
                 Navigation Four - Link
             </a>
             </Menu.Item> */}
+        
         </Menu>
     </div>
   )
