@@ -61,7 +61,7 @@ export const ContamFormModal = () => {
       
       <br />
 
-        <Form.Input label="Assign" required type="text" placeholder="Assign operator" />
+        <Form.Input label="Assign" type="text" placeholder="Assign operator" />
         <br />
         <Modal.Actions>
           <Button type='Are not Contaminated' color="green" onClick={()=>{console.log(Form)}}>False Alarm</Button>

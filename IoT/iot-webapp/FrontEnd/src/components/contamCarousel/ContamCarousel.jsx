@@ -5,6 +5,7 @@ import { Carousel } from 'react-bootstrap';
 import { RiTempHotLine } from "react-icons/ri";
 import Grid from '@mui/material/Grid';
 import './contaminationCard.css'
+import { FiAlertTriangle } from "react-icons/fi";
 
 import c1 from '../../static/c1.jpg';
 import c2 from '../../static/c2.jpg';
@@ -22,6 +23,7 @@ export const ContamCarousel = ({ images, header, meta, color }) => {
 
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
         <Carousel.Item>
+        <FiAlertTriangle/>
           <img
             className="d-block w-100"
             src={c1}

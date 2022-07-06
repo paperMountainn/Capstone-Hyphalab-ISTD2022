@@ -6,10 +6,9 @@ import './contaminations.scss';
 import { ContamCarousel } from '../../components/contamCarousel/ContamCarousel';
 import { ActuatorForm } from '../../components/actuatorForm/ActuatorForm';
 
-import { RiTempHotLine } from "react-icons/ri";
+import { RiTempHotLine } from "react-icons";
 import { Icon } from 'semantic-ui-react';
 import { ContamFormModal } from '../../components/contamModal/ContamFormModal';
-import { FaCloudversify } from "react-icons/fa";
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 
 export const Contaminations = () => {
