@@ -4,6 +4,7 @@ import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import './paramDetail.scss';
 import { MyCard } from '../../components/card/Card';
+import { ActuatorForm } from '../../components/actuatorForm/ActuatorForm';
 
 import { RiTempHotLine } from "react-icons/ri";
 import { Icon } from 'semantic-ui-react';
@@ -40,11 +41,14 @@ export const ParamDetail = () => {
           <div className="top">
             <div className="container">
               <div className="row">
-                <div className="col-8">
+
+                <div className="col-8 md-4">
                   <div className="graphDescr">Graph Detail</div>
                   <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" />
+                
                 </div>
-                <div className="col-4">
+
+                <div className="col-4 md-4">
                 <div className="graphDescr">Summarised Statistics</div>
                 <div className="row">
                   {cardDetails.map((cardDetail)=>{
@@ -58,13 +62,18 @@ export const ParamDetail = () => {
                     );
                   })}
                 </div>
-                
-                  
                 </div>
               </div>
+              
+              <div className="row">
+              <div className="col-8 mt-4">
+                <ActuatorForm/>
+              </div>
+              </div>
+
             </div>
           </div>
-          <div className="bottom">bottom</div>
+          
         </div>
       </Sidebar>
     </div>

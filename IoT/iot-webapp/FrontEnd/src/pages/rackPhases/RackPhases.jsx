@@ -14,7 +14,7 @@ export const RackPhases = () => {
           <div className="charts">
             <div className="container">
               <div className="row">
-                <div className="col-4">
+                {/* <div className="col-4">
                   <Chart aspect={2/1} title="Temperature Against Time"/>     
                 </div>
                 <div className="col-4">
@@ -22,7 +22,8 @@ export const RackPhases = () => {
                 </div>
                 <div className="col-4">
                   <Chart aspect={2/1} title="CO2 Against Time"/>     
-                </div>
+                </div> */}
+                
               </div>
             </div>
           </div>

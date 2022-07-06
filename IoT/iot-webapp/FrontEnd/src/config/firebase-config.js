@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+
 import * as firebase from 'firebase/app'
 import 'firebase/storage'
 import 'firebase/firestore'
@@ -10,6 +11,7 @@ import 'firebase/database'
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
   apiKey: "AIzaSyCxmpcLlUepJMCTPL_xjkLMtpcq2Y3pvDo",
   authDomain: "iot-webapp-28f3a.firebaseapp.com",
