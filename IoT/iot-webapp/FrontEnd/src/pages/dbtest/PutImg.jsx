@@ -8,7 +8,7 @@ export const PutImg = () => {
     useEffect(() => {
         const fetchImages = async () => {
     
-            let result = await projectStorage.ref('data').listAll();
+            let result = await projectStorage.ref('data/hi').listAll();
             // let metadata = await projectStorage.ref('data').getMetadata();
             let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
         
@@ -17,6 +17,7 @@ export const PutImg = () => {
         
         const loadImages = async () => {
             const urls = await fetchImages();
+            console.log(urls)
             setFiles(urls);
         }
         loadImages();
