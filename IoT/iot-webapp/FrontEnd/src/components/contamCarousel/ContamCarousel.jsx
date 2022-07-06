@@ -11,21 +11,38 @@ import c1 from '../../static/c1.jpg';
 import c2 from '../../static/c2.jpg';
 import c3 from '../../static/c3.jpg';
 
-export const ContamCarousel = ({ images, header, meta, color }) => {
+export const ContamCarousel = ({ images, header, meta }) => {
   const [index, setIndex] = useState(0);
 
+  // file names can be 
+  // contam
+  // noncontam
+  // observation
+  const folderRetrieved = "noncontam"
+
+  const cardClass = (folderRetrieved) => {
+    if (folderRetrieved == "contam"){
+      return "card bg-danger"
+    }
+    else if (folderRetrieved == "noncontam"){
+      return "card bg-success"
+    }
+  }
+  
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-  return (
-    <Card className={color} >
-      <Card.Content>
 
+
+  return (
+    <Card className={cardClass(folderRetrieved)}>
+      <Card.Content>
+      {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
         <Carousel.Item>
-        <FiAlertTriangle/>
+        
           <img
-            className="d-block w-100"
+            className="d-block w-100 "
             src={c1}
             alt="First slide"
           />
