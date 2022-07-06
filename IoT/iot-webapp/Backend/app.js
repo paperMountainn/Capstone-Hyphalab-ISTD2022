@@ -1,7 +1,12 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001; //Line 3
+const mongoose = require('mongoose');
 
+
+const userRoutes = require('./routes/user');
+const taskRoutes = require('./routes/task');
+const morgan = require('morgan');
 // connect to mongoose from Express
 mongoose.connect(
     'mongodb://localhost:27017/controlled-environment', 
@@ -18,10 +23,24 @@ mongoose.connect(
         console.log(err)
     })
 
+// when you app.use, it runs in every single request
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('tiny'))
 
-app.get('/express_backend', (req, res) => {
-    res.send('shitty people!');
+// Routes
+app.use('/user', userRoutes)
+app.use('/task', taskRoutes)
+
+app.get('/home', (req, res) => {
+    res.send('hi!');
 })
+
+
+app.all("*", (req, res, next) => {
+    // res.send("404!")
+    res.send("404 Not found")
+})
+
 app.listen(port, () => {
     console.log(`LISTENING ON PORT ${port}, connected to react!`);
 })
