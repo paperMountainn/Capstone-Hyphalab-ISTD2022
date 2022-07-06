@@ -4,7 +4,7 @@
 
 // Defining all the pins
 #define DHTPIN1 23     // Temp & Hum sensor 1
-#define DHTPIN2 0     // Temp & Hum Sensor 2
+#define DHTPIN2 19    // Temp & Hum Sensor 2
 #define HUM 32          // Ultrasonic Humidifier 1
 #define VENT 33         // Ventilation fan
 #define CCS811_ADDR 0x5A  //Alternate I2C Adress for CO2
