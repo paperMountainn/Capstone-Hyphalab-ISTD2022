@@ -18,7 +18,7 @@ export const ContamCarousel = ({ images, header, meta }) => {
   // contam
   // noncontam
   // observation
-  const folderRetrieved = "noncontam"
+  const folderRetrieved = "contam"
 
   const cardClass = (folderRetrieved) => {
     if (folderRetrieved == "contam"){

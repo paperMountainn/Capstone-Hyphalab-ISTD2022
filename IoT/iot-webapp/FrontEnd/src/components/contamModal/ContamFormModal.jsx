@@ -42,32 +42,30 @@ export const ContamFormModal = () => {
       >
       <Modal.Header>Select Racks to be Checked</Modal.Header>
       <i class="close icon"></i>
-      <Modal.Content Image><Modal.Description>
-        <Form.Input label="Name" required type="text" placeholder="Your name" />
-        <Form.Group grouped>
-          <label>Select the racks:</label>
-          <Form.Field label='Rack 1' control='input' type='checkbox' />
-          <Form.Field label='Rack 2' control='input' type='checkbox' />
-          <Form.Field label='Rack 3' control='input' type='checkbox' />
-          <Form.Field label='Rack 4' control='input' type='checkbox' />
-          <Form.Field label='Rack 5' control='input' type='checkbox' />
-          <Form.Field label='Rack 6' control='input' type='checkbox' />
-          <Form.Field label='Rack 7' control='input' type='checkbox' />
-          <Form.Field label='Rack 8' control='input' type='checkbox' />
-          <Form.Field label='Rack 9' control='input' type='checkbox' />
-          <Form.Field label='Rack 10' control='input' type='checkbox' />
-        </Form.Group>
-      {/* <Image size='medium' src='https://react.semantic-ui.com/images/wireframe/image.png' wrapped /> */}
-      
-      <br />
-
-        <Form.Input label="Assign" type="text" placeholder="Assign operator" />
-        <br />
-        <Modal.Actions>
-          <Button type='Are not Contaminated' color="green" onClick={()=>{console.log(Form)}}>False Alarm</Button>
-          <Button type='Are Contaminated' color="green" onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
-        </Modal.Actions>
-      </Modal.Description>
+      <Modal.Content image scrolling >
+        <Modal.Description>
+          <Form.Input label="Name" required type="text" placeholder="Your name" />
+          <Form.Group grouped>
+            <label>Select the racks:</label>
+            <Form.Field label='Rack 1' control='input' type='checkbox' />
+            <Form.Field label='Rack 2' control='input' type='checkbox' />
+            <Form.Field label='Rack 3' control='input' type='checkbox' />
+            <Form.Field label='Rack 4' control='input' type='checkbox' />
+            <Form.Field label='Rack 5' control='input' type='checkbox' />
+            <Form.Field label='Rack 6' control='input' type='checkbox' />
+            <Form.Field label='Rack 7' control='input' type='checkbox' />
+            <Form.Field label='Rack 8' control='input' type='checkbox' />
+            <Form.Field label='Rack 9' control='input' type='checkbox' />
+            <Form.Field label='Rack 10' control='input' type='checkbox' />
+          </Form.Group>
+          
+          <Form.Input label="Assign" type="text" placeholder="Assign operator" />
+          <br />
+          <Modal.Actions>
+            <Button type='False Alarm' color="green" onClick={()=>{console.log(Form)}}>False Alarm</Button>
+            <Button type='Are Contaminated' color="green" onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
+          </Modal.Actions>
+        </Modal.Description>
       </Modal.Content>
       </Modal>
       {/* <Modal as={Form}>
