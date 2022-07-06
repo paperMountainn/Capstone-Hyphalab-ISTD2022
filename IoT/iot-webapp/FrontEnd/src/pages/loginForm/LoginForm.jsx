@@ -1,6 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
 import hyphaLogo from '../../static/HYPHA(Black).png';
 import Box from '@mui/material/Box';
 import {TextField, Button} from '@mui/material';
