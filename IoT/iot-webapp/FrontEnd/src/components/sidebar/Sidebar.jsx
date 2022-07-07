@@ -6,11 +6,11 @@ import './sidebar.scss'
 import '../../styles/charts.css'
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { IoFileTrayStacked } from "react-icons/io5";
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 // import './index.css';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { FaCloudversify } from "react-icons/fa";
-import DashboardIcon from '@mui/icons-material/Dashboard';
+// import { FaCloudversify } from "react-icons/fa";
+// import DashboardIcon from '@mui/icons-material/Dashboard';
 import hyphaIcon from '../../static/LOGO14px.png'
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -78,17 +78,17 @@ export const Sidebar = ({children}) => {
         title:"Assign Tasks (Engineer)",
         link:"/engineer",
         icon:<Icon name="tasks" circular inverted color='orange'/>
+      },
+      {
+          title:"User",
+          link:"/",
+          icon:<Icon name="setting" circular inverted color='grey'></Icon>
+      },
+      {
+        title:"Settings",
+        link:"/",
+        icon:<Icon name="user circle" circular inverted color='grey'></Icon>
       }
-      // {
-      //     title:"User",
-      //     link:"/",
-      //     icon:<Icon name="setting" circular inverted color='grey'></Icon>
-      // },
-      // {
-      //   title:"Settings",
-      //   link:"/",
-      //   icon:<Icon name="user circle" circular inverted color='grey'></Icon>
-      // }
   
   ]
 

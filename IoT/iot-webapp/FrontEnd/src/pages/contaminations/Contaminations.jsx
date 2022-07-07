@@ -13,8 +13,10 @@ import { ContamFormModal } from '../../components/contamModal/ContamFormModal';
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 
 export const Contaminations = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
- 
     return (
         
         <Sidebar>
@@ -25,13 +27,13 @@ export const Contaminations = () => {
                 <div className="stageTitle">Contamination images</div>
 
                 <div className="row">
-                <div className="col-md-4 pb-4"><ContamFormModal/></div>
+                <div className="col-md-4 pb-4"><ContamFormModal modalState={open} closeModal={setOpen}/></div>
                 </div>
 
                   
                 <>
                     <div className="row">
-                        <div className="col-md-4 pb-4"><ContamCarousel header="Rack 4" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 4" meta="Growth Date: 10/06/2022"/></div>
                         <div className="col-md-4 pb-4"><ContamCarousel header="Rack 5" meta="Growth Date: 10/06/2022"/></div>
                         <div className="col-md-4 pb-4"><ContamCarousel header="Rack 6" meta="Growth Date: 10/06/2022"/></div>
                     </div>
@@ -39,7 +41,7 @@ export const Contaminations = () => {
                     <div className="row">
                         <div className="col-md-4 pb-4"><ContamCarousel header="Rack 7" meta="Growth Date: 10/06/2022"/></div>
                         <div className="col-md-4 pb-4"><ContamCarousel header="Rack 8" meta="Growth Date: 10/06/2022"/></div>
-                        <div className="col-md-4 pb-4"><ContamCarousel header="Rack 9" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel color="card bg-danger" header="Rack 9" meta="Growth Date: 10/06/2022"/></div>
                     </div>
                 </>    
                 

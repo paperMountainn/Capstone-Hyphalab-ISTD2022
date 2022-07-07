@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import './contamCarousel.scss';
 import { Carousel } from 'react-bootstrap';
 import { RiTempHotLine } from "react-icons/ri";
@@ -11,7 +11,7 @@ import c1 from '../../static/c1.jpg';
 import c2 from '../../static/c2.jpg';
 import c3 from '../../static/c3.jpg';
 
-export const ContamCarousel = ({ images, header, meta }) => {
+export const ContamCarousel = ({ images, header, meta, openModal}) => {
   const [index, setIndex] = useState(0);
 
   // file names can be 
@@ -33,9 +33,14 @@ export const ContamCarousel = ({ images, header, meta }) => {
     setIndex(selectedIndex);
   };
 
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
+
 
   return (
     <Card className={cardClass(folderRetrieved)}>
+      
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
@@ -72,6 +77,11 @@ export const ContamCarousel = ({ images, header, meta }) => {
       
       </Carousel>
 
+      
+      <div align="center">
+        <Button basic inverted onClick={openModal}>More Details</Button> 
+      </div>
+      
       </Card.Content>
     </Card>
 

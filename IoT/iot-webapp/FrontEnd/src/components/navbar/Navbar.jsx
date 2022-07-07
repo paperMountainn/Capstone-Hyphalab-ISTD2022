@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import { Menu } from 'antd';
 
 import './navbar.scss'

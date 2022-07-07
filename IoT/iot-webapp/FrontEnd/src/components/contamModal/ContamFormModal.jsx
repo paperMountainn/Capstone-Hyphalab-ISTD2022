@@ -19,10 +19,9 @@ import { RiFullscreenExitFill } from 'react-icons/ri';
 //   p: 4,
 // };
 
-export const ContamFormModal = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export const ContamFormModal = ({modalState, closeModal}) => {
+  const [close, setClose] = React.useState(modalState);
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -32,36 +31,35 @@ export const ContamFormModal = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Select Racks to be Checked</Button>
+      {/* <Button onClick={handleOpen}>Select Racks to be Checked</Button> */}
       <Modal
         as={Form}
-        open={open}
-        onCloseButton ={handleClose}
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
+        open={modalState}
+        onClose={()=>closeModal(false)}
       >
-      <Modal.Header>Select Racks to be Checked</Modal.Header>
-      <i class="close icon"></i>
+      <Modal.Header>Select Racks and action to take</Modal.Header>
+      <i class="close icon" onClick={()=>closeModal(false)} ></i>
       <Modal.Content image scrolling >
         <Modal.Description>
           <Form.Input label="Name" required type="text" placeholder="Your name" />
           <Form.Group grouped>
             <label>Select the racks:</label>
-            <Form.Field label='Rack 1' control='input' type='checkbox' />
-            <Form.Field label='Rack 2' control='input' type='checkbox' />
-            <Form.Field label='Rack 3' control='input' type='checkbox' />
-            <Form.Field label='Rack 4' control='input' type='checkbox' />
-            <Form.Field label='Rack 5' control='input' type='checkbox' />
-            <Form.Field label='Rack 6' control='input' type='checkbox' />
-            <Form.Field label='Rack 7' control='input' type='checkbox' />
-            <Form.Field label='Rack 8' control='input' type='checkbox' />
-            <Form.Field label='Rack 9' control='input' type='checkbox' />
-            <Form.Field label='Rack 10' control='input' type='checkbox' />
+            <Form.Field label='Tray 1' control='input' type='checkbox' />
+            <Form.Field label='Tray 2' control='input' type='checkbox' />
+            <Form.Field label='Tray 3' control='input' type='checkbox' />
+            <Form.Field label='Tray 4' control='input' type='checkbox' />
+            <Form.Field label='Tray 5' control='input' type='checkbox' />
+            <Form.Field label='Tray 6' control='input' type='checkbox' />
+            <Form.Field label='Tray 7' control='input' type='checkbox' />
+            <Form.Field label='Tray 8' control='input' type='checkbox' />
+            <Form.Field label='Tray 9' control='input' type='checkbox' />
+            <Form.Field label='Tray 10' control='input' type='checkbox' />
           </Form.Group>
           
           <Form.Input label="Assign" type="text" placeholder="Assign operator" />
           <br />
           <Modal.Actions>
+          <label>Select action:</label>
             <Button type='False Alarm' color="green" onClick={()=>{console.log(Form)}}>False Alarm</Button>
             <Button type='Are Contaminated' color="green" onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
           </Modal.Actions>
