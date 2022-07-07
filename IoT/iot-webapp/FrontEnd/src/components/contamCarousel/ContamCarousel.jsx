@@ -22,10 +22,10 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
 
   const cardClass = (folderRetrieved) => {
     if (folderRetrieved == "contam"){
-      return "card bg-danger"
+      return "red"
     }
     else if (folderRetrieved == "noncontam"){
-      return "card bg-success"
+      return "green"
     }
   }
   
@@ -39,7 +39,7 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
 
 
   return (
-    <Card className={cardClass(folderRetrieved)}>
+    <Card color={cardClass(folderRetrieved)}>
       
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
@@ -51,7 +51,7 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
             src={c1}
             alt="First slide"
           />
-          <h3>{header}</h3>
+          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
           <Card.Meta>{meta}</Card.Meta>
         </Carousel.Item>
         
@@ -61,7 +61,7 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
             src={c2}
             alt="Second slide"
           />
-          <h3>{header}</h3>
+          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
           <Card.Meta>{meta}</Card.Meta>
         </Carousel.Item>
 
@@ -71,15 +71,15 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
             src={c3}
             alt="Third slide"
           />
-          <h3>{header}</h3>
+          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
           <Card.Meta>{meta}</Card.Meta>
         </Carousel.Item>
       
       </Carousel>
 
       
-      <div align="center">
-        <Button basic inverted onClick={openModal}>More Details</Button> 
+      <div className="pt-3" align="center">
+        <Button onClick={openModal}>More Details</Button> 
       </div>
       
       </Card.Content>

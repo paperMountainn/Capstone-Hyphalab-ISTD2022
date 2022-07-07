@@ -19,3 +19,7 @@
 .container-fluid .row{
     padding-top: 6rem
 } */
+
+.red{
+    color: red !important;
+}
