@@ -1,14 +1,8 @@
 import React, {useEffect ,useState} from 'react'
-import { projectStorage } from '../../config/firebase-config';
-import { Chart } from '../../components/chart/Chart';
 import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import './contaminations.scss';
 import { ContamCarousel } from '../../components/contamCarousel/ContamCarousel';
-import { ActuatorForm } from '../../components/actuatorForm/ActuatorForm';
-
-import { RiTempHotLine } from "react-icons";
-import { Icon } from 'semantic-ui-react';
 import { ContamFormModal } from '../../components/contamModal/ContamFormModal';
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 

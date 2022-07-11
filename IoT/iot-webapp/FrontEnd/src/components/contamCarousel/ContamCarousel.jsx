@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Card, Button } from 'semantic-ui-react';
 import './contamCarousel.scss';
 import { Carousel } from 'react-bootstrap';
-import { RiTempHotLine } from "react-icons/ri";
-import Grid from '@mui/material/Grid';
 import './contaminationCard.css'
 import { FiAlertTriangle } from "react-icons/fi";
+import { projectStorage } from '../../config/firebase-config';
 
 import c1 from '../../static/c1.jpg';
 import c2 from '../../static/c2.jpg';
 import c3 from '../../static/c3.jpg';
 
-export const ContamCarousel = ({ images, header, meta, openModal}) => {
+export const ContamCarousel = ({ header, meta, openModal}) => {
   const [index, setIndex] = useState(0);
+  const [files, setFiles] = useState();
+  const [info, setInfo] = useState();
 
   // file names can be 
   // contam
@@ -33,13 +34,48 @@ export const ContamCarousel = ({ images, header, meta, openModal}) => {
     setIndex(selectedIndex);
   };
 
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  useEffect(() => {
+    const fetchImages = async () => {
 
+        let result = await projectStorage.ref('/data/rack1/contaminationCheck/contam').listAll();
+        // let metadata = await projectStorage.ref('data').getMetadata();
+        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+
+        // for (String url : urlPromises) {
+        //   // Do something
+        // }
+    
+        return Promise.all(urlPromises);
+    }
+    
+    const loadImages = async () => {
+        const urls = await fetchImages();
+        urls.forEach(function(item, index){
+          // console.log(item, index)
+        });
+        // console.log(urls[1])
+        setFiles(urls);
+    }
+    loadImages();
+    }, []);
+
+    // files && console.log(files[0])
+    // files && console.log(info)
+
+    // files.forEach(function(item, index){
+    //   console.log(item, index)
+    // });
+    // console.log(files[4])
 
   return (
     <Card color={cardClass(folderRetrieved)}>
+    <div>
+          {files && 
+          files.map((url)=>{
+              return(<img key={url} style={{width:"100px"}} src={url} />)                
+          })
+          }
+      </div>
       
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}

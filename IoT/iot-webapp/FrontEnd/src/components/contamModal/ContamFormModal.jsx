@@ -2,10 +2,6 @@ import React from 'react'
 import './contamFormModal.scss'
 import { Button, Checkbox, Form, Card, Modal, Grid, Image, Header } from 'semantic-ui-react'
 import './contamFormModal.css';
-import c1 from '../../static/c1.jpg';
-import c2 from '../../static/c2.jpg';
-import c3 from '../../static/c3.jpg';
-import { RiFullscreenExitFill } from 'react-icons/ri';
 
 // const style = {
 //   position: 'absolute',
@@ -60,8 +56,8 @@ export const ContamFormModal = ({modalState, closeModal}) => {
           <br />
           <Modal.Actions>
           <label>Select action:</label>
-            <Button type='False Alarm' color="green" onClick={()=>{console.log(Form)}}>False Alarm</Button>
-            <Button type='Are Contaminated' color="green" onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
+            <Button type='False Alarm' onClick={()=>{console.log(Form)}}>False Alarm</Button>
+            <Button type='Are Contaminated' onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
           </Modal.Actions>
         </Modal.Description>
       </Modal.Content>
