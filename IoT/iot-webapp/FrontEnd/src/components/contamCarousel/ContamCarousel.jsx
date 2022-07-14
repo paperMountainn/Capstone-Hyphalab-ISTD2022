@@ -59,28 +59,42 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
     loadImages();
     }, []);
 
-    // files && console.log(files[0])
+    console.log(files)
     // files && console.log(info)
 
     // files.forEach(function(item, index){
     //   console.log(item, index)
     // });
-    // console.log(files[4])
+    // console.log(fetchImages)
 
   return (
     <Card color={cardClass(folderRetrieved)}>
-    <div>
-          {files && 
-          files.map((url)=>{
-              return(<img key={url} style={{width:"100px"}} src={url} />)                
-          })
-          }
-      </div>
+    
       
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
-      <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
-        <Carousel.Item>
+
+      <div>
+          {files && 
+          files.map((url)=>{
+              return(
+              <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
+                
+                {/* <Carousel.Item> */}
+                  <img key={url} style={{width:"100px"}} src={url} />
+                {/* </Carousel.Item> */}
+              
+              </Carousel>
+              
+              
+              )                
+          })
+          }
+      </div>
+
+      
+
+        {/* <Carousel.Item>
         
           <img
             className="d-block w-100 "
@@ -109,9 +123,9 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
           />
           <h3 class={cardClass(folderRetrieved)} >{header}</h3>
           <Card.Meta>{meta}</Card.Meta>
-        </Carousel.Item>
+        </Carousel.Item> */}
       
-      </Carousel>
+      
 
       
       <div className="pt-3" align="center">
