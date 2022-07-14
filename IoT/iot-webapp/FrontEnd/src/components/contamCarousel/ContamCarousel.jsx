@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Icon } from 'semantic-ui-react';
 import './contamCarousel.scss';
 import { Carousel } from 'react-bootstrap';
 import './contaminationCard.css'
@@ -40,10 +40,6 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
         let result = await projectStorage.ref('/data/rack1/contaminationCheck/contam').listAll();
         // let metadata = await projectStorage.ref('data').getMetadata();
         let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
-
-        // for (String url : urlPromises) {
-        //   // Do something
-        // }
     
         return Promise.all(urlPromises);
     }
@@ -53,7 +49,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
         urls.forEach(function(item, index){
           // console.log(item, index)
         });
-        // console.log(urls[1])
+        console.log(urls[1])
         setFiles(urls);
     }
     loadImages();
@@ -67,32 +63,51 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
     // });
     // console.log(fetchImages)
 
+
+    // function testing(url) {
+    //   console.log(url);
+    //   return(
+                
+    //     // <Carousel.Item>
+    //     //   <img key={url} style={{width:"100px"}} src={url} />
+    //     // </Carousel.Item>
+    //     <div>
+    //     {/* <Carousel.Item> */}
+    //       <img
+    //         className="d-block w-100"
+    //         src={url}
+    //         alt="Third slide"
+    //       />
+    //       <h3 class={cardClass(folderRetrieved)} >{header}</h3>
+    //       <Card.Meta>{meta}</Card.Meta>
+    //     {/* </Carousel.Item> */}
+    //     </div>
+      
+    //   )     
+    // }
+
   return (
     <Card color={cardClass(folderRetrieved)}>
     
-      
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
-
-      <div>
-          {files && 
-          files.map((url)=>{
-              return(
-              <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
-                
-                {/* <Carousel.Item> */}
-                  <img key={url} style={{width:"100px"}} src={url} />
-                {/* </Carousel.Item> */}
+      <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
+        {files ? 
+        files.map((url)=>(
               
-              </Carousel>
-              
-              
-              )                
-          })
-          }
-      </div>
-
-      
+              <Carousel.Item>
+                <img 
+                className="d-block w-100" 
+                key={url} 
+                style={{width:"100px"}} 
+                src={url} />
+                <h3 class={cardClass(folderRetrieved)} >{header}</h3>
+                <Card.Meta>{meta}</Card.Meta>
+              </Carousel.Item>
+            
+            )                
+        ):<Icon loading name='spinner'/>
+        }
 
         {/* <Carousel.Item>
         
@@ -125,7 +140,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
           <Card.Meta>{meta}</Card.Meta>
         </Carousel.Item> */}
       
-      
+      </Carousel>
 
       
       <div className="pt-3" align="center">

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
 import './contamFormModal.scss'
-import { Button, Checkbox, Form, Card, Modal, Grid, Image, Header } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Card, Modal, Grid, Image, Header, Icon } from 'semantic-ui-react'
 import './contamFormModal.css';
+import { projectStorage } from '../../config/firebase-config';
 
 // const style = {
 //   position: 'absolute',
@@ -16,13 +17,37 @@ import './contamFormModal.css';
 // };
 
 export const ContamFormModal = ({modalState, closeModal}) => {
+  const [index, setIndex] = useState(0);
+  const [files, setFiles] = useState();
   const [close, setClose] = React.useState(modalState);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    
   }
+
+  useEffect(() => {
+    const fetchImages = async () => {
+
+        let result = await projectStorage.ref('/data/rack1/contaminationCheck/contam').listAll();
+        // let metadata = await projectStorage.ref('data').getMetadata();
+        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+    
+        return Promise.all(urlPromises);
+    }
+    
+    const loadImages = async () => {
+        const urls = await fetchImages();
+        urls.forEach(function(item, index){
+          // console.log(item, index)
+        });
+        // console.log(urls[1])
+        setFiles(urls);
+    }
+    loadImages();
+    }, []);
+
+    // console.log(files)
 
 
   return (
@@ -33,29 +58,45 @@ export const ContamFormModal = ({modalState, closeModal}) => {
         open={modalState}
         onClose={()=>closeModal(false)}
       >
-      <Modal.Header>Select Racks and action to take</Modal.Header>
+      <Modal.Header>Select Racks and Action to take</Modal.Header>
       <i class="close icon" onClick={()=>closeModal(false)} ></i>
       <Modal.Content image scrolling >
         <Modal.Description>
           <Form.Input label="Name" required type="text" placeholder="Your name" />
-          <Form.Group grouped>
-            <label>Select the racks:</label>
-            <Form.Field label='Tray 1' control='input' type='checkbox' />
-            <Form.Field label='Tray 2' control='input' type='checkbox' />
-            <Form.Field label='Tray 3' control='input' type='checkbox' />
-            <Form.Field label='Tray 4' control='input' type='checkbox' />
-            <Form.Field label='Tray 5' control='input' type='checkbox' />
-            <Form.Field label='Tray 6' control='input' type='checkbox' />
-            <Form.Field label='Tray 7' control='input' type='checkbox' />
-            <Form.Field label='Tray 8' control='input' type='checkbox' />
-            <Form.Field label='Tray 9' control='input' type='checkbox' />
-            <Form.Field label='Tray 10' control='input' type='checkbox' />
-          </Form.Group>
+
+          <label>Select the racks:</label>
+
+          {files &&
+            files.map((url)=>(
+                  <>
+                  {/* <div className='ui container'> */}
+                  <div className='col-8 md-4'> 
+                    <img 
+                    className="d-block w-25" 
+                    key={url} 
+                    style={{width:"50px"}} 
+                    src={url} />
+                  </div>
+
+                  <div className='col-8 md-4'> 
+                    <Form.Field label={url} control='input' type='checkbox' />
+                  </div>
+                  {/* <br/> */}
+
+                  <div class="ui divider"></div>
+                  
+                  {/* </div> */}
+                  
+
+                  </>
+                )                
+            )}
+
           
           <Form.Input label="Assign" type="text" placeholder="Assign operator" />
           <br />
           <Modal.Actions>
-          <label>Select action:</label>
+          <label>Select Action:</label>
             <Button type='False Alarm' onClick={()=>{console.log(Form)}}>False Alarm</Button>
             <Button type='Are Contaminated' onClick={()=>{console.log(Form)}}>Are Contaminated</Button>
           </Modal.Actions>
