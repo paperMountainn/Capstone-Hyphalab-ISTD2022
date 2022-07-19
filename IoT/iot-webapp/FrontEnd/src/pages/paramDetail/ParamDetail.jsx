@@ -44,8 +44,12 @@ export const ParamDetail = () => {
 
                 <div className="col-8 md-4">
                   <div className="graphDescr">Graph Detail</div>
-                  <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" />
-                
+                  <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" location="/incubation/temperature"/>
+                  <div className="row">
+                    <div className="col-8 mt-4 pb-4">
+                    <ActuatorForm/>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="col-4 md-4">
@@ -66,9 +70,7 @@ export const ParamDetail = () => {
               </div>
               
               <div className="row">
-              <div className="col-8 mt-4">
-                <ActuatorForm/>
-              </div>
+              
               </div>
 
             </div>

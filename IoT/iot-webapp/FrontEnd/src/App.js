@@ -118,6 +118,9 @@ import { AssignTasks } from './pages/assignTasks/AssignTasks';
 import { TasksEngineer } from './pages/tasksEngineer/TasksEngineer';
 import { Contaminations } from './pages/contaminations/Contaminations';
 import { LoginForm } from './pages/loginForm/LoginForm';
+import { Observations } from './pages/observations/Observations';
+import { Settings } from './pages/settings/Settings';
+import { UserProfile } from './pages/userProfile/UserProfile';
 // dbtests
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
@@ -164,7 +167,7 @@ const [password, setPassword] = useState('');
                             {/* /users/new renders New */}
                             <Route path="humidity" element={<ParamDetail />} />
                             <Route path="co2" element={<ParamDetail />} />
-                            <Route path="observations" element={<ParamDetail />} />
+                            <Route path="observations" element={<Observations />} />
                         </Route>
                         <Route path="incubation">
                             {/* /users render list */}
@@ -174,7 +177,7 @@ const [password, setPassword] = useState('');
                             {/* /users/new renders New */}
                             <Route path="humidity" element={<ParamDetail />} />
                             <Route path="contaminations" element={<Contaminations />} />
-                            <Route path="observations" element={<ParamDetail />} />
+                            <Route path="observations" element={<Observations />} />
                         </Route>
                         <Route path="rack-phases">
                             {/* /products render list */}
@@ -225,6 +228,12 @@ const [password, setPassword] = useState('');
                                                             setPassword={setPassword}
                                                             handleAction={() => handleAction(2)}
                                                             />} />
+                        </Route>
+                        <Route path="user">
+                            <Route index element={<UserProfile />} />
+                        </Route>
+                        <Route path="settings">
+                            <Route index element={<Settings />} />
                         </Route>
                     </Route>
                 </Routes>
