@@ -101,7 +101,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
                 key={url} 
                 style={{width:"100px"}} 
                 src={url} />
-                <h3 class={cardClass(folderRetrieved)} >{header}</h3>
+                <h3 title="Header" data-testid="header" class={cardClass(folderRetrieved)} >{header}</h3>
                 <Card.Meta>{meta}</Card.Meta>
               </Carousel.Item>
             
@@ -144,7 +144,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
 
       
       <div className="pt-3" align="center">
-        <Button onClick={openModal}>More Details</Button> 
+        <Button data-testid="button" onClick={openModal}>More Details</Button> 
       </div>
       
       </Card.Content>

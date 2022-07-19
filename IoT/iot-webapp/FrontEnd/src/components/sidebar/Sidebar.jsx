@@ -81,12 +81,12 @@ export const Sidebar = ({children}) => {
       },
       {
           title:"User",
-          link:"/",
+          link:"/user",
           icon:<Icon name="setting" circular inverted color='grey'></Icon>
       },
       {
         title:"Settings",
-        link:"/",
+        link:"/settings",
         icon:<Icon name="user circle" circular inverted color='grey'></Icon>
       }
   

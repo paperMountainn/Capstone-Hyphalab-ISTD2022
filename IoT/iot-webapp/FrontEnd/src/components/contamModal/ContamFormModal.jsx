@@ -4,27 +4,24 @@ import { Button, Checkbox, Form, Card, Modal, Grid, Image, Header, Icon } from '
 import './contamFormModal.css';
 import { projectStorage } from '../../config/firebase-config';
 
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 400,
-//   bgcolor: 'background.paper',
-//   border: '2px solid black',
-//   boxShadow: 24,
-//   p: 4,
-// };
-
 export const ContamFormModal = ({modalState, closeModal}) => {
-  const [index, setIndex] = useState(0);
-  const [files, setFiles] = useState();
-  const [close, setClose] = React.useState(modalState);
+  // constructor(props); {
+  //   super(props);
+  //   this.state = {value: ''};
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
+
+  // const handleChange = async(e) => {
+  //   this.setState({value: e.target.value});
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
   }
+  
+  const [files, setFiles] = useState();
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -57,6 +54,7 @@ export const ContamFormModal = ({modalState, closeModal}) => {
         as={Form}
         open={modalState}
         onClose={()=>closeModal(false)}
+        // onSubmit = {this.handleSubmit}
       >
       <Modal.Header>Select Racks and Action to take</Modal.Header>
       <i class="close icon" onClick={()=>closeModal(false)} ></i>
