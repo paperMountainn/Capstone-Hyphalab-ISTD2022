@@ -111,6 +111,7 @@ import { IncubationSummary } from './pages/incubationSummary/IncubationSummary';
 import { RackPhases } from './pages/rackPhases/RackPhases';
 import { NewPhaseForm } from './pages/newPhaseForm/NewPhaseForm';
 import { RackCycles } from './pages/rackCycles/RackCycles';
+import { RacksAll } from './pages/racksAll/RacksAll';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
 import { Tasks } from './pages/tasks/Tasks';
@@ -128,6 +129,7 @@ import { PutImg } from './pages/dbtest/PutImg';
 import { MyButton } from './pages/reacttest/button/Button';
 import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 import { MongoTry } from './pages/mongotry/MongoTry';
+import { MongoTryPhases } from './pages/mongotry/MongoTryPhases';
 // import * as firebase from 'firebase/app';
 // import { app } from './config/firebase-config-steph';
 // import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -179,17 +181,17 @@ const [password, setPassword] = useState('');
                             <Route path="contaminations" element={<Contaminations />} />
                             <Route path="observations" element={<Observations />} />
                         </Route>
-                        <Route path="rack-phases">
+                        <Route path="rack">
                             {/* /products render list */}
                             <Route index element={<RackPhases />} />
                             
-                            <Route path="new" element={<NewPhaseForm />} />
-                            
+                            {/* <Route path="new" element={<NewPhaseForm />} /> */}
+                            <Route path="racks-all" element={<RacksAll />} />
                             {/* /products/adfasd renders Single */}
                             <Route path="rack-cycles" element={<RackCycles />} />
                             {/* /products/new renders New */}
                             
-                            <Route path=":rackId" element={<RackDetail />} />
+                            {/* <Route path=":rackId" element={<RackDetail />} /> */}
                         </Route>
                         <Route path="tasks">
                             <Route index element={<Tasks/>} />
@@ -210,8 +212,11 @@ const [password, setPassword] = useState('');
                             <Route index element={<MyButton label="click me"/>} />
                             {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
+
+                        {/* test mongodb */}
                         <Route path="mongoTry">
                             <Route index element={<MongoTry />} />
+                            <Route path="phase" element={<MongoTryPhases />} />
                             {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
                         <Route path="login">

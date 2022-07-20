@@ -13,7 +13,9 @@ export const AssignTasks = () => {
       <br />
       <div className='container'>
         <div className="row">
-            <div className="col-6"><TaskFormModal/></div>
+            <div className="col-6">
+              <TaskFormModal/>
+            </div>
             
         </div>
       </div>

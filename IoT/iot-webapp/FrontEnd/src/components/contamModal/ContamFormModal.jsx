@@ -56,8 +56,9 @@ export const ContamFormModal = ({modalState, closeModal}) => {
         onClose={()=>closeModal(false)}
         // onSubmit = {this.handleSubmit}
       >
-      <Modal.Header>Select Racks and Action to take</Modal.Header>
-      <i class="close icon" onClick={()=>closeModal(false)} ></i>
+        <h1>CLOSE ME</h1>
+      <Modal.Header>Select Racks to be Checked</Modal.Header>
+      <i class="close icon"></i>
       <Modal.Content image scrolling >
         <Modal.Description>
           <Form.Input label="Name" required type="text" placeholder="Your name" />

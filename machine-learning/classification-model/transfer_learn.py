@@ -15,7 +15,7 @@ from utils import cf_matrix
 import seaborn as sns
 
 
-
+# print("hi")
 mean = np.array([0.5, 0.5, 0.5])
 std = np.array([0.25, 0.25, 0.25])
 
@@ -46,7 +46,7 @@ dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'test']}
 class_names = image_datasets['train'].classes
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(class_names)
+print(class_names) # contam, no_contam
 
 
 # obtain initial shape
@@ -54,7 +54,7 @@ img, label = image_datasets['test'][8]
 print(f"initial image shape: {img.shape} ")
 print(f"label: {label} ")
 print(len(image_datasets['train']))
-print(len(image_datasets['test']))
+print(len(image_datasets['test'])) # 52
 print(len(image_datasets['train'].targets))
 # print(img)
 
@@ -67,18 +67,22 @@ def imshow(inp, title):
     plt.title(title)
     plt.show()
 
+# show training data
 
 # Get a batch of training data
 inputs, classes = next(iter(dataloaders['train']))
 
 # Make a grid from batch
 out = torchvision.utils.make_grid(inputs)
+# imshow(out, "train_pics")
 
 # imshow(out, title=[class_names[x] for x in classes])
-epoch_val_loss = []
+
 epoch_train_loss = []
 epoch_train_accuracy = []
 epoch_val_accuracy = []
+epoch_val_loss = []
+
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     since = time.time()
 
@@ -124,8 +128,16 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
             if phase == 'train':
                 scheduler.step()
 
-            epoch_loss = running_loss / dataset_sizes[phase]
-            epoch_acc = running_corrects.double() / dataset_sizes[phase]
+                epoch_loss = running_loss / dataset_sizes[phase]
+                epoch_acc = running_corrects.double() / dataset_sizes[phase]
+                epoch_train_loss.append(epoch_loss)
+                epoch_train_accuracy.append(epoch_acc)
+
+            if phase == 'test':
+                epoch_loss = running_loss / dataset_sizes[phase]
+                epoch_acc = running_corrects.double() / dataset_sizes[phase]
+                epoch_val_loss.append(epoch_loss)
+                epoch_val_accuracy.append(epoch_acc)
 
             print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 phase, epoch_loss, epoch_acc))
@@ -144,6 +156,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 
     # load best model weights
     model.load_state_dict(best_model_wts)
+    
     return model
 
 
@@ -151,19 +164,19 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 # Load a pretrained model and reset final fully connected layer.
 
 # model = models.resnet50(pretrained=True)
-model = models.resnet18(pretrained=True)
+# model = models.resnet18(pretrained=True)
 
-num_ftrs = model.fc.in_features
-# Here the size of each output sample is set to 2.
-# Alternatively, it can be generalized to nn.Linear(num_ftrs, len(class_names)).
-model.fc = nn.Linear(num_ftrs, 2)
+# num_ftrs = model.fc.in_features
+# # Here the size of each output sample is set to 2.
+# # Alternatively, it can be generalized to nn.Linear(num_ftrs, len(class_names)).
+# model.fc = nn.Linear(num_ftrs, 2)
 
-model = model.to(device)
+# model = model.to(device)
 
-criterion = nn.CrossEntropyLoss()
+# criterion = nn.CrossEntropyLoss()
 
-# Observe that all parameters are being optimized
-optimizer = optim.SGD(model.parameters(), lr=0.001)
+# # Observe that all parameters are being optimized
+# optimizer = optim.SGD(model.parameters(), lr=0.001)
 
 # StepLR Decays the learning rate of each parameter group by gamma every step_size epochs
 # Decay LR by a factor of 0.1 every 7 epochs
@@ -174,7 +187,7 @@ optimizer = optim.SGD(model.parameters(), lr=0.001)
 #     validate(...)
 #     scheduler.step()
 
-step_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
+# step_lr_scheduler = lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
 # model = train_model(model, criterion, optimizer, step_lr_scheduler, num_epochs=25)
 
@@ -202,15 +215,20 @@ optimizer_conv = optim.SGD(model_conv.fc.parameters(), lr=0.001, momentum=0.9)
 # Decay LR by a factor of 0.1 every 7 epochs
 exp_lr_scheduler = lr_scheduler.StepLR(optimizer_conv, step_size=7, gamma=0.1)
 
-# model_conv = train_model(model_conv, criterion, optimizer_conv,
-#                          exp_lr_scheduler, num_epochs=10)
+# train loop
+model_conv = train_model(model_conv, criterion, optimizer_conv,
+                         exp_lr_scheduler, num_epochs=10)
 
 # print summary of model
-# summary(model, (3, 32, 32))
+# summary(model, (3, 224, 224))
+path =  'models_trained/resnet18_hyphaAug4.pth'
+torch.save(model_conv, path)
+print(f"model saved at path {path}")
 
-torch.save(model_conv, 'models_trained/resnet18_hyphaAug.pth')
-loaded_model = torch.load('models_trained/resnet18_hyphaAug.pth')
-# loaded_model.eval()
+# INFERENCE
+
+loaded_model = torch.load(path)
+loaded_model.eval()
 
 # for param in loaded_model.parameters():
 #     print(param)
@@ -221,37 +239,52 @@ loaded_model = torch.load('models_trained/resnet18_hyphaAug.pth')
 def get_all_preds(model, loader):
     # all_preds = torch.tensor([])
     all_preds = []
+    all_labels = []
     for batch in loader:
         images, labels = batch
         outputs = model(images)
         _, preds = torch.max(outputs, 1)
+        print(f"prediction: {preds}")
+        print(f"labels: {labels}")
         for pred in preds:
+            # print(pred)
             all_preds.append(pred.item())
+        for label in labels:
+            all_labels.append(label)
+        
         # all_preds = torch.cat(
         #     (all_preds, preds)
         #     ,dim=0
         # )
         # all_preds = torch.cat(preds)
         # all_preds.append(preds)
-    return all_preds
+
+        # print(all_preds)
+        print(len(all_preds)) # 52 if using test dataloader
+        print(len(all_labels))
+        # break
+    return all_preds, all_labels
 
 
 # with torch.no_grad():
 #     # prediction_loader = torch.utils.data.DataLoader(train_set, batch_size=10000)
-#     train_preds = get_all_preds(loaded_model, dataloaders['test'])
+#     train_preds, train_labels = get_all_preds(loaded_model, dataloaders['test'])
 
+# omg i am dumb does this gets randomly loaded so the targets and labels are mismatched? 
 # targets = image_datasets['test'].targets
+# print(targets)
 
 # # https://medium.com/@dtuk81/confusion-matrix-visualization-fc31e3f30fea
 
-# cfm = confusion_matrix(train_preds, targets)
+# cfm = confusion_matrix(train_preds, train_labels)
 # print(cfm)
 # labels = ['TN','FP','FN','TP']
-# print(targets)
+# print(train_labels)
 # sns.set(rc={'figure.figsize':(5,5)})
 # print(train_preds)
 # cf_matrix.make_confusion_matrix(cfm, group_names=labels, categories=class_names, cmap='Blues', title='Two-class CF Matrix')
 # # dk why these stats not showing in my matrix
+
 # if len(cfm)==2:
 #     # Metrics for Binary Confusion Matrices
 #     accuracy  = np.trace(cfm) / float(np.sum(cfm))

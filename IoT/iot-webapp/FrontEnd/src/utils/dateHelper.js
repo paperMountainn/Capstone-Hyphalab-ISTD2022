@@ -20,6 +20,34 @@ export function dateHelper(unix_time, setting="full"){
 
 }
 
+// used this: https://bobbyhadz.com/blog/javascript-format-date-mm-dd-yyyy-hh-mm-ss
+export function db_time_parser(db_time, setting="date"){
+    let date = new Date(db_time)
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+      }
+      
+      function formatDate(date) {
+        return (
+          [
+            padTo2Digits(date.getMonth() + 1),
+            padTo2Digits(date.getDate()),
+            date.getFullYear(),
+          ].join('/') +
+          ' ' +
+          [
+            padTo2Digits(date.getHours()),
+            padTo2Digits(date.getMinutes()),
+            padTo2Digits(date.getSeconds()),
+          ].join(':')
+        );
+      }
+
+    return formatDate(date)
+
+}
+
+
 
 // test
 

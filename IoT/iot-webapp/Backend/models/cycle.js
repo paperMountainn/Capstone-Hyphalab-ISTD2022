@@ -4,25 +4,34 @@ const Phase = require('./phase');
 const Rack = require('./rack');
 // define the schema
 const cycleSchema = new Schema({
-    cycleDescr: {
+    createdOn:{
+        type: Date,
+        default: new Date()
+    },
+    cycleName:{
+        type: String, 
+        required: true
+    },
+    cycleDescription: {
         type: String,
-        required: true,
+        // required: true,
     },
     cycleStartDate:{
         type: String,
-        required: true,
+        // required: true,
     },
     cycleEndDate:{
         type: String,
-        required: true,
+        // required: true,
     },
     cycleDuration: {
         type: String,
         // required: true,
     },
-    completed:{
-        type: Boolean,
+    cycleStatus:{
+        type: String,
         required: true,
+        enum: ['ongoing', 'completed', 'unused']
     },
     belongToRack: {
         type: Schema.Types.ObjectId,
