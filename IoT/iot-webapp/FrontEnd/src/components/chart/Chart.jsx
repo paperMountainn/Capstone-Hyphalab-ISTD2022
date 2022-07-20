@@ -80,17 +80,17 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
   console.log(color)
   // console.log(realtimeValue && realtimeValue)
   
-  function optimalValue() {
-    if (parameter == "temperature"){
-      optimalValue = 24.67;
-    }
-    else if (parameter == "co2"){
-      optimalValue = 400
-    }
-    else {
-      optimalValue = 87.40
-    }
-  }
+  // function optimalValue() {
+  //   if (parameter == "temperature"){
+  //     optimalValue = 24.67;
+  //   }
+  //   else if (parameter == "co2"){
+  //     optimalValue = 400
+  //   }
+  //   else {
+  //     optimalValue = 87.40
+  //   }
+  // }
   return (
     <Link to={location} params={{ aspect, title, color, parameter, location}}>
       <div>{realtimeValue}</div>
@@ -115,8 +115,8 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
         <CartesianGrid strokeDasharray="3 3" className='chartGrid'/>
         <Tooltip />
 
-        <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} />
-        <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} />
+        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
+        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
 
         <Area type="monotone" dataKey={parameter} stroke={color} fillOpacity={.2} fill={color}/>
 
