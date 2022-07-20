@@ -30,7 +30,7 @@ const data1 = [
 
 
 
-export const Chart = ({ aspect, title, color, parameter }) => {
+export const Chart = ({ aspect, title, color, parameter, location }) => {
   const [data, setData] = useState();
   const [realtimeValue, setRealtimeValue] = useState();
   // run only during first render
@@ -91,7 +91,7 @@ export const Chart = ({ aspect, title, color, parameter }) => {
   //   }
   // }
   return (
-    <Link to="/" params={{ aspect, title, color, parameter}}>
+    <Link to={location} params={{ aspect, title, color, parameter, location}}>
       <div>{realtimeValue}</div>
     <div className='chart'>
       <div className="title">{title}</div>

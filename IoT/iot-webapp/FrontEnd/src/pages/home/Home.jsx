@@ -33,11 +33,11 @@ export const Home = () => {
                   <div className="top row">
                     <div className="stageTitle">
                       <GiMushroomGills className='icon'/>
-                      Incubation Stage Summary
+                      Incubation Area Summary
                     </div>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
                       {/* <DataRetrieve /> */}
                       
                   </div>
@@ -66,14 +66,20 @@ export const Home = () => {
                 {/* <div className='col-1'></div> */}
                 <div className="col-6">
                   <div className="top row">
-                    <div className="stageTitle"><GiMushroomsCluster className='icon'/>Farm Stage Summary</div>
+                    <div className="stageTitle"><GiMushroomsCluster className='icon'/>Fruiting Area Summary</div>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2} parameter="co2"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
+                      <div className="col-6">
+                        <div className="stageTitle">
+                        <Icon name="camera" className='icon'/>
+                        Observation Images
+                      </div>
+                      <MyCarousel /></div>
                     </div>
                   </div>
-                  <div className="bottom row">
+                  {/* <div className="bottom row">
                   <div className="col-10">
                       <div className="stageTitle">
                         <Icon name="camera" className='icon'/>
@@ -81,7 +87,7 @@ export const Home = () => {
                       </div>
                       <MyCarousel />
                   </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

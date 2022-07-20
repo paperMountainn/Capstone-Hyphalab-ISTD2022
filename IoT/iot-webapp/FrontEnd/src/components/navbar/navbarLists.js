@@ -39,9 +39,7 @@ function getItem(label, key, icon, children, type) {
 export const farmNavItems = [
     getItem(<Link to="/farm/temperature">Temperature</Link>, '1', <RiTempHotLine />),
     getItem(<Link to="/farm/humidity">Humidity</Link>, '2', <Icon name="cloud" />),
-    getItem(<Link to="/farm/observations">Observation Images</Link>, '3', <Icon name="camera" />),
-    getItem(<Link to="/user"></Link>, '4', <Icon name="setting" />),
-    getItem(<Link to="/setting"></Link>, '5', <Icon name="user circle" />),
+    getItem(<Link to="/farm/observations">Observation Images</Link>, '3', <Icon name="camera" />)
     ];
 
 export const incubationNavItems = [

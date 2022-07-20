@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import hyphaLogo from '../../static/HYPHA(Black).png';
 import Box from '@mui/material/Box';
 import {TextField, Button} from '@mui/material';
@@ -45,8 +46,12 @@ export const LoginForm = ({title, handleAction, setEmail, setPassword}) => {
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </Box>
-
+            
             <Button title={title} variant="contained" onClick={handleAction}>{title} </Button>
+            {/* <Link>  */}
+            {/* <p>no account, click here to register</p> */}
+            {/* </Link> */}
+
         </div>
         </div>
         
