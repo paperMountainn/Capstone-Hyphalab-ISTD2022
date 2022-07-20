@@ -52,7 +52,7 @@ export const ParamDetail = () => {
                   </div>
                 </div>
 
-                <div className="col-4 md-4">
+                <div className="col-4 md-4 pt-4">
                 <div className="graphDescr">Summarised Statistics</div>
                 <div className="row">
                   {cardDetails.map((cardDetail)=>{

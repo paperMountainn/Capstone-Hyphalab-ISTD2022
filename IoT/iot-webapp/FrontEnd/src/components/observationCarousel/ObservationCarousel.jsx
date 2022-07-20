@@ -67,9 +67,9 @@ export const ObservationCarousel = ({ header, meta, openModal}) => {
                 src={url} />
                 <h3 >{header}</h3>
                 <Card.Meta>{meta}</Card.Meta>
-              <div className="pt-3" align="center">
-              <Button onClick={openModal}>More Details</Button> 
-              </div>
+              {/* <div className="pt-3" align="center"> */}
+              {/* <Button onClick={openModal}>More Details</Button>  */}
+              {/* </div> */}
               </Carousel.Item>
             
             )                

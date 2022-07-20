@@ -31,26 +31,26 @@ export const Home = () => {
                 
                 <div className="col-6">
                   <div className="top row">
-                    <div className="stageTitle">
+                    <h3 className="pb-2 pt-4">
                       <GiMushroomGills className='icon'/>
                       Incubation Area Summary
-                    </div>
+                    </h3>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
                       {/* <DataRetrieve /> */}
                       
                   </div>
                   <div className="bottom row">
                     <div className="col-6">
-                      <div className="stageTitle">
+                      <div className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Contamination Images
                       </div>
                       <MyCarousel />
                     </div>
                     <div className="col-6">
-                      <div className="stageTitle">
+                      <div className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Observation Images
                       </div>
@@ -66,13 +66,13 @@ export const Home = () => {
                 {/* <div className='col-1'></div> */}
                 <div className="col-6">
                   <div className="top row">
-                    <div className="stageTitle"><GiMushroomsCluster className='icon'/>Fruiting Area Summary</div>
+                    <h3 className="pb-2 pt-4"><GiMushroomsCluster className='icon'/>Fruiting Area Summary</h3>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature Against Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity Against Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="CO2 Against Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
+                      <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
+                      <div className="col-6 pt-4"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
                       <div className="col-6">
-                        <div className="stageTitle">
+                        <div className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Observation Images
                       </div>
