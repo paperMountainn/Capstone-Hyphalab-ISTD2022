@@ -4,6 +4,7 @@ import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import './farmSummary.scss';
 import { farmNavItems } from '../../components/navbar/navbarLists';
+import { GiMushroomsCluster } from "react-icons/gi";
 
 export const FarmSummary = () => {
   return (
@@ -14,6 +15,10 @@ export const FarmSummary = () => {
           <div className="charts">
             <div className="container">
               <div className="row">
+                <h3 className='pb-2'>
+                  <GiMushroomsCluster className='icon'/>
+                  Fruiting Area Summary
+                </h3>
                 <div className="col-4">
                   <Chart aspect={2/1} title="Temperature Against Time" parameter="temperature" location="/farm/temperature"/>     
                 </div>

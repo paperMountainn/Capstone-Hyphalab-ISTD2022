@@ -16,7 +16,7 @@ export const Observations = () => {
         <div className="container">
             <div className="top row">
 
-                <div className="stageTitle">Observation images</div>
+                <h3 className="pb-2 pt-4">Observation images</h3>
 
                 {/* <div className="row">
                 <div className="col-md-4 pb-4"><ContamFormModal modalState={open} closeModal={setOpen}/></div>

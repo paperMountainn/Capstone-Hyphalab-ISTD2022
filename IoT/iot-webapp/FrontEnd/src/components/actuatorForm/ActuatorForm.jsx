@@ -8,10 +8,10 @@ export const ActuatorForm = () => {
     <Card>
       <Card.Content>
       <Card.Description>
-        <h4>Actuator Value Change</h4>
+        <h5 className='pb-4'>Actuator Value Change</h5>
       </Card.Description>
       <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-2" controlId="formBasicEmail">
         {/* <Form.Label>Upper Limit</Form.Label> */}
         <Form.Control type="number" placeholder="Enter upper limit value" />
         {/* <Form.Text className="text-muted">
@@ -19,7 +19,7 @@ export const ActuatorForm = () => {
         </Form.Text> */}
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
+      <Form.Group className="mb-2" controlId="formBasicPassword">
         {/* <Form.Label>Lower Limit</Form.Label> */}
         <Form.Control type="number" placeholder="Enter lower limit value" />
       </Form.Group>

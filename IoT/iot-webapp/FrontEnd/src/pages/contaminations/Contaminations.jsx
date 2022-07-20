@@ -18,7 +18,7 @@ export const Contaminations = () => {
         <div className="container">
             <div className="top row">
 
-                <div className="stageTitle">Contamination images</div>
+                <h3 className="pt-4">Contamination images</h3>
 
                 <div className="row">
                 <div className="col-md-4 pb-4"><ContamFormModal modalState={open} closeModal={setOpen}/></div>

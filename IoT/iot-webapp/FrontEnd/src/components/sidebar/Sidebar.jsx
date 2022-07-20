@@ -29,12 +29,12 @@ export const Sidebar = ({children}) => {
 
     const monitoringSubList = [
       {
-        title:"Incubation Stage",
+        title:"Incubation Area",
         link:"/incubation",
         icon: <GiMushroomGills />
       },
       {
-        title:"Farming Stage",
+        title:"Fruiting Area",
         link:"/farm",
         icon: <GiMushroomsCluster />
       },

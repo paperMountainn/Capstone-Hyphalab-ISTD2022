@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { projectRealtimeDb } from '../../config/firebase-config'
+import React, { useState, useEffect } from 'react';
+import { projectRealtimeDb } from '../../config/firebase-config';
 import { Link } from 'react-router-dom';
-import './chart.scss'
+import './chart.scss';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { dateHelper } from '../../utils/dateHelper'
+import { dateHelper } from '../../utils/dateHelper';
+
 
 const data1 = [
   {
@@ -81,7 +82,7 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
   
   // function optimalValue() {
   //   if (parameter == "temperature"){
-  //     optimalValue = 23;
+  //     optimalValue = 24.67;
   //   }
   //   else if (parameter == "co2"){
   //     optimalValue = 400
@@ -104,13 +105,19 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
             <stop offset="95%" stopColor={color} stopOpacity={0}/>
           </linearGradient>
         </defs>
+
+        {/* <ReferenceLine y={20} label="Max" stroke="red" strokeDasharray="3 3" /> */}
+
         <XAxis dataKey="timestamp" stroke='gray' label={{ value: "time", offset: 0,  position: "insideBottom" }} domain={['auto', 'auto']} />
         {/* <YAxis  domain={['auto', 'auto']}/> */}
         <YAxis style={{margin: "10px"}} label={{ value: parameter, angle: -90, position: 'insideLeft' }} domain={['auto', 'auto']}/>
       
         <CartesianGrid strokeDasharray="3 3" className='chartGrid'/>
         <Tooltip />
-        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" /> */}
+
+        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
+        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
+
         <Area type="monotone" dataKey={parameter} stroke={color} fillOpacity={.2} fill={color}/>
 
       </AreaChart>
