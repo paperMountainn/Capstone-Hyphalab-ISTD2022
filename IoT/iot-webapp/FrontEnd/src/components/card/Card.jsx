@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import './card.scss';
-import { RiTempHotLine } from "react-icons/ri";
 // import {Grid, Row, Col} from "react-bootstrap";
 import Grid from '@mui/material/Grid';
 

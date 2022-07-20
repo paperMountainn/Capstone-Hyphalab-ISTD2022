@@ -40,6 +40,7 @@ export const ContamFormModal = () => {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
       >
+        <h1>CLOSE ME</h1>
       <Modal.Header>Select Racks to be Checked</Modal.Header>
       <i class="close icon"></i>
       <Modal.Content image scrolling >

@@ -25,37 +25,118 @@ const seedDB1 = async() => {
     await Phase.deleteMany({});
     await Rack.deleteMany({});
     await Cycle.deleteMany({});
-    const phase = new Phase({
-        phaseType: 'incubation',
-        phaseDescription: 'Best incubation 101',
-        phaseStartDate: "today",
-        phaseEndDate:"tmr",
-        phaseDuration: "7 days",
-        phaseImgs:[
-            {url: "https://source.unsplash.com/collection/483251"},
-        ]
+    const rack1 = new Rack({
+        rackName: 'Rack 1',
+        locatedIn:'incubation',
+        currentlyInUse: true
     })
-    const rack = new Rack({
-        locatedIn:'incubation'
+    const rack2 = new Rack({
+        rackName: 'Rack 2',
+        locatedIn:'farm',
+        currentlyInUse: false
     })
-    const cycle = new Cycle({
-        cycleDescr: "new Cycle created.",
-        cycleStartDate: "today",
-        cycleEndDate: "tomorrow",
-        cycleDuration: "15 days",
-        completed: false,
+    const rack3 = new Rack({
+        rackName: 'Rack 3',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack4 = new Rack({
+        rackName: 'Rack 4',
+        locatedIn:'incubation',
+        currentlyInUse: true
+    })
+   
+
+    // var rackq = await Rack.findOne( { rackName: "Rack 2" } ); 
+    // console.log(rackq)
+    // can use this to get time created, using each entry that you found
+    // dateCreated = rackq._id.getTimestamp()
+    // let date = ne Date(dateCreated)
+    // console.log(date.toString())
+
+    const cycle1 = new Cycle({
+        cycleName:"cycle 1",
+        cycleDescription: "cycle is 1",
+        cycleStatus: "ongoing",
+        
+        
+    })
+    const cycle2 = new Cycle({
+        cycleName:"cycle 2",
+        cycleDescription: "cycle is 2",
+        cycleStatus: "completed"
+    })
+    const cycle3 = new Cycle({
+        cycleName:"cycle 3",
+        cycleDescription: "cycle is 3",
+        cycleStatus: "ongoing"
+    })
+    const cycle4 = new Cycle({
+        cycleName:"cycle 4",
+        cycleDescription: "cycle is 4",
+        cycleStatus: "unused"
     })
 
-    rack.containCycles.push(cycle);
-    cycle.belongToRack = rack;
-    cycle.containPhases.push(phase);
-    await phase.save();
-    await rack.save();
-    await cycle.save();
+    const phase1 = new Phase({
+        phaseType: 'incubation',
+        phaseDescription: 'Best incubation 101',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseDuration: 7,
+        status: "ongoing"
+    })
+    const phase2 = new Phase({
+        phaseType: 'incubation',
+        phaseDescription: 'Incubation! yay',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseEndDate: new Date(2022, 07, 20),
+        phaseDuration: 7,
+        status: "completed"
+    })
+    const phase3 = new Phase({
+        phaseType: 'farming',
+        phaseDescription: 'Farming',
+        phaseStartDate: new Date(2022, 07, 20),
+        phaseDuration: 14,
+        status: "ongoing"
+    })
+
+    cycle1.belongsToRack = rack1
+    cycle2.belongsToRack = rack1
+
+    cycle1.containPhases.push(phase2)
+    cycle1.containPhases.push(phase3)
+    cycle2.containPhases.push(phase1)
+    
+
+    phase1.belongsToCycle = cycle2
+    phase2.belongsToCycle = cycle1
+    phase3.belongsToCycle = cycle1
+
+    phase1.belongsToRack = rack1
+    phase2.belongsToRack = rack1
+    phase3.belongsToRack = rack1
+
+    rack1.containCycles.push(cycle1)
+    rack1.containCycles.push(cycle2)
+
+    await cycle1.save()
+    await cycle2.save()
+    await cycle3.save()
+    await cycle4.save()
+
+    await phase1.save()
+    await phase2.save()
+    await phase3.save()
+
+    await rack1.save()
+    await rack2.save()
+    await rack3.save()
+    await rack4.save()
+
     console.log("seeding complete")
 }
 
-// seedDB1();
+seedDB1();
 
 const seedDB2 = async() => {
     await User.deleteMany({});
@@ -162,4 +243,4 @@ const seedDB2 = async() => {
     await engineer3.save()
     console.log("seeding complete")
 }
-seedDB2();
+// seedDB2();

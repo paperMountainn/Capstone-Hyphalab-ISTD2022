@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Cycle = require('./cycle');
+const Rack = require('./rack');
 // define the schema
 const phaseSchema = new Schema({
+    createdOn:{
+        type: Date,
+        default: new Date()
+    },
     phaseType: {
         type: String,
         required: true,
@@ -10,31 +15,35 @@ const phaseSchema = new Schema({
     },
     phaseDescription:{
         type: String,
-        required: true
+        // required: true
     },
     phaseStartDate: {
-        type: String,
+        type: Date,
         required: true,
     },
     phaseEndDate: {
-        type: String,
-        required: true,
+        type: Date,
+        // required: true,
     },
     phaseDuration: {
-        type: String
+        type: Number,
+
     },
-    phaseImgs: [
-        {
-            url: {
-                type: String,
-                required: true
-            }
-        }
-    ],
-    // belongsToCycle: {
-    //     type: Schema.Types.ObjectId,
-    //     ref:'Cycle'
-    // }
+    belongsToCycle: {
+        type: Schema.Types.ObjectId,
+        ref:'Cycle',
+        required: true
+    },
+    belongsToRack: {
+        type: Schema.Types.ObjectId,
+        ref:'Rack',
+        required: true
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: ['ongoing', 'completed',]
+    }
 
 })
 

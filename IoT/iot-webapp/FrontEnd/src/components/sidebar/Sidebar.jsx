@@ -40,7 +40,7 @@ export const Sidebar = ({children}) => {
       },
       {
         title:"Rack Phases",
-        link:"/rack-phases",
+        link:"/rack",
         icon: <IoFileTrayStacked />
       },
     ]

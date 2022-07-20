@@ -1,31 +1,59 @@
-import React from 'react'
-import { Chart } from '../../components/chart/Chart';
+import React, { useState, useEffect} from 'react'
+import axios from "axios";
 import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import './rackPhases.scss';
 import { rackNavItems } from '../../components/navbar/navbarLists';
+import { RackCard } from '../../components/rackCard/RackCard';
+import { Card, Icon } from 'semantic-ui-react';
+
+import { NewPhaseFormModal } from '../../components/newPhaseFormModal/NewPhaseFormModal';
 
 export const RackPhases = () => {
+  const [phases, setPhases] = useState([]);
+
+  useEffect(() => {
+    const fetchResults = async() => {
+      const response = await axios.get(`/phase`) 
+      const originalFetchedPhases = response.data
+      // console.log(originalFetchedPhases)
+      let phases_list = []
+      for (let phase of originalFetchedPhases){
+        // console.log(phaseData)
+        const {_id, createdOn, phaseDescription, phaseStartDate, phaseEndDate, phaseType, status, belongsToCycle, belongsToRack} = phase
+        phases_list.push( {id: _id, createdOn, phaseDescription, phaseStartDate, phaseType, status, belongsToCycle, belongsToRack, phaseEndDate} )
+        
+      }
+      console.log(phases_list)
+      setPhases(phases_list)
+    }
+    fetchResults()
+    
+  }, []);
   return (
     <div className='rackPhaseContainer'>
       <Sidebar>
         <div className="rackPhaseContainer">
           <Navbar navItems={rackNavItems} />
-          <div className="charts">
-            <div className="container">
-              <div className="row">
-                {/* <div className="col-4">
-                  <Chart aspect={2/1} title="Temperature Against Time"/>     
-                </div>
-                <div className="col-4">
-                  <Chart aspect={2/1} title="Humidity Against Time"/>     
-                </div>
-                <div className="col-4">
-                  <Chart aspect={2/1} title="CO2 Against Time"/>     
-                </div> */}
-                
-              </div>
-            </div>
+          <div className="stuffs">
+            <NewPhaseFormModal />
+            {phases 
+            ?
+              (<Card.Group itemsPerRow={3}>
+                 {phases.map((phaseData)=>{
+                   return(
+                     <RackCard phaseData={phaseData}/> 
+                     // "hi"
+                   )
+                 })}
+               </Card.Group>) 
+            :
+
+            (<Icon name='sync alternate' loading />)
+              
+            }
+       
+              
           </div>
         </div>
       </Sidebar>

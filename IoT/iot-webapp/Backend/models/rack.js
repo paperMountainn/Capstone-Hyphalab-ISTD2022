@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Cycle = require('./cycle');
+
 // define the schema
 const rackSchema = new Schema({
+    rackName: {
+        type: String,
+        required: true,
+    },
     locatedIn: {
         type: String,
         required: true,
-        enum: ['incubation', 'farming']
+        enum: ['incubation', 'farm', 'null']
     },
     containCycles: [
         {
@@ -14,7 +19,11 @@ const rackSchema = new Schema({
             ref: 'Cycle',
             
         }
-    ]
+    ],
+    currentlyInUse: {
+        type: Boolean,
+        required: true
+    }
 })
 
 

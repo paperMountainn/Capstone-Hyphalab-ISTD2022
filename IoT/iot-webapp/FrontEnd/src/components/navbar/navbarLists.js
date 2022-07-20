@@ -51,9 +51,11 @@ export const incubationNavItems = [
     getItem(<Link to="/incubation/observations">Observation Images</Link>, '4', <Icon name="camera" />),
 ];
 export const rackNavItems = [
-    getItem(<Link to="/rack-phases">Rack Phases</Link>, '1', <IoFileTrayStacked />),
-    getItem(<Link to="/rack-phases/new">Add a New Rack</Link>, '2', <Icon  name="add" />),
-    getItem(<Link to="/rack-phases/rack-cycles">Rack Cycles</Link>, '3', <Icon name="circle notch" />),
+    getItem(<Link to="/rack">Ongoing Phases</Link>, '1', <Icon name='sync alternate' />),
+    getItem(<Link to="/rack/rack-cycles">Rack Cycles</Link>, '3', <Icon name="circle notch" />),
+    getItem(<Link to="/rack/racks-all">All Racks</Link>, '2', <IoFileTrayStacked />),
+    // getItem(<Link to="/rack-phases/new">Add a New Rack</Link>, '2', <Icon  name="add" />),
+    
     // getItem(<Link to="/rack-phases/:rackId">Rack Details</Link>, '4', <Icon name="camera" />),
 ];
 
