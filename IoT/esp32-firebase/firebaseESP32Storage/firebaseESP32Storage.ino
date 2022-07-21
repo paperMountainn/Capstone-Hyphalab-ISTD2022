@@ -1,7 +1,7 @@
 /*********
   Rui Santos
   Complete instructions at: https://RandomNerdTutorials.com/esp32-cam-save-picture-firebase-storage/
-  
+  important mac instructions: https://forum.arduino.cc/t/mac-os-update-killed-esp32-sketch/969580/8
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
   The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
@@ -236,7 +236,9 @@ void loop() {
     Serial.print ("time: ");
     Serial.println (timestamp);
     
-    cloudPath = "/rack1/" + String(ssid) + "/" + String(timestamp) + ".jpg";
+    // cloudPath = "/rack2/uploaded_images/" + String(ssid) + "/" + String(timestamp) + ".jpg";
+    cloudPath = "/rack2/uploaded_images/" + String(timestamp) + ".jpg";
+    
     Serial.println(cloudPath);
     //MIME type should be valid to avoid the download problem.
     //The file systems for flash and SD/SDMMC can be changed in FirebaseFS.h.

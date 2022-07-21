@@ -130,6 +130,8 @@ import { MyButton } from './pages/reacttest/button/Button';
 import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 import { MongoTry } from './pages/mongotry/MongoTry';
 import { MongoTryPhases } from './pages/mongotry/MongoTryPhases';
+import { TestFlask } from './pages/dbtest/TestFlask';
+
 // import * as firebase from 'firebase/app';
 // import { app } from './config/firebase-config-steph';
 // import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -207,6 +209,7 @@ const [password, setPassword] = useState('');
                             <Route path="todolist" element={<TodoList/>} />
                             <Route path="putimg" element={<PutImg/>} />
                             <Route path="retrieveData" element={<DataRetrieve/>} />
+                            <Route path="testFlask" element={<TestFlask />} />
                         </Route>
                         <Route path="reacttest">
                             <Route index element={<MyButton label="click me"/>} />
