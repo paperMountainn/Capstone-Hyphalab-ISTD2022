@@ -9,6 +9,7 @@ import { MyCarousel } from '../../components/carousel/Carousel';
 import { Icon } from 'semantic-ui-react';
 import { DataRetrieve } from '../dbtest/DataRetrieve';
 import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
 
 
 const COLORS = {
@@ -26,23 +27,24 @@ export const Home = () => {
         {/* <div className="homeContainer"> */}
           <Navbar navItems={mainPageNavItems}/>
           {/* <div className="chartContainer"> */}
-            <div className="container pb-4">
-              <div className="row">
+
+          
+
+            <div className=" flex-wrap pb-4">
+              <div className="row flex-wrap">
                 
                 <div className="col-6">
-                  <div className="top row m-2">
+                  <div className="top row">
                     <h3 className="pb-2 pt-4">
                       <GiMushroomGills className='icon'/>
-                      Incubation Area Summary
+                      {' '}Incubation Area Summary
                     </h3>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
+                      <div className="col-6 flex-wrap"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
+                      <div className="col-6 flex-wrap"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
                       {/* <DataRetrieve /> */}
                       
-                    
-                  <div className="bottom row">
-                    <div className="col-6">
+                    <div className="col-6 d-flex flex-wrap">
                       <div className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Contamination Images
@@ -56,7 +58,7 @@ export const Home = () => {
                       </div>
                       <MyCarousel />
                     </div>
-                    </div>
+
                   </div>
               
                     
@@ -65,20 +67,20 @@ export const Home = () => {
                 </div>
 
                 {/* <div className='col-1'></div> */}
-                <div className="col-6">
-                  <div className="top row m-2">
-                    <h3 className="pb-2 pt-4"><GiMushroomsCluster className='icon'/>Fruiting Area Summary</h3>
+                <div className="col-6 d-flex flex-wrap">
+                  {/* <div className="top row d-flex flex-wrap"> */}
+                    <h3 className="pb-2 pt-4"><GiMushroomsCluster className='icon'/>{' '}Fruiting Area Summary</h3>
                     <div className="row">
-                      <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
-                      <div className="col-6 pt-4"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
-                      <div className="col-6">
+                      <div className="col-6 flex-wrap"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
+                      <div className="col-6 flex-wrap"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
+                      <div className="col-6 pt-4 flex-wrap"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
+                      <div className="col-6 flex-wrap">
                         <h6 className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Observation Images
                         </h6>
                       <MyCarousel /></div>
-                    </div>
+                    {/* </div> */}
                   </div>
                   {/* <div className="bottom row">
                   <div className="col-10">
@@ -96,7 +98,55 @@ export const Home = () => {
             </div>
           {/* </div> */}
         {/* </div> */}
-        
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+
+        <Grid container spacing={1} rowSpacing={1} >
+          <Grid item xs={6}>
+            <h3 className="pb-2 pt-4">
+              <GiMushroomGills className='icon'/>
+              {' '}Incubation Area Summary
+            </h3>
+            <div className="flex-wrap"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
+            <div className="flex-wrap"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
+            <div className="flex-wrap">
+              <div className='pt-4'>
+                <Icon name="camera" className='icon'/>
+                Contamination Images
+              </div>
+              <MyCarousel />
+            </div>
+            <div className="flex-wrap">
+              <div className='pt-4'>
+                <Icon name="camera" className='icon'/>
+                Observation Images
+              </div>
+              <MyCarousel />
+            </div>
+          </Grid>
+
+          <Grid item xs={6}>
+            <h3 className="pb-2 pt-4">
+            <GiMushroomsCluster className='icon'/>
+            {' '}Fruiting Area Summary
+            </h3>
+            <div className="flex-wrap"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
+            <div className="flex-wrap"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
+            <div className="pt-4 flex-wrap"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
+            <div className="flex-wrap">
+              <h6 className='pt-4'>
+              <Icon name="camera" className='icon'/>
+              Observation Images
+              </h6>
+            <MyCarousel /></div>
+          </Grid>
+          </Grid>
       </Sidebar>
       
     </div>

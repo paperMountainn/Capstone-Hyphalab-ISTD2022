@@ -16,7 +16,7 @@ export const FarmSummary = () => {
             <div className="container">
               <h3 className='pb-2'>
                   <GiMushroomsCluster className='icon'/>
-                  Fruiting Area Summary
+                  {' '}Fruiting Area Summary
                 </h3>
               <div className="row">
                 <div className="col-4">

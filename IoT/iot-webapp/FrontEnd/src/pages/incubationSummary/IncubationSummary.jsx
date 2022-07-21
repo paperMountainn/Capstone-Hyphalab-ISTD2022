@@ -24,7 +24,7 @@ export const IncubationSummary = () => {
               <div className="top">
                 <h3 className='pb-2'>
                   <GiMushroomGills className='icon'/>
-                  Incubation Area Summary
+                  {' '}Incubation Area Summary
                 </h3>
                 <div className="row">
                 
