@@ -58,7 +58,7 @@ export const RackCard = ({phaseData}) => {
         </Card.Content>
         <Card.Content>
           {/* <Card.Description><b>Belongs To Rack: </b>{}</Card.Description> */}
-          <Card.Description><b>Belongs To Cycle: </b><InfoModal id={belongsToCycle._id} /></Card.Description>
+          <Card.Description><b>Belongs To Cycle: </b><InfoModal id={belongsToCycle.cycleName} /></Card.Description>
         </Card.Content>
         <Card.Content>
           <Card.Description><b>Phase Duration: </b>{phaseDuration} days</Card.Description>

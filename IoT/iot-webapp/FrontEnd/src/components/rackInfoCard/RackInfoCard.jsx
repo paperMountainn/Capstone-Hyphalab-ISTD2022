@@ -6,6 +6,7 @@ import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 
 export const RackInfoCard = ({rackInfo}) => {
   const {containCycles, currentlyInUse, locatedIn, rackName, id} = rackInfo
+  // console.log(containCycles)
   const isInUse = currentlyInUse.toString()
   const cardStyleClass = (isInUse) => {
     if (isInUse.toString() == "true"){

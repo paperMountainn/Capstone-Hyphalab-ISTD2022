@@ -19,7 +19,7 @@ export const RackPhases = () => {
       // console.log(originalFetchedPhases)
       let phases_list = []
       for (let phase of originalFetchedPhases){
-        // console.log(phaseData)
+        // console.log(phase.belongsToCycle.cycleName)
         const {_id, createdOn, phaseDescription, phaseStartDate, phaseEndDate, phaseType, status, belongsToCycle, belongsToRack} = phase
         phases_list.push( {id: _id, createdOn, phaseDescription, phaseStartDate, phaseType, status, belongsToCycle, belongsToRack, phaseEndDate} )
         
