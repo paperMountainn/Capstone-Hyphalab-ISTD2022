@@ -14,11 +14,11 @@ export const FarmSummary = () => {
           <Navbar navItems={farmNavItems} />
           <div className="charts">
             <div className="container">
-              <div className="row">
-                <h3 className='pb-2'>
+              <h3 className='pb-2'>
                   <GiMushroomsCluster className='icon'/>
                   Fruiting Area Summary
                 </h3>
+              <div className="row">
                 <div className="col-4">
                   <Chart aspect={2/1} title="Temperature Against Time" parameter="temperature" location="/farm/temperature"/>     
                 </div>

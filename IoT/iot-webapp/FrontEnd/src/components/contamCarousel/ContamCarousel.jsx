@@ -53,45 +53,20 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
         setFiles(urls);
     }
     loadImages();
+    
     }, []);
 
     console.log(files)
-    // files && console.log(info)
-
-    // files.forEach(function(item, index){
-    //   console.log(item, index)
-    // });
-    // console.log(fetchImages)
-
-
-    // function testing(url) {
-    //   console.log(url);
-    //   return(
-                
-    //     // <Carousel.Item>
-    //     //   <img key={url} style={{width:"100px"}} src={url} />
-    //     // </Carousel.Item>
-    //     <div>
-    //     {/* <Carousel.Item> */}
-    //       <img
-    //         className="d-block w-100"
-    //         src={url}
-    //         alt="Third slide"
-    //       />
-    //       <h3 class={cardClass(folderRetrieved)} >{header}</h3>
-    //       <Card.Meta>{meta}</Card.Meta>
-    //     {/* </Carousel.Item> */}
-    //     </div>
-      
-    //   )     
-    // }
 
   return (
     <Card color={cardClass(folderRetrieved)}>
+      
     
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
-      <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
+      <Carousel 
+      fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false} nextLabel={null} nextIcon={null}
+        >
         {files ? 
         files.map((url)=>(
               

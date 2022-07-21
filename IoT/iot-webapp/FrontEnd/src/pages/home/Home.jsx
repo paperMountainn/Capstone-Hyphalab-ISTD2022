@@ -21,16 +21,16 @@ const COLORS = {
 export const Home = () => {
   console.log("home")
   return (
-    <div className='home'>
+    <div>
       <Sidebar>
-        <div className="homeContainer">
+        {/* <div className="homeContainer"> */}
           <Navbar navItems={mainPageNavItems}/>
-          <div className="chartContainer">
-            <div className="container">
+          {/* <div className="chartContainer"> */}
+            <div className="container pb-4">
               <div className="row">
                 
                 <div className="col-6">
-                  <div className="top row">
+                  <div className="top row m-2">
                     <h3 className="pb-2 pt-4">
                       <GiMushroomGills className='icon'/>
                       Incubation Area Summary
@@ -40,7 +40,7 @@ export const Home = () => {
                       <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
                       {/* <DataRetrieve /> */}
                       
-                  </div>
+                    
                   <div className="bottom row">
                     <div className="col-6">
                       <div className='pt-4'>
@@ -56,26 +56,27 @@ export const Home = () => {
                       </div>
                       <MyCarousel />
                     </div>
-                    
+                    </div>
                   </div>
               
                     
                     {/* <div className="col-6"><Chart aspect={3/1} title="Humidity Against Time"/></div> */}
                   </div>
                 </div>
+
                 {/* <div className='col-1'></div> */}
                 <div className="col-6">
-                  <div className="top row">
+                  <div className="top row m-2">
                     <h3 className="pb-2 pt-4"><GiMushroomsCluster className='icon'/>Fruiting Area Summary</h3>
                     <div className="row">
                       <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
                       <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/></div>
                       <div className="col-6 pt-4"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
                       <div className="col-6">
-                        <div className='pt-4'>
+                        <h6 className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Observation Images
-                      </div>
+                        </h6>
                       <MyCarousel /></div>
                     </div>
                   </div>
@@ -89,13 +90,12 @@ export const Home = () => {
                   </div>
                   </div> */}
                 </div>
-              </div>
 
-              
-            
+
+              </div>
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+        {/* </div> */}
         
       </Sidebar>
       

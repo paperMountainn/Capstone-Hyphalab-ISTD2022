@@ -22,20 +22,22 @@ export const IncubationSummary = () => {
           <div className="charts">
             <div className="container">
               <div className="top">
-                <div className="row">
                 <h3 className='pb-2'>
                   <GiMushroomGills className='icon'/>
                   Incubation Area Summary
                 </h3>
+                <div className="row">
+                
                 <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
-                      <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
+                <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
                   {/* <div className="col-6">
                     <Chart aspect={2/1} title="CO2 Against Time"/>     
                   </div> */}
                 </div>
+
               </div>
               <div className="bottom row">
-              <div className="col-6">
+              <div className="col-6 pb-4">
                       <div className='pt-4'>
                         <Icon name="camera" className='icon'/>
                         Observation Images

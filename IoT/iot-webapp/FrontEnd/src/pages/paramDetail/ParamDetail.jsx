@@ -10,6 +10,9 @@ import { RiTempHotLine } from "react-icons/ri";
 import { Icon } from 'semantic-ui-react';
 import { FaCloudversify } from "react-icons/fa";
 import { farmNavItems } from '../../components/navbar/navbarLists';
+import {Grid, Row, Col} from "react-bootstrap";
+
+
 const cardDetails = [
   {
     color: "green",
@@ -68,10 +71,7 @@ export const ParamDetail = () => {
                 </div>
                 </div>
               </div>
-              
-              <div className="row">
-              
-              </div>
+            
 
             </div>
           </div>
