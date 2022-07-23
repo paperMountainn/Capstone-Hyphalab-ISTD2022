@@ -8,13 +8,14 @@ import sj from '../../static/TSJ_1004691.JPG';
 
 export const UserProfile = () => {
   return (
-    <div className='paramDetail'>
+    <div >
       <Sidebar>
-        <div className="paramDetailContainer">
+      <div className='ms-4'>
+        <h3 className="pb-2 pt-4">
+          {' '}User Profile
+        </h3>
+        <div >
           {/* <Navbar navItems={farmNavItems}/> */}
-          <div className="top">
-            <div className="container">
-            <div className="stageTitle">User Profile</div>
               
               <div className="row">
 
@@ -35,11 +36,8 @@ export const UserProfile = () => {
 
               </div>
               
-              </div>
-
-            </div>
+              </div>          
           </div>
-          
         </div>
       </Sidebar>
     </div>
