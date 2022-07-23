@@ -7,6 +7,8 @@ import './incubationSummary.scss';
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 import { GiH2O, GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { MyCarousel } from '../../components/carousel/Carousel';
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+
 const COLORS = {
   temp: '#8884d8',
   humidity: '#0088FE',
@@ -15,41 +17,36 @@ const COLORS = {
 
 export const IncubationSummary = () => {
   return (
-    <div className='incubationSummary'>
+    <div>
       <Sidebar>
-        <div className="incubationSummaryContainer">
           <Navbar navItems={incubationNavItems} />
-          <div className="charts">
-            <div className="container">
-              <div className="top">
-                <h3 className='pb-2'>
-                  <GiMushroomGills className='icon'/>
-                  {' '}Incubation Area Summary
-                </h3>
-                <div className="row">
-                
-                <div className="col-6"><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
-                <div className="col-6"><Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/incubation/humidity"/></div>
-                  {/* <div className="col-6">
-                    <Chart aspect={2/1} title="CO2 Against Time"/>     
-                  </div> */}
-                </div>
-
-              </div>
-              <div className="bottom row">
-              <div className="col-6 pb-4">
-                      <div className='pt-4'>
-                        <Icon name="camera" className='icon'/>
-                        Observation Images
+            <h3 className='pb-2 pt-4'>
+              <GiMushroomGills className='icon'/>
+              {' '}Incubation Area Summary
+            </h3>
+            <MDBRow>
+                <MDBCol lg='12'>
+                  <MDBRow>
+                    <MDBCol lg='4'>
+                      <Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/>
+                    </MDBCol>
+                    <MDBCol lg='4'>
+                      <Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/>
+                    </MDBCol>
+                    <MDBRow>
+                    <MDBCol lg='4'>
+                      <div className=" pb-4">
+                        <div className='pt-4'>
+                          <Icon name="camera" className='icon'/>
+                          Observation Images
+                        </div>
+                        <MyCarousel />
                       </div>
-                      <MyCarousel />
-                  </div>
-                
-              </div>
-             
-            </div>
-          </div>
-        </div>
+                    </MDBCol>
+                    </MDBRow>
+                  </MDBRow>
+                </MDBCol>
+              </MDBRow>
       </Sidebar>
     </div>
   )
