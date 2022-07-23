@@ -20,6 +20,7 @@ export const IncubationSummary = () => {
     <div>
       <Sidebar>
           <Navbar navItems={incubationNavItems} />
+          <div className='ms-4'>
             <h3 className='pb-2 pt-4'>
               <GiMushroomGills className='icon'/>
               {' '}Incubation Area Summary
@@ -47,6 +48,7 @@ export const IncubationSummary = () => {
                   </MDBRow>
                 </MDBCol>
               </MDBRow>
+        </div>
       </Sidebar>
     </div>
   )

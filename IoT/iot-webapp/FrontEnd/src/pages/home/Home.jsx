@@ -25,6 +25,7 @@ export const Home = () => {
       <Sidebar>
         {/* <div className="homeContainer"> */}
           <Navbar navItems={mainPageNavItems}/>
+            <div className='ms-4'>
           {/* <div className="chartContainer"> */}
 
           
@@ -165,7 +166,7 @@ export const Home = () => {
           </MDBRow>
 
         
-
+      </div>
       </Sidebar>
 
       

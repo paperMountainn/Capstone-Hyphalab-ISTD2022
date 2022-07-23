@@ -12,6 +12,7 @@ export const FarmSummary = () => {
     <div className='farmSummary'>
       <Sidebar>
           <Navbar navItems={farmNavItems} />
+            <div className='ms-4'>
               <h3 className='pb-2 pt-4'>
                 <GiMushroomsCluster className='icon'/>
                 {' '}Fruiting Area Summary
@@ -42,7 +43,7 @@ export const FarmSummary = () => {
                   <Chart aspect={2/1} title="CO2 Against Time" parameter="humidity" location="/farm/humidity"/>     
                 </div>
               </div> */}
-
+        </div>
       </Sidebar>
     </div>
   )
