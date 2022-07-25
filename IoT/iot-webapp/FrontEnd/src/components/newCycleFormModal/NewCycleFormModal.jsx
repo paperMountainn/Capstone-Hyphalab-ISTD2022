@@ -63,7 +63,7 @@ export const NewCycleFormModal = () => {
             <Form onSubmit={(e)=> handleSubmit(e)}>         
                 <Form.Field onChange={handleChange}>
                     <label>Cycle Name</label>
-                    <input name="cycleName" placeholder='Cycle Name' />
+                    <input required name="cycleName" placeholder='Cycle Name' />
                 </Form.Field>
                 <Form.TextArea onChange={handleChange} name="cycleDescription" label='Cycle Description' placeholder='Describe the cycle...' />
                 <Button primary type='submit'>Submit</Button>

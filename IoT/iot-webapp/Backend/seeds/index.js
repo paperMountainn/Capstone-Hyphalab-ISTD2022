@@ -27,22 +27,22 @@ const seedDB1 = async() => {
     await Cycle.deleteMany({});
 
     const rack1 = new Rack({
-        rackName: 'Rack 1',
+        rackName: 'Rack-1',
         locatedIn:'incubation',
         currentlyInUse: true
     })
     const rack2 = new Rack({
-        rackName: 'Rack 2',
+        rackName: 'Rack-2',
         locatedIn:'farm',
         currentlyInUse: true
     })
     const rack3 = new Rack({
-        rackName: 'Rack 3',
+        rackName: 'Rack-3',
         locatedIn:'null',
         currentlyInUse: false
     })
     const rack4 = new Rack({
-        rackName: 'Rack 4',
+        rackName: 'Rack-4',
         locatedIn:'null',
         currentlyInUse: false
     })

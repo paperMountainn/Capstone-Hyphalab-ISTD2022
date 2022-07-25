@@ -9,3 +9,32 @@
     }
 
 }
+.card{
+    padding-top: 20rem;
+    border-radius: 5%;
+    display: flex;
+}
+
+/* .card-text{
+    padding:0.4rem 1.9rem
+} */
+
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0, 0.253);
+}
+
+/* .bg-danger{
+    color:rgba(231, 125, 125, 0.562)!important;
+}
+
+.container-fluid .row{
+    padding-top: 6rem
+} */
+
+.red{
+    color: red !important;
+}
+
+.green{
+    color: green !important;
+}

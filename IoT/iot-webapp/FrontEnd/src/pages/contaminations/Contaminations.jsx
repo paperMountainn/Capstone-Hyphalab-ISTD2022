@@ -11,6 +11,8 @@ export const Contaminations = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    
+
     return (
         
         <Sidebar>
@@ -18,7 +20,7 @@ export const Contaminations = () => {
         <div className="container">
             <div className="top row">
 
-                <h3 className="pt-4">Contamination images</h3>
+                <h3 className="pt-4">Contamination Observation</h3>
 
                 <div className="row">
                 <div className="col-md-4 pb-4"><ContamFormModal modalState={open} closeModal={setOpen}/></div>
@@ -27,15 +29,13 @@ export const Contaminations = () => {
                   
                 <>
                     <div className="row">
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 4" meta="Growth Date: 10/06/2022"/></div>
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 5" meta="Growth Date: 10/06/2022"/></div>
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 6" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} rackName="Rack_1" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} rackName="Rack_2" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} rackName="Rack_3" meta="Growth Date: 10/06/2022"/></div>
                     </div>
 
                     <div className="row">
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 7" meta="Growth Date: 10/06/2022"/></div>
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 8" meta="Growth Date: 10/06/2022"/></div>
-                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} header="Rack 9" meta="Growth Date: 10/06/2022"/></div>
+                        <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} rackName="Rack_4" meta="Growth Date: 10/06/2022"/></div>
                     </div>
                 </>    
                 

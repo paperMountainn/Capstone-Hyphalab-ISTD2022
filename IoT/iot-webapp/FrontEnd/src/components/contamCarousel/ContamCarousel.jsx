@@ -1,24 +1,17 @@
 import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import { Card, Button, Icon } from 'semantic-ui-react';
 import './contamCarousel.scss';
 import { Carousel } from 'react-bootstrap';
-import './contaminationCard.css'
+// import './contaminationCard.css'
 import { FiAlertTriangle } from "react-icons/fi";
 import { projectStorage } from '../../config/firebase-config';
 
-import c1 from '../../static/c1.jpg';
-import c2 from '../../static/c2.jpg';
-import c3 from '../../static/c3.jpg';
-
-export const ContamCarousel = ({ header, meta, openModal}) => {
+export const ContamCarousel = ({ rackName, header, meta, openModal}) => {
   const [index, setIndex] = useState(0);
-  const [files, setFiles] = useState();
-  const [info, setInfo] = useState();
+  const [contamImgs, setContamImgs] = useState();
+  const [uploadedImgs, setUploadedImgs] = useState();
 
-  // file names can be 
-  // contam
-  // noncontam
-  // observation
   const folderRetrieved = "contam"
 
   const cardClass = (folderRetrieved) => {
@@ -35,56 +28,105 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
   };
 
   useEffect(() => {
-    const fetchImages = async () => {
 
-        let result = await projectStorage.ref('/data/rack1/contaminationCheck/contam').listAll();
+    const fetchUploadedImgsOfRack = async() => {
+      let result = await projectStorage.ref(`/${rackName}/uploaded_images/`).listAll();
+      let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+      return Promise.all(urlPromises);
+      
+    }
+    
+
+    const fetchContamImgs = async () => {
+
+        let result = await projectStorage.ref(`/${rackName}/contam/`).listAll();
         // let metadata = await projectStorage.ref('data').getMetadata();
         let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
     
         return Promise.all(urlPromises);
     }
-    
-    const loadImages = async () => {
-        const urls = await fetchImages();
-        urls.forEach(function(item, index){
-          // console.log(item, index)
-        });
-        console.log(urls[1])
-        setFiles(urls);
+
+    const test = async()=>{
+      const contamUrls = await fetchContamImgs()
+      return contamUrls
     }
-    loadImages();
+    
+    const loadImagesAndCallAPI= async () => {
+        const uploadedImgUrls = await fetchUploadedImgsOfRack();
+        
+
+        if (uploadedImgUrls.length == 0){
+            console.log("no new images to process now")
+            // return
+        }
+        
+
+        const processData = async() => {
+          console.log("processing data")
+          for (let uploadedImgUrl of uploadedImgUrls){
+            
+            fetch(uploadedImgUrl)
+            .then(
+              response => response.blob()
+            )
+            .then(
+              (blob) =>  {
+                var data = new FormData()
+                data.append('file', blob , 'file')
+  
+                const stuff = axios.post('http://127.0.0.1:5001/receive', data).then(
+                  (response) => {
+                      // console.log(response.data)
+                      // console.log(file_url)
+                      const isContam = response.data
+                      var httpRef = projectStorage.refFromURL(uploadedImgUrl)
+                      let name = httpRef.name
+  
+  
+                      var contamRef = projectStorage.ref(`${rackName}/contam/${name}`)
+                      var noContamRef = projectStorage.ref(`${rackName}/no_contam/${name}`)
+                      // console.log(name)
+                      // var storeRef = projectFirestore.collection('rack2').doc('contam')
+  
+                      if (isContam == 'contam'){
+                      
+                          contamRef.put(blob).then(
+                              httpRef.delete().then(
+                                  () => console.log("deleted from original place")
+                              )
+                          )
+                          
+                          console.log("contam!")
+                      }
+                      else if (isContam == 'no_contam'){
+                          console.log("nocon!")
+                          noContamRef.put(blob).then(
+                              httpRef.delete().then(
+                                  () => console.log("deleted from original place")
+                              )
+                          )
+                      }  
+                  }
+              ).catch(error=>console.log(error))
+  
+  
+              }
+            )
+          }
+
+        }
+
+        await processData()
+     
+
+
+    }
+
+    loadImagesAndCallAPI()
     }, []);
 
-    console.log(files)
-    // files && console.log(info)
+    // console.log(files)
 
-    // files.forEach(function(item, index){
-    //   console.log(item, index)
-    // });
-    // console.log(fetchImages)
-
-
-    // function testing(url) {
-    //   console.log(url);
-    //   return(
-                
-    //     // <Carousel.Item>
-    //     //   <img key={url} style={{width:"100px"}} src={url} />
-    //     // </Carousel.Item>
-    //     <div>
-    //     {/* <Carousel.Item> */}
-    //       <img
-    //         className="d-block w-100"
-    //         src={url}
-    //         alt="Third slide"
-    //       />
-    //       <h3 class={cardClass(folderRetrieved)} >{header}</h3>
-    //       <Card.Meta>{meta}</Card.Meta>
-    //     {/* </Carousel.Item> */}
-    //     </div>
-      
-    //   )     
-    // }
 
   return (
     <Card color={cardClass(folderRetrieved)}>
@@ -92,8 +134,8 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
       <Card.Content>
       {folderRetrieved == "contam" ? <FiAlertTriangle/> : null}
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
-        {files ? 
-        files.map((url)=>(
+        {contamImgs ? 
+        contamImgs.map((url)=>(
               
               <Carousel.Item>
                 <img 
@@ -101,7 +143,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
                 key={url} 
                 style={{width:"100px"}} 
                 src={url} />
-                <h3 title="Header" data-testid="header" class={cardClass(folderRetrieved)} >{header}</h3>
+                <h3 title="Header" data-testid="header" class={cardClass(folderRetrieved)} >{rackName}</h3>
                 <Card.Meta>{meta}</Card.Meta>
               </Carousel.Item>
             
@@ -109,42 +151,12 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
         ):<Icon loading name='spinner'/>
         }
 
-        {/* <Carousel.Item>
-        
-          <img
-            className="d-block w-100 "
-            src={c1}
-            alt="First slide"
-          />
-          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
-          <Card.Meta>{meta}</Card.Meta>
-        </Carousel.Item>
-        
-        <Carousel.Item>
-          <img
-            className="d-block w-100 h-75"
-            src={c2}
-            alt="Second slide"
-          />
-          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
-          <Card.Meta>{meta}</Card.Meta>
-        </Carousel.Item>
 
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={c3}
-            alt="Third slide"
-          />
-          <h3 class={cardClass(folderRetrieved)} >{header}</h3>
-          <Card.Meta>{meta}</Card.Meta>
-        </Carousel.Item> */}
-      
       </Carousel>
 
       
       <div className="pt-3" align="center">
-        <Button data-testid="button" onClick={openModal}>More Details</Button> 
+        <Button data-testid="button" onClick={openModal}>Check</Button> 
       </div>
       
       </Card.Content>

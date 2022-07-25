@@ -8,7 +8,7 @@ export const PutImg = () => {
     useEffect(() => {
         const fetchImages = async () => {
             
-            let result = await projectStorage.ref().child('rack2').child('uploaded_images').listAll()
+            let result = await projectStorage.ref().child('Rack_1').child('uploaded_images').listAll()
             // let metadata = await projectStorage.ref('data').getMetadata();
             let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
         
@@ -17,6 +17,8 @@ export const PutImg = () => {
         
         const test = async() =>{
             const urls = await fetchImages()
+            
+
             if (urls.length == 0){
                 console.log("no new images now")
                 return
@@ -65,8 +67,8 @@ export const PutImg = () => {
                                 let name = httpRef.name
 
 
-                                var contamRef = projectStorage.ref(`rack2/contam/${name}`)
-                                var noContamRef = projectStorage.ref(`rack2/no_contam/${name}`)
+                                var contamRef = projectStorage.ref(`Rack_1/contam/${name}`)
+                                var noContamRef = projectStorage.ref(`Rack_1/no_contam/${name}`)
                                 // console.log(name)
                                 // var storeRef = projectFirestore.collection('rack2').doc('contam')
 
