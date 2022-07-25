@@ -9,12 +9,23 @@ export const PutImg = () => {
     useEffect(() => {
         const fetchImages = async () => {
             
-            let result = await projectStorage.ref().child('rack2').child('uploaded_images').listAll();
+            let result = await projectStorage.ref().child('rack2').child('uploaded_images').listAll()
             // let metadata = await projectStorage.ref('data').getMetadata();
             let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
         
             return Promise.all(urlPromises);
         }
+        
+        const test = async() =>{
+            const urls = await fetchImages()
+            if (urls.length == 0){
+                console.log("no new images now")
+                return
+            }
+            console.log(urls)
+
+        }
+        test()
 
 
         

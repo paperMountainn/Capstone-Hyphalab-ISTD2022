@@ -23,17 +23,13 @@ const taskSchema = new Schema({
         required: true,
         enum: ['Completed', 'Incompleted', 'Delayed']
     },
-    dateAssigned: {
-        type: String,
-        // required: true,
+    createdOn:{
+        type: Date,
+        default: new Date()
     },
     dateDue: {
         type: String
-    },
-    remarks: {
-        type: String
     }
-
 });
 const Task = mongoose.model('Task', taskSchema);
 module.exports = Task;

@@ -1,74 +1,113 @@
-import React from 'react'
-import './taskFormModal.scss'
-import Box from '@mui/material/Box';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import axios from "axios";
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid black',
-  boxShadow: 24,
-  p: 4,
-};
+import React,{ useState } from 'react'
+import {Button, Modal, Icon, Form } from 'semantic-ui-react'
+import { DatePicker, Space } from 'antd';
+export const TaskFormModal = ({allOperatorData, engineerData}) => {
+    // console.log(engineerData.engineerId)
+    const allOperatorsOptions = allOperatorData.map((operator)=>{
+      return {
+        text: operator.operatorName,
+        value: operator.operatorId}
+    })
+    const engineerOption = [{
+      text: engineerData.engineerName,
+      value: engineerData.engineerId
+    }]
 
+    // console.log(allOperatorsOptions)
+    const [open, setOpen] = useState(false);
+    // console.log(engineerData.engineerId)
+    const [inputs, setInputs] = useState({
+      completionStatus:"Incompleted"
+    });
+  
 
-export const TaskFormModal = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+    // modal controls
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    // const onDateChange = (value, dateString) => {
+    //   console.log('Selected Time: ', value);
+    //   console.log('Formatted Selected Time: ', dateString);
+    // };
+    
+    const onOk = (deadline) => {
+      // console.log('onOk: ', value);
+      const dateDue = new Date(deadline)
+      setInputs(values => ({...values, dateDue}))
+    };
+
+    const handleChange = async(event, data) =>{ 
+      let name = event.target.name;
+      let value = event.target.value;
+
+      if (data) {
+        value = data.value
+        name = data.name
+      }
+      setInputs(values => ({...values, [name]: value}))
+
+    }
+
+    const handleSubmit = async(e) => {
+      e.preventDefault()
+      console.log(JSON.stringify(inputs))
+    }
+
 
     
-  }
-
-
   return (
     <div>
-      <Button onClick={handleOpen}>Assign New Task</Button>
-      <Modal
+        <Modal
+        className='modalclass'
+        size='tiny'
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
         open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
+        trigger={<Button basic color='black' icon labelPosition='right' onClick={handleOpen} className="button-open">
           
-            <h4>Task Assignment Form</h4>
-            <br />
-          
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
-          <Form>
-            <Form.Field>
-              <label>First Name</label>
-              <input placeholder='First Name' />
-            </Form.Field>
-            <Form.Field>
-              <label>Last Name</label>
-              <input placeholder='Last Name' />
-            </Form.Field>
-            <Button type='submit' color="green" onClick={()=>{console.log(Form)}}>Submit</Button>
-          </Form>
-          {/* </Typography> */}
-          <br />
-          {/* <Button color='grey' onClick={() => setOpen(false)}>
-            Cancel
-        </Button> */}
-        {/* <Button
-          content="Confirm"
-          labelPosition='right'
-          icon='checkmark'
-          onClick={() => setOpen(false)}
-          positive
-        /> */}
-        </Box>
-      </Modal>
+        Assign a new Task
+        <Icon name='hand point left outline' />
+        </Button>}
+        >
+        <Modal.Header><h4>Assign a new Task <Icon name="hand point left outline"/></h4></Modal.Header>
+        <Modal.Content scrolling>
+        <Form onSubmit={(e)=>handleSubmit(e)}>
+                
+        <Form.Field onChange={handleChange}>
+          <label>Task Name</label>
+          <input name="taskName" placeholder='Enter the name of task...' />
+        </Form.Field>
+        <Form.TextArea onChange={handleChange} name="taskDescr" label='Task Description' placeholder='Describe the task...' />
+        <Form.Select name="assignedBy" onChange={handleChange} label="Assigned By" options={engineerOption} placeholder='Assigned By' />
+        <Form.Select name="assignedTo" onChange={handleChange} label="Select an Operator" options={allOperatorsOptions} placeholder='Assign To Operator' />
+        <Form.Field>
+          <label>Deadline</label>
+          <Space direction='vertical'>
+            <DatePicker showTime onOk={onOk} />
+          </Space>
+        </Form.Field>
+
+        
+
+
+        <Button type='submit'>Submit</Button>
+        </Form>
+
+        </Modal.Content>
+
+        <Modal.Actions>
+        <Button color='black' onClick={() => setOpen(false)}>
+          Cancel
+        </Button>
+    
+      </Modal.Actions>
+
+
+
+
+        </Modal>
+
+      
     </div>
   )
 }
