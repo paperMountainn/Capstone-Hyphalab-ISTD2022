@@ -58,10 +58,6 @@ def get_prediction(image_tensor):
     
     # return transform(image)
 
-
-
-
-
 # test route
 @app.route("/")
 def home():

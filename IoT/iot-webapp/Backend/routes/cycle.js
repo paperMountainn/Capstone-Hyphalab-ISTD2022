@@ -5,7 +5,8 @@ const Cycle = require('../models/cycle');
 const Rack = require('../models/rack');
 
 router.get('/', async (req, res) => {
-    const cycles = await Cycle.find({});
+    const cycles = await Cycle.find({}).sort({createdOn: -1})
+    
     res.send(cycles);
 })
 router.get('/avail-cycles', async (req, res) => {

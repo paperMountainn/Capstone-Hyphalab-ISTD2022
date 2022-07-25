@@ -25,6 +25,7 @@ const seedDB1 = async() => {
     await Phase.deleteMany({});
     await Rack.deleteMany({});
     await Cycle.deleteMany({});
+
     const rack1 = new Rack({
         rackName: 'Rack 1',
         locatedIn:'incubation',
@@ -33,7 +34,7 @@ const seedDB1 = async() => {
     const rack2 = new Rack({
         rackName: 'Rack 2',
         locatedIn:'farm',
-        currentlyInUse: false
+        currentlyInUse: true
     })
     const rack3 = new Rack({
         rackName: 'Rack 3',
@@ -42,8 +43,8 @@ const seedDB1 = async() => {
     })
     const rack4 = new Rack({
         rackName: 'Rack 4',
-        locatedIn:'incubation',
-        currentlyInUse: true
+        locatedIn:'null',
+        currentlyInUse: false
     })
    
 
@@ -56,84 +57,172 @@ const seedDB1 = async() => {
 
     const cycle1 = new Cycle({
         cycleName:"cycle 1",
-        cycleDescription: "cycle is 1",
-        cycleStatus: "ongoing",
-        
-        
+        cycleDescription: "This is Cycle 1",
+        cycleStatus: "completed",
     })
     const cycle2 = new Cycle({
         cycleName:"cycle 2",
-        cycleDescription: "cycle is 2",
-        cycleStatus: "completed"
+        cycleDescription: "This is Cycle 2",
+        cycleStatus: "ongoing"
     })
     const cycle3 = new Cycle({
         cycleName:"cycle 3",
-        cycleDescription: "cycle is 3",
+        cycleDescription: "This is Cycle 3",
         cycleStatus: "ongoing"
     })
     const cycle4 = new Cycle({
         cycleName:"cycle 4",
-        cycleDescription: "cycle is 4",
-        cycleStatus: "unused"
+        cycleDescription: "This is Cycle 4",
+        cycleStatus: "completed"
+    })
+    const cycle5 = new Cycle({
+        cycleName:"cycle 5",
+        cycleDescription: "This is Cycle 5",
+        cycleStatus: "completed"
     })
 
     const phase1 = new Phase({
         phaseType: 'incubation',
-        phaseDescription: 'Best incubation 101',
-        phaseStartDate: new Date(2022, 07, 06),
-        phaseDuration: 7,
-        status: "ongoing"
-    })
-    const phase2 = new Phase({
-        phaseType: 'incubation',
-        phaseDescription: 'Incubation! yay',
+        phaseDescription: 'Best incubation',
         phaseStartDate: new Date(2022, 07, 06),
         phaseEndDate: new Date(2022, 07, 20),
-        phaseDuration: 7,
+        status: "completed"
+    })
+    const phase2 = new Phase({
+        phaseType: 'farming',
+        phaseDescription: 'Farming mushrooms',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseEndDate: new Date(2022, 07, 20),
         status: "completed"
     })
     const phase3 = new Phase({
-        phaseType: 'farming',
-        phaseDescription: 'Farming',
-        phaseStartDate: new Date(2022, 07, 20),
-        phaseDuration: 14,
+        phaseType: 'incubation',
+        phaseDescription: 'This is a phase that i just inoculated',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseEndDate: new Date(2022, 07, 20),
         status: "ongoing"
     })
-
+    const phase4 = new Phase({
+        phaseType: 'incubation',
+        phaseDescription: 'Completed already',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseEndDate: new Date(2022, 07, 20),
+        status: "completed"
+    })
+    const phase5 = new Phase({
+        phaseType: 'farming',
+        phaseDescription: 'Ongoing farming',
+        phaseStartDate: new Date(2022, 07, 06),
+        phaseEndDate: new Date(2022, 07, 20),
+        status: "ongoing"
+    })
+    const phase6 = new Phase({
+        phaseType: 'incubation',
+        phaseDescription: 'Inoculated long time ago',
+        phaseStartDate: new Date(2022, 04, 01),
+        phaseEndDate: new Date(2022, 04, 10),
+        status: "completed"
+    })
+    const phase7 = new Phase({
+        phaseType: 'farming',
+        phaseDescription: 'Farmed long time ago',
+        phaseStartDate: new Date(2022,04 , 10),
+        phaseEndDate: new Date(2022, 04, 20),
+        status: "completed"
+    })
+    const phase8 = new Phase({
+        phaseType: 'incubation',
+        phaseDescription: 'Incubated v long time ago',
+        phaseStartDate: new Date(2022, 03, 01),
+        phaseEndDate: new Date(2022, 03, 10),
+        status: "completed"
+    })
+    const phase9 = new Phase({
+        phaseType: 'farming',
+        phaseDescription: 'Farmed v long time ago',
+        phaseStartDate: new Date(2022, 03, 10),
+        phaseEndDate: new Date(2022, 03, 20),
+        status: "completed"
+    })
+    
     cycle1.belongsToRack = rack1
     cycle2.belongsToRack = rack1
+    cycle3.belongsToRack = rack2
+    cycle4.belongsToRack = rack3
+    cycle5.belongsToRack = rack4
 
+    cycle1.containPhases.push(phase1)
     cycle1.containPhases.push(phase2)
-    cycle1.containPhases.push(phase3)
-    cycle2.containPhases.push(phase1)
-    
 
-    phase1.belongsToCycle = cycle2
+    cycle2.containPhases.push(phase3)
+
+    cycle3.containPhases.push(phase4)
+    cycle3.containPhases.push(phase5)
+
+    cycle4.containPhases.push(phase6)
+    cycle4.containPhases.push(phase7)
+
+    cycle5.containPhases.push(phase8)
+    cycle5.containPhases.push(phase9)
+
+    phase1.belongsToCycle = cycle1
     phase2.belongsToCycle = cycle1
-    phase3.belongsToCycle = cycle1
+
+    phase3.belongsToCycle = cycle2
+    
+    phase4.belongsToCycle = cycle3
+    phase5.belongsToCycle = cycle3
+
+    phase6.belongsToCycle = cycle4
+    phase7.belongsToCycle = cycle4
+    
+    phase8.belongsToCycle = cycle5
+    phase9.belongsToCycle = cycle5
 
     phase1.belongsToRack = rack1
     phase2.belongsToRack = rack1
+
     phase3.belongsToRack = rack1
+
+    phase4.belongsToRack = rack2
+    phase5.belongsToRack = rack2
+
+    phase6.belongsToRack = rack3
+    phase7.belongsToRack = rack3
+
+    phase8.belongsToRack = rack4
+    phase9.belongsToRack = rack4
 
     rack1.containCycles.push(cycle1)
     rack1.containCycles.push(cycle2)
+
+    rack2.containCycles.push(cycle3)
+
+    rack3.containCycles.push(cycle4)
+    rack4.containCycles.push(cycle5)
 
     await cycle1.save()
     await cycle2.save()
     await cycle3.save()
     await cycle4.save()
+    await cycle5.save()
 
     await phase1.save()
     await phase2.save()
     await phase3.save()
+    await phase4.save()
+    await phase5.save()
+    await phase6.save()
+    await phase7.save()
+    await phase8.save()
+    await phase9.save()
 
     await rack1.save()
     await rack2.save()
     await rack3.save()
     await rack4.save()
 
-    console.log("seeding complete")
+    console.log("seeding rack stuffs complete")
 }
 
 seedDB1();

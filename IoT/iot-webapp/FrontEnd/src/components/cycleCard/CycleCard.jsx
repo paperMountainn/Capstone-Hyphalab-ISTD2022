@@ -5,7 +5,7 @@ import { db_time_parser } from '../../utils/dateHelper';
 
 export const CycleCard = ({cycleData}) => {
   // const cycleName = cycleData.cycleName
-  const {belongToRack, createdOn, containPhases, id, cycleName, cycleDescription, cycleStatus} = cycleData
+  const {belongsToRack, createdOn, containPhases, id, cycleName, cycleDescription, cycleStatus} = cycleData
   const cycleCreatedOn = db_time_parser(createdOn)
 
   const cycleIcon = (status) => {
@@ -28,7 +28,7 @@ export const CycleCard = ({cycleData}) => {
       {console.log("hi from cycle card")}
       {console.log(`cycleid:${id}`)}
       {console.log(`containPhases:${containPhases}`)}
-      {console.log(`belongToRack:${belongToRack}`)}
+      {console.log(`belongsToRack:${typeof(belongsToRack)}`)}
 
       <Card.Content className={cycleStatus}>
         <Card.Header>
@@ -44,9 +44,9 @@ export const CycleCard = ({cycleData}) => {
       </Card.Content>
       <Card.Content>
  
-          <Card.Description><b>Belong To Rack: </b>
+          <Card.Description><b>Belongs To Rack: </b>
           {
-            belongToRack ? {belongToRack} : <b>-</b>
+            belongsToRack ? <a href='#'>{belongsToRack}</a> : <b>-</b>
           }
           </Card.Description>
      

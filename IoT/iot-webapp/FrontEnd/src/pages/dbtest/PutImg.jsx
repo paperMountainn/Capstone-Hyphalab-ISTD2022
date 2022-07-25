@@ -1,7 +1,6 @@
 import React, {useEffect ,useState} from 'react'
 import { projectStorage, projectFirestore } from '../../config/firebase-config';
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
-import { saveAs } from 'file-saver'
 import axios from 'axios';
 
 export const PutImg = () => {

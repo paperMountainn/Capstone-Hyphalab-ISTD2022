@@ -25,10 +25,10 @@ const phaseSchema = new Schema({
         type: Date,
         // required: true,
     },
-    phaseDuration: {
-        type: Number,
+    // phaseDuration: {
+    //     type: Number,
 
-    },
+    // },
     belongsToCycle: {
         type: Schema.Types.ObjectId,
         ref:'Cycle',
