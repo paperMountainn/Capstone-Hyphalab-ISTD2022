@@ -151,7 +151,7 @@ const seedDB2 = async() => {
     })
     const operator3 = new User({
         userName: "Benjo",
-        userType: "Engineer"
+        userType: "Operator"
     })
     const engineer1 = new User({
         userName: "Benji",
@@ -165,6 +165,16 @@ const seedDB2 = async() => {
         userName: "Sze Jia",
         userType: "Engineer"
     })
+
+    const engineer4 = new User({
+        userName: "Sammy",
+        userType: "Engineer"
+    })
+    const operator4 = new User({
+        userName: "Kelly",
+        userType: "Operator"
+    })
+
     const task1 = new Task({
         taskName: "Move Rack",
         taskDescr: "Please move rack 1.23 to the Farm area",
@@ -210,10 +220,10 @@ const seedDB2 = async() => {
 
     task1.assignedTo = operator1;
     task2.assignedTo = operator1;
-    task3.assignedTo = operator1;
-    task4.assignedTo = operator1;
-    task5.assignedTo = operator1;
-    task6.assignedTo = operator1;
+    task3.assignedTo = operator2;
+    task4.assignedTo = operator2;
+    task5.assignedTo = operator3;
+    task6.assignedTo = operator3;
 
     task1.assignedBy = engineer1;
     task2.assignedBy = engineer1;
@@ -225,7 +235,9 @@ const seedDB2 = async() => {
     engineer1.taskAssigned.push(task1, task2)
     engineer2.taskAssigned.push(task3, task5, task6)
     engineer3.taskAssigned.push(task4)
-    operator1.taskReceived.push(task1, task2, task3, task4,task5,task6)
+    operator1.taskReceived.push(task1, task2)
+    operator2.taskReceived.push(task3, task4)
+    operator3.taskReceived.push(task5, task6)
 
     await task1.save()
     await task2.save()
@@ -237,10 +249,12 @@ const seedDB2 = async() => {
     await operator1.save()
     await operator2.save()
     await operator3.save()
+    await operator4.save()
 
     await engineer1.save()
     await engineer2.save()
     await engineer3.save()
+    await engineer4.save()
     console.log("seeding complete")
 }
 // seedDB2();

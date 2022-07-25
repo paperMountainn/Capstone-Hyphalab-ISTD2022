@@ -13,13 +13,23 @@ router.get('/:userId/myTasks', async (req, res) => {
     // const user = await User.findById(req.params.userId).populate('taskReceived')
     const myTasks = await Task.find({
         assignedTo: req.params.userId
-    }).populate('assignedBy')
+    }).populate('assignedTo')
     res.send(myTasks)
 })
 
-router.delete('/:userId/:taskId', async(req, res)=>{
-    const {userId, taskId} = req.params;
-    await Task.findByIdAndDelete(taskId);
-})
+
+
+
+
+  
+   
+
+
+
+
+// router.delete('/:userId/:taskId', async(req, res)=>{
+//     const {userId, taskId} = req.params;
+//     await Task.findByIdAndDelete(taskId);
+// })
 
 module.exports = router;

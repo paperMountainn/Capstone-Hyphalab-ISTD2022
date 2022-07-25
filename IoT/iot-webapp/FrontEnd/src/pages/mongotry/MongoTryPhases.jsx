@@ -89,6 +89,24 @@ export const MongoTryPhases = () => {
       const stuffs = response.data
       console.log(stuffs)
     }
+    const fetchAllOperators = async() => {
+      const response = await axios.get(`/user/operators`) 
+      const stuffs = response.data[0]
+      console.log(stuffs)
+    }
+    const completeTask = async() => {
+      
+      const hardcodedtaskid = '62d97a8ce862a90cf70e7c56'
+      const response = await axios.patch(`/user/${hardcodedtaskid}`, {statusUpdate: "Completed"})
+      console.log(response.data)
+
+    }
+
+    const assignTask = async() => {
+      const body = {completionStatus:"Incompleted",taskName:"move rack",taskDescr:"hi",assignedBy:"62d98b1a12f73512b04ad57e",assignedTo:"62d98b1a12f73512b04ad57a",dateDue:"2022-07-24T18:18:22.840Z"}
+      const response = await axios.post('/user/engineer/task', body)
+      console.log(response.data)
+    }
 
     
     
@@ -100,7 +118,10 @@ export const MongoTryPhases = () => {
     // updateRack()
     // fetchAllCycles()
     // createCycle()
-    fetchAllRacks()
+    // // fetchAllRacks()
+    // fetchAllOperators()
+    // completeTask()
+    assignTask()
 
     
  }, []);
