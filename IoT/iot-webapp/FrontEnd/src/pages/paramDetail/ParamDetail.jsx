@@ -10,6 +10,10 @@ import { RiTempHotLine } from "react-icons/ri";
 import { Icon } from 'semantic-ui-react';
 import { FaCloudversify } from "react-icons/fa";
 import { farmNavItems } from '../../components/navbar/navbarLists';
+import {Grid, Row, Col} from "react-bootstrap";
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+
+
 const cardDetails = [
   {
     color: "green",
@@ -34,27 +38,22 @@ const cardDetails = [
 
 export const ParamDetail = () => {
   return (
-    <div className='paramDetail'>
+    <div>
       <Sidebar>
-        <div className="paramDetailContainer">
           <Navbar navItems={farmNavItems}/>
-          <div className="top">
-            <div className="container">
-              <div className="row">
-
-                <div className="col-8 md-4">
-                  <div className="graphDescr">Graph Detail</div>
-                  <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" location="/incubation/temperature"/>
-                  <div className="row">
-                    <div className="col-8 mt-4 pb-4">
-                    <ActuatorForm/>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-4 md-4 pt-4">
-                <div className="graphDescr">Summarised Statistics</div>
-                <div className="row">
+          <div className='ms-4'>
+          <h3 className='pb-2 pt-4'>
+            {' '}Parameter Details
+          </h3>
+          <MDBRow>
+            <MDBCol lg='12'>
+              <MDBRow>
+                <MDBCol lg='8'>
+                  <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" location="/farm/temperature"/>
+                </MDBCol>
+                <MDBCol lg='4'>
+                <p>Summarised Statistics</p>
+                <MDBRow>
                   {cardDetails.map((cardDetail)=>{
                     return(
                       <MyCard 
@@ -65,18 +64,19 @@ export const ParamDetail = () => {
                       />
                     );
                   })}
-                </div>
-                </div>
-              </div>
-              
-              <div className="row">
-              
-              </div>
-
+                </MDBRow>
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <div className="mt-4 pb-4">
+            <ActuatorForm/>
             </div>
-          </div>
-          
-        </div>
+          </MDBRow>
+
+
+      </div>          
       </Sidebar>
     </div>
   )
