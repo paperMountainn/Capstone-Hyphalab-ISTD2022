@@ -5,6 +5,9 @@ import axios from "axios";
 // import { taskColumns, taskRows } from './datatableSource';
 import { taskColumns, TaskRowsAPI } from './datatableSource';
 import { Link } from 'react-router-dom';
+
+// THIS IS OPERATOR DATATABLE
+
 // these are defined in datatablesource.js
 // const columns: GridColDef[] = [
 //   { field: 'id', headerName: 'ID', width: 70 },
@@ -56,37 +59,39 @@ import { Link } from 'react-router-dom';
 export const Datatable = () => {
   // const [data, setData] = useState(taskRows);
   const [taskList, setTaskList] = useState([]);
-  const hardcodeEngineerUID = '62b295f033d4ff5e8595557e'
-  const hardcodeOperatorUID = '62b332f71ec965876d2668da'
+  const [sampleOperator, setSampleOperator] = useState(null)
+
+
   
   useEffect(() => {
-    const fetchResults = async() => {
-      // const response = await axios.get(`/user/${hardcodeOperatorUID}`)  
-      const response = await axios.get(`/task/${hardcodeOperatorUID}/myTasks`) 
-      // setStuffs(response.data)
-      const tasks = response.data
-      // console.log(tasks)
+    const fetchOperator = async() => {
+      const response1 = await axios.get('/user/operators')
+      const op_uid = response1.data[0]._id
+      console.log(op_uid)
+      setSampleOperator(op_uid)
+      const response2 = await axios.get(`/task/${op_uid}/myTasks`) 
+      const myTasks = response2.data
       let taskList = []
-      for (let task of tasks){
-        // console.log(task)
-        const {_id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } = task
-        const assignedByUser = assignedBy.userName
-        taskList.push({id: _id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedByUser } )
+      for (let task of myTasks){
+        console.log(task)
+          const {_id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } = task
+          taskList.push({id: _id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } )
       }
-      // console.log(taskList)
       setTaskList(taskList)
-      
     }
 
-    fetchResults()
+    fetchOperator()
     
  }, []);
 
 
-  const handleDelete = async (id) => {
+  const handleComplete = async (id) => {
+    // for now upon completion is removal from the list, but updates to completed in the be
+    // and it will retrieve again if you refresh
     setTaskList(taskList.filter(item => item.id !== id));
-    const response = await axios.delete(`task/${hardcodeOperatorUID}/${id}`)
+    const response = await axios.patch(`user/${id}`, {statusUpdate: "Completed"})
     console.log(response.data)
+    
   }
 
   const actionColumn = [
@@ -100,8 +105,7 @@ export const Datatable = () => {
             <Link to="/users/:someUserId" style={{ textDecoration:"none"}}>
               <div className='viewButton'>View</div>
             </Link>
-            {/* <div className='deleteButton' onClick={()=>{handleDelete(params.row.id)}}>Delete</div> */}
-            <div className='completeButton' onClick={()=>{handleDelete(params.row.id)}}>Complete</div>
+            <div className='completeButton' onClick={()=>{handleComplete(params.row.id)}}>Complete</div>
           </div>
         );
       }

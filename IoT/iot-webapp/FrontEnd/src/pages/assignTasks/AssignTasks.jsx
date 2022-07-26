@@ -1,23 +1,69 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { engineerPageNavItems } from '../../components/navbar/navbarLists'
 import { Navbar } from '../../components/navbar/Navbar'
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import { TaskFormModal } from '../../components/taskFormModal/TaskFormModal';
+import { OperatorCard } from '../../components/operatorCard/OperatorCard';
+import { Card, Icon } from 'semantic-ui-react';
+import axios from 'axios';
 
 export const AssignTasks = () => {
+
+  // retrieve all operators and corr tasks assigned to them
+
+  const [operators, setOperators] = useState([])
+  const [engineer, setEngineer] = useState([])
+  useEffect(()=>{
+    const fetchOperatorsAndEngineer = async() => {
+      const response1 = await axios.get('user/operators')
+      const response2 = await axios.get('user/engineers')
+      const allOperatorData = response1.data
+      const allEngineerData = response2.data
+      const {taskAssigned, userName, _id} = allEngineerData[1]
+      setEngineer({taskAssigned, engineerName: userName, engineerId: _id})
+      
+      let operator_list = []
+      for (let operator of allOperatorData){
+        console.log(operator)
+        const {_id, taskReceived, userName} = operator
+        operator_list.push({operatorId: _id, taskReceived, operatorName: userName})
+      }
+      setOperators(operator_list)
+      // console.log(operator_list)
+
+
+    }
+
+    fetchOperatorsAndEngineer()
+   
+
+
+  },[])
   return (
     <div className='tasks'>
     <div className="tasksContainer">
       <Sidebar>
       <Navbar navItems={engineerPageNavItems}/>
-      <br />
-      <div className='container'>
-        <div className="row">
-            <div className="col-6">
-              <TaskFormModal/>
-            </div>
-            
-        </div>
+      <div className='stuffs'>
+      <h3>Operators and Tasks Assigned</h3>
+
+        <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
+        {(operators && engineer)
+        ?
+        (<Card.Group itemsPerRow={3}>
+          {operators.map((operatorData)=>{
+            return(
+              <OperatorCard key={operatorData._id} operatorData={operatorData} engineerData={engineer} /> 
+            )
+          })}
+        </Card.Group>) 
+        :
+        (<Icon name='sync alternate' loading />)
+        }
+
+
+
+
       </div>
       
       </Sidebar>
