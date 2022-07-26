@@ -93,14 +93,17 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
 
   // const param = {parameter}
 
-  // const cardClass = (folderRetrieved) => {
-  //   if (folderRetrieved == "contam"){
-  //     return "red"
-  //   }
-  //   else if (folderRetrieved == "noncontam"){
-  //     return "green"
-  //   }
-  // }
+  const optiLevel = ({parameter}) => {
+    if ({parameter} == "temperature"){
+      return 24.669
+    }
+    else if ({parameter} == "humidity"){
+      return 81.199
+    }
+    else if ({parameter} == "co2"){
+      return 700
+    }
+  }
 
   return (
     <Link to={location} params={{ aspect, title, color, parameter, location}}>
@@ -125,11 +128,24 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
       
         <CartesianGrid strokeDasharray="3 3" className='chartGrid'/>
         <Tooltip />
-        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" /> */}
+
+        {/* for temperature */}
+        <ReferenceLine y={24.669} label="" stroke="green" />
+        <ReferenceLine y={24.611} label="" stroke="green" />
+
+        {/* for humidity */}
+        <ReferenceLine y={81.05} label="" stroke="green" />
+        <ReferenceLine y={81.20} label="" stroke="green" />
+
+        {/* for co2 */}
+        <ReferenceLine y={490} label="" stroke="green" />
+        <ReferenceLine y={1000} label="" stroke="green" />
+
         <Area type="monotone" dataKey={parameter} stroke={color} fillOpacity={.2} fill={color}/>
 
       </AreaChart>
       </ResponsiveContainer>
+      {/* <h3>{optiLevel({parameter})}</h3> */}
     </div>
     </Link>
   )
