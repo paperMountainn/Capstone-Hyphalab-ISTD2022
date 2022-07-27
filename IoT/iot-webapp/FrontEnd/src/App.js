@@ -126,6 +126,7 @@ import { UserProfile } from './pages/userProfile/UserProfile';
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
 import { PutImg } from './pages/dbtest/PutImg';
+import { PutImg2 } from './pages/dbtest/PutImg2';
 import { MyButton } from './pages/reacttest/button/Button';
 import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 import { MongoTry } from './pages/mongotry/MongoTry';
@@ -208,6 +209,7 @@ const [password, setPassword] = useState('');
                             <Route index element={<MyForm/>} />
                             <Route path="todolist" element={<TodoList/>} />
                             <Route path="putimg" element={<PutImg/>} />
+                            <Route path="putimg2" element={<PutImg2/>} />
                             <Route path="retrieveData" element={<DataRetrieve/>} />
                             <Route path="testFlask" element={<TestFlask />} />
                         </Route>
