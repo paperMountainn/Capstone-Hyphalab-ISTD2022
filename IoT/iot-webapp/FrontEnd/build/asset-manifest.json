@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7cd1bd3c.css",
+    "main.js": "/static/js/main.ad678c35.js",
+    "static/media/TSJ_1004691.JPG": "/static/media/TSJ_1004691.9dcfd87a5f808d2a7cbc.JPG",
+    "static/media/c3.jpg": "/static/media/c3.11e60a15db4058e5ffed.jpg",
+    "static/media/c2.jpg": "/static/media/c2.582dfc9756a1ee9a045f.jpg",
+    "static/media/c1.jpg": "/static/media/c1.b5456c1ed58a83283f7d.jpg",
+    "static/media/f1.jpg": "/static/media/f1.9c8e1bc08bc3d1863330.jpg",
+    "static/media/f2.jpg": "/static/media/f2.f9ff09a6abbc80850ba9.jpg",
+    "static/media/s2.jpg": "/static/media/s2.95d3a3ae6323a7056fcd.jpg",
+    "static/media/s3.jpg": "/static/media/s3.c9f39941b2bcc93413b9.jpg",
+    "static/media/s1.jpg": "/static/media/s1.0b0e9a49d478054923f8.jpg",
+    "static/media/HYPHA(Black).png": "/static/media/HYPHA(Black).63751abf6c9b8c52e9e9.png",
+    "index.html": "/index.html",
+    "main.7cd1bd3c.css.map": "/static/css/main.7cd1bd3c.css.map",
+    "main.ad678c35.js.map": "/static/js/main.ad678c35.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cd1bd3c.css",
+    "static/js/main.ad678c35.js"
+  ]
+}
