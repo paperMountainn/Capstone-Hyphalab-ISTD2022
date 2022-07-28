@@ -92,7 +92,7 @@ export const Sidebar = ({children}) => {
   
   ]
 
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
     
         
         return (
