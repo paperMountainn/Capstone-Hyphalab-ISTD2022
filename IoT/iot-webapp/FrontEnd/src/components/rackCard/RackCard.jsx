@@ -5,15 +5,18 @@ import { ProgressBar } from 'react-bootstrap'
 import { IoFileTrayStacked } from "react-icons/io5";
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { Progress } from 'semantic-ui-react'
-import { db_time_parser } from '../../utils/dateHelper';
+import { db_time_parser, calculateDaysBetweenDates } from '../../utils/dateHelper';
 import { InfoModal } from '../infoModal/InfoModal';
+import { MoveToFarmFormModal } from '../moveToFarmFormModal/MoveToFarmFormModal';
+
+import { FinishFruitingFormModal } from '../finishFruitingFormModal/FinishFruitingFormModal';
 export const RackCard = ({phaseData}) => {
   const progress = 60
 
   const phaseId = phaseData.id
   const phaseCreatedOn = db_time_parser(phaseData.createdOn)
   const phaseDescr = phaseData.phaseDescription
-  const phaseDuration = phaseData.phaseDuration
+  const phaseDurationInDays = calculateDaysBetweenDates(phaseData.phaseStartDate, phaseData.phaseEndDate)
   const phaseStartDate = db_time_parser(phaseData.phaseStartDate)
   const phaseEndDate = db_time_parser(phaseData.phaseEndDate)
   
@@ -24,6 +27,18 @@ export const RackCard = ({phaseData}) => {
   const belongsToRack = phaseData.belongsToRack
   const {rackName, containCycles, currentlyInUse, locatedIn} = belongsToRack
   const {completed, containPhases, cycleDescr} = belongsToCycle
+
+  const moveToFarmModalProp = {
+    rackDetails:{rackId: belongsToRack._id, rackName: belongsToRack.rackName}, 
+    phaseDetails:{phaseId, phaseEndDate}, 
+    cycleDetails:{cycleId: belongsToCycle._id, cycleName: belongsToCycle.cycleName},
+    incubPhaseId: phaseId
+  }
+  const finishFruitingFormModalProp = {
+    rackDetails:{rackId: belongsToRack._id, rackName: belongsToRack.rackName}, 
+    cycleDetails:{cycleId: belongsToCycle._id, cycleName: belongsToCycle.cycleName}, 
+    phaseDetails:{phaseId, phaseEndDate}
+  }
 
   return (
       <Card color="black">
@@ -61,14 +76,17 @@ export const RackCard = ({phaseData}) => {
           <Card.Description><b>Belongs To Cycle: </b><InfoModal id={belongsToCycle.cycleName} /></Card.Description>
         </Card.Content>
         <Card.Content>
-          <Card.Description><b>Phase Duration: </b>{phaseDuration} days</Card.Description>
+          <Card.Description><b>Phase Duration: </b>{phaseDurationInDays} days</Card.Description>
           <Card.Description><b>Start: </b>{phaseStartDate}</Card.Description>
           <Card.Description><b>End: </b>{phaseEndDate}</Card.Description>
         </Card.Content>
         <Card.Content extra>
            {phaseType == "incubation" ? 
-           (<Button color='blue'><div>Move to Farm <Icon name='angle double right' /></div></Button>):
-           (<Button color='green'><div>Finished Fruiting <Icon name='thumbs up outline' /></div></Button>)
+           
+          //  (<Button color='blue'><div>Move to Farm <Icon name='angle double right' /></div></Button>):
+          (<MoveToFarmFormModal details={moveToFarmModalProp}/>):
+          //  (<Button color='green'><div>Finished Fruiting <Icon name='thumbs up outline' /></div></Button>)
+          (<FinishFruitingFormModal details={finishFruitingFormModalProp}/>)
             }
         </Card.Content>
       </Card>

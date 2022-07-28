@@ -14,7 +14,7 @@ export const RackPhases = () => {
 
   useEffect(() => {
     const fetchResults = async() => {
-      const response = await axios.get(`/phase`) 
+      const response = await axios.get(`/phase/ongoing`) 
       const originalFetchedPhases = response.data
       // console.log(originalFetchedPhases)
       let phases_list = []
@@ -36,13 +36,13 @@ export const RackPhases = () => {
         <div className="rackPhaseContainer">
           <Navbar navItems={rackNavItems} />
           <div className="stuffs">
-            <NewPhaseFormModal />
+            <NewPhaseFormModal modalDetails={{ phaseType:"incubation", icon: <Icon name='add'/>, color: "black"}} />
             {phases 
             ?
               (<Card.Group itemsPerRow={3}>
                  {phases.map((phaseData)=>{
                    return(
-                     <RackCard phaseData={phaseData}/> 
+                     <RackCard key={phaseData.id} phaseData={phaseData}/> 
                      // "hi"
                    )
                  })}

@@ -9,8 +9,8 @@ void setup() {
 void loop() {
   digitalWrite(33, LOW); //Turn on
   
-  delay (1000); //Wait 1 sec
-  digitalWrite(33, HIGH); //Turn off
-  delay (1000); //Wait 1 sec
-  Serial.println("yo");
+//  delay (1000); //Wait 1 sec
+//  digitalWrite(33, HIGH); //Turn off
+//  delay (1000); //Wait 1 sec
+//  Serial.println("yo");
 }

@@ -21,6 +21,8 @@ router.patch('/use-rack/:rackId', async(req, res) => {
     // add cycle to rack, only for new cycles
         // but if at farm phase then dont need. (have req.body send in the phaseType)
     // update rack to alr in use
+
+    // api call attach newly created Cycle to the Rack
     
     const { rackId } = req.params
     const { cycleId, phaseType } = req.body

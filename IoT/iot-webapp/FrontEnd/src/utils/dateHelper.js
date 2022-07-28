@@ -47,7 +47,14 @@ export function db_time_parser(db_time, setting="date"){
 
 }
 
+export function calculateDaysBetweenDates(earlierDate, laterDate){
+  let date1 = new Date(earlierDate)
+  let date2 = new Date(laterDate)
+  let difference = Math.abs(date1.getTime() - date2.getTime())
+  let dayDifference = Math.ceil(difference / (1000 * 3600 * 24));
+  return dayDifference
 
+}
 
 // test
 
