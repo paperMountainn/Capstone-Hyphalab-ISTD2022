@@ -23,7 +23,7 @@ export const Settings = () => {
                 <h4>Type of notification system: </h4>
                 <p>Email and app push notifications</p>
                 <div className='sm=1'>
-                <Button className="pt-3 " align="center"> Make Changes </Button>
+                <Button className="pt-3 " align="center"> Edit Setting </Button>
                 </div>
               </div>
           
