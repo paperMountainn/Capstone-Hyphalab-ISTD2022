@@ -131,6 +131,7 @@ import { MyButton } from './pages/reacttest/button/Button';
 import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 import { MongoTry } from './pages/mongotry/MongoTry';
 import { MongoTryPhases } from './pages/mongotry/MongoTryPhases';
+import { CountDown } from './pages/mongotry/CountDown';
 import { TestFlask } from './pages/dbtest/TestFlask';
 
 // import * as firebase from 'firebase/app';
@@ -222,6 +223,7 @@ const [password, setPassword] = useState('');
                         <Route path="mongoTry">
                             <Route index element={<MongoTry />} />
                             <Route path="phase" element={<MongoTryPhases />} />
+                            <Route path="count-down" element={<CountDown />} />
                             {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
                         <Route path="login">

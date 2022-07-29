@@ -41,6 +41,7 @@ export const MoveToFarmFormModal = ({details}) => {
 
     }
     await createPhase()
+    window.location.reload(false);
     
   }
 

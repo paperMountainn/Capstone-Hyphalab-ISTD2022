@@ -23,7 +23,8 @@ export const FinishFruitingFormModal = ({details}) => {
         console.log(`response from api patch cycle call : ${markCycleAsCompleted.data}`)
         
       }
-      updateRackAndCycleStatus()
+      await updateRackAndCycleStatus()
+      window.location.reload(false);
     }
   return (
     <div>

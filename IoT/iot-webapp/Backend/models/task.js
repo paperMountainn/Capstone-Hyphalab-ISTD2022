@@ -28,7 +28,7 @@ const taskSchema = new Schema({
         default: new Date()
     },
     dateDue: {
-        type: String
+        type: Date,
     }
 });
 const Task = mongoose.model('Task', taskSchema);

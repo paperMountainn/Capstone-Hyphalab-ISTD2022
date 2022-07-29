@@ -17,7 +17,13 @@ router.get('/:userId/myTasks', async (req, res) => {
     res.send(myTasks)
 })
 
-
+router.post('/new', async(req, res)=>{
+    // console.log(req.body)
+    const taskDetails = req.body
+    const newTask = new Task(taskDetails)
+    await newTask.save()
+    res.send(newTask._id)
+})
 
 
 

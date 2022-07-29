@@ -126,7 +126,7 @@ export const NewPhaseFormModal = () => {
     await createPhase()
     
     // refresh page to show new phase card created 
-    // window.location.reload(false);
+    window.location.reload(false);
 
   }
 

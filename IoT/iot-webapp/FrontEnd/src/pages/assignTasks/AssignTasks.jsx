@@ -30,8 +30,6 @@ export const AssignTasks = () => {
       }
       setOperators(operator_list)
       // console.log(operator_list)
-
-
     }
 
     fetchOperatorsAndEngineer()
@@ -60,10 +58,6 @@ export const AssignTasks = () => {
         :
         (<Icon name='sync alternate' loading />)
         }
-
-
-
-
       </div>
       
       </Sidebar>
