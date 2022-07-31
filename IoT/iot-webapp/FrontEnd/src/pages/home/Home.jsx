@@ -121,6 +121,9 @@ export const Home = () => {
                     Contamination Images
                   </div>
                   <MyCarousel />
+                    <Link to="/incubation/contaminations">
+                      <p className='ps-2'>More details</p>
+                    </Link>
                 </div>                
                 </MDBCol>
                 <MDBCol lg='6'>
@@ -130,6 +133,9 @@ export const Home = () => {
                     Observation Images
                   </div>
                   <MyCarousel />
+                    <Link to="/incubation/observations">
+                      <p className='ps-2'>More details</p>
+                    </Link>
                 </div>
                 </MDBCol>
               </MDBRow>
@@ -159,6 +165,9 @@ export const Home = () => {
                   Observation Images
                   </h6>
                   <MyCarousel />
+                    <Link to="/farm/observations">
+                      <p className='ps-2'>More details</p>
+                    </Link>
                 </div>
                 </MDBCol>
               </MDBRow>

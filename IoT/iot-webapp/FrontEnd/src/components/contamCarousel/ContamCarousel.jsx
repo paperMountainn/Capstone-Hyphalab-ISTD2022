@@ -6,10 +6,6 @@ import './contaminationCard.css'
 import { FiAlertTriangle } from "react-icons/fi";
 import { projectStorage } from '../../config/firebase-config';
 
-import c1 from '../../static/c1.jpg';
-import c2 from '../../static/c2.jpg';
-import c3 from '../../static/c3.jpg';
-
 export const ContamCarousel = ({ header, meta, openModal}) => {
   const [index, setIndex] = useState(0);
   const [files, setFiles] = useState();
@@ -59,6 +55,7 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
     console.log(files)
 
   return (
+    
     <Card color={cardClass(folderRetrieved)}>
       
     
@@ -121,9 +118,9 @@ export const ContamCarousel = ({ header, meta, openModal}) => {
       <div className="pt-3" align="center">
         <Button data-testid="button" onClick={openModal}>More Details</Button> 
       </div>
-      
       </Card.Content>
     </Card>
+  
 
   )
 }

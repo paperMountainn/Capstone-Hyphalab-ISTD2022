@@ -3,10 +3,10 @@
 import { Icon } from 'semantic-ui-react';
 import { RiTempHotLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
-
-import { Avatar, Image } from 'antd';
-
+import { Avatar } from 'antd';
 import { IoFileTrayStacked } from "react-icons/io5";
+import { GoDashboard } from "react-icons/go";
+
 function getItem(label, key, icon, children, type) {
         return {
           key,
@@ -39,7 +39,8 @@ function getItem(label, key, icon, children, type) {
 export const farmNavItems = [
     getItem(<Link to="/farm/temperature">Temperature</Link>, '1', <RiTempHotLine />),
     getItem(<Link to="/farm/humidity">Humidity</Link>, '2', <Icon name="cloud" />),
-    getItem(<Link to="/farm/observations">Observation Images</Link>, '3', <Icon name="camera" />)
+    getItem(<Link to="/farm/humidity">Carbon Dioxide</Link>, '3', <GoDashboard/>),
+    getItem(<Link to="/farm/observations">Observation Images</Link>, '4', <Icon name="camera" />)
     ];
 
 export const incubationNavItems = [

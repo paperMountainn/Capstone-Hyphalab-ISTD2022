@@ -8,7 +8,7 @@ import s2 from '../../static/s2.jpg';
 import s3 from '../../static/s3.jpg';
 
 
-export const MyCarousel = ({ images }) => {
+export const MyCarousel = ({ images, location }) => {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
@@ -26,6 +26,7 @@ export const MyCarousel = ({ images }) => {
           {/* <Carousel.Caption> */}
           <h3>Rack 1</h3>
           <p>Growth Date: 10/06/2022</p>
+          
           {/* </Carousel.Caption> */}
         </Carousel.Item>
         

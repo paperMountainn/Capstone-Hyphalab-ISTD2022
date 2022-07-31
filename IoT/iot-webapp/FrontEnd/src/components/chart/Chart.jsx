@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { projectRealtimeDb } from '../../config/firebase-config'
+import React, { useState, useEffect } from 'react';
+import { projectRealtimeDb } from '../../config/firebase-config';
 import { Link } from 'react-router-dom';
-import './chart.scss'
+import './chart.scss';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { dateHelper } from '../../utils/dateHelper'
+import { dateHelper } from '../../utils/dateHelper';
 
 const data1 = [
   {
@@ -107,7 +107,7 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
 
   return (
     <Link to={location} params={{ aspect, title, color, parameter, location}}>
-      <div>{realtimeValue}</div>
+      <div>Average value: {realtimeValue}</div>
     <div className='chart'>
       <div className="title">{title}</div>
       <ResponsiveContainer width="100%" aspect={ aspect } styles >
