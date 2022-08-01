@@ -9,25 +9,23 @@ import { Button, Checkbox, Form, Card, Modal, Grid, Image, Header, Icon } from '
 
 export const Settings = () => {
   return (
-    <div className='paramDetail'>
+    <div >
       <Sidebar>
-        <div className="paramDetailContainer">
+        <div className='ms-4'>
+        <h3 className="pb-2 pt-4">
+          {' '}Settings
+        </h3>
           {/* <Navbar navItems={farmNavItems}/> */}
-          <div className="top">
-            <div className="container">
-            <div className="stageTitle">Settings</div>
-              
               <div className="row">
                 <h4>Account details: </h4>
                 <p>Premium account and root user</p>
                 
                 <h4>Type of notification system: </h4>
                 <p>Email and app push notifications</p>
-                <Button className="pt-3" align="center"> Make Changes </Button>
+                <div className='sm=1'>
+                <Button className="pt-3 " align="center"> Edit Setting </Button>
+                </div>
               </div>
-
-            </div>
-          </div>
           
         </div>
       </Sidebar>

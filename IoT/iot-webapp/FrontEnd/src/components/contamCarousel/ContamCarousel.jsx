@@ -53,6 +53,7 @@ export const ContamCarousel = ({ rackName, openModal}) => {
     else {
       return (<Icon loading name='spinner'/>)
     }
+
   }
 
   useEffect(() => {
@@ -84,6 +85,7 @@ export const ContamCarousel = ({ rackName, openModal}) => {
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
         {/* {contamImgs ? 
         contamImgs.map((doc)=>(
+
               
               <Carousel.Item key={doc.id}>
                 <img 

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { projectRealtimeDb } from '../../config/firebase-config';
+import React, { useState, useEffect } from 'react'
+import { projectRealtimeDb } from '../../config/firebase-config'
 import { Link } from 'react-router-dom';
-import './chart.scss';
+import './chart.scss'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { dateHelper } from '../../utils/dateHelper';
-
+import { dateHelper } from '../../utils/dateHelper'
 
 const data1 = [
   {
@@ -82,7 +81,7 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
   
   // function optimalValue() {
   //   if (parameter == "temperature"){
-  //     optimalValue = 24.67;
+  //     optimalValue = 23;
   //   }
   //   else if (parameter == "co2"){
   //     optimalValue = 400
@@ -91,6 +90,21 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
   //     optimalValue = 87.40
   //   }
   // }
+
+  // const param = {parameter}
+
+  const optiLevel = ({parameter}) => {
+    if ({parameter} == "temperature"){
+      return 24.669
+    }
+    else if ({parameter} == "humidity"){
+      return 81.199
+    }
+    else if ({parameter} == "co2"){
+      return 700
+    }
+  }
+
   return (
     <Link to={location} params={{ aspect, title, color, parameter, location}}>
       <div>{realtimeValue}</div>
@@ -106,7 +120,7 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
           </linearGradient>
         </defs>
 
-        {/* <ReferenceLine y={20} label="Max" stroke="red" strokeDasharray="3 3" /> */}
+        {/* <ReferenceLine y={4000} label="Max" stroke="red" strokeDasharray="3 3" /> */}
 
         <XAxis dataKey="timestamp" stroke='gray' label={{ value: "time", offset: 0,  position: "insideBottom" }} domain={['auto', 'auto']} />
         {/* <YAxis  domain={['auto', 'auto']}/> */}
@@ -115,13 +129,23 @@ export const Chart = ({ aspect, title, color, parameter, location }) => {
         <CartesianGrid strokeDasharray="3 3" className='chartGrid'/>
         <Tooltip />
 
-        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
-        {/* <ReferenceLine y={optimalValue()} label="Optimal" stroke="green" strokeDasharray="3 3" alwaysShow={true} /> */}
+        {/* for temperature */}
+        <ReferenceLine y={24.669} label="" stroke="green" />
+        <ReferenceLine y={24.611} label="" stroke="green" />
+
+        {/* for humidity */}
+        <ReferenceLine y={81.05} label="" stroke="green" />
+        <ReferenceLine y={81.20} label="" stroke="green" />
+
+        {/* for co2 */}
+        <ReferenceLine y={490} label="" stroke="green" />
+        <ReferenceLine y={1000} label="" stroke="green" />
 
         <Area type="monotone" dataKey={parameter} stroke={color} fillOpacity={.2} fill={color}/>
 
       </AreaChart>
       </ResponsiveContainer>
+      {/* <h3>{optiLevel({parameter})}</h3> */}
     </div>
     </Link>
   )
