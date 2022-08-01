@@ -41,7 +41,7 @@ export const MoveToFarmFormModal = ({details}) => {
 
     }
     await createPhase()
-    window.location.reload(false);
+    window.location.reload(false)
     
   }
 
@@ -91,15 +91,15 @@ export const MoveToFarmFormModal = ({details}) => {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-      <Button animated color="blue" onClick={handleOpen} className="button-open">
-        <Button.Content visible>Move to Farm</Button.Content>
-        <Button.Content hidden>
-        <Icon name='angle double right' />
-        </Button.Content>
-      
-
+        <Button animated color="blue" onClick={handleOpen} className="button-open">
+          <Button.Content visible>Move to Farm</Button.Content>
+          <Button.Content hidden>
+          <Icon name='angle double right' />
+          </Button.Content>
         
-      </Button>
+
+          
+        </Button>
       }
       >
         <Modal.Header><h4>Move to Farm <Icon name='angle double right' /></h4></Modal.Header>

@@ -194,7 +194,10 @@ export const NewPhaseFormModal = () => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button basic color="black" icon labelPosition='right' onClick={handleOpen} className="button-open">
+      trigger={<Button basic color="black" icon labelPosition='right' onClick={handleOpen} className="button-open"
+      
+      >
+      
         
       
       <Icon name='add' />

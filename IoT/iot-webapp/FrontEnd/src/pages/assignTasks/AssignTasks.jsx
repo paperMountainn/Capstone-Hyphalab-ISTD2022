@@ -15,11 +15,14 @@ export const AssignTasks = () => {
   const [engineer, setEngineer] = useState([])
   useEffect(()=>{
     const fetchOperatorsAndEngineer = async() => {
-      const response1 = await axios.get('user/operators')
-      const response2 = await axios.get('user/engineers')
+      const response1 = await axios.get('/user/operators')
+      const response2 = await axios.get('/user/engineers')
+      console.log("hi")
+      console.log(response1)
+      console.log(response2)
       const allOperatorData = response1.data
       const allEngineerData = response2.data
-      const {taskAssigned, userName, _id} = allEngineerData[1]
+      const {_id, taskAssigned, userName} = allEngineerData[1]
       setEngineer({taskAssigned, engineerName: userName, engineerId: _id})
       
       let operator_list = []
@@ -42,8 +45,9 @@ export const AssignTasks = () => {
     <div className="tasksContainer">
       <Sidebar>
       <Navbar navItems={engineerPageNavItems}/>
+      
       <div className='stuffs'>
-      <h3>Operators and Tasks Assigned</h3>
+      <h4>Operators and Tasks Assigned</h4>
 
         <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
         {(operators && engineer)

@@ -243,7 +243,7 @@ const seedDB2 = async() => {
         userType: "Operator"
     })
     const engineer1 = new User({
-        userName: "Benji",
+        userName: "Kelly",
         userType: "Engineer"
     })
     const engineer2 = new User({
@@ -251,7 +251,7 @@ const seedDB2 = async() => {
         userType: "Engineer"
     })
     const engineer3 = new User({
-        userName: "Sze Jia",
+        userName: "Sally",
         userType: "Engineer"
     })
 
@@ -260,51 +260,49 @@ const seedDB2 = async() => {
         userType: "Engineer"
     })
     const operator4 = new User({
-        userName: "Kelly",
+        userName: "Benji",
+        userType: "Operator"
+    })
+    const operator5 = new User({
+        userName: "Sze Jia",
         userType: "Operator"
     })
 
     const task1 = new Task({
-        taskName: "Move Rack",
+        taskName: "Move Rack 1",
         taskDescr: "Please move rack 1.23 to the Farm area",
         completionStatus: "Incompleted",
-        dateAssigned:"20/06/2022",
-        dateDue:"25/06/2022"
+        dateDue: new Date(2022, 08, 20),
     });
     const task2 = new Task({
         taskName: "Move Contamination",
         taskDescr: "Please move the contaminated samples on rack 2.23 to the sterilisation area.",
         completionStatus: "Incompleted",
-        dateAssigned:"20/06/2022",
-        dateDue:"25/06/2022"
+        dateDue: new Date(2022, 08, 20),
     });
     const task3 = new Task({
         taskName: "Move Contamination",
         taskDescr: "Please move the contaminated samples on rack 3.23 to the sterilisation area.",
         completionStatus: "Incompleted",
-        dateAssigned:"21/06/2022",
-        dateDue:"26/06/2022"
+        dateDue: new Date(2022, 08, 20),
     });
     const task4 = new Task({
         taskName: "Move Rack",
         taskDescr: "Please move rack 5.12 to the Farm area",
         completionStatus: "Completed",
-        dateAssigned:"10/05/2022",
-        dateDue:"15/05/2022"
+        dateDue: new Date(2022, 08, 20),
     });
     const task5 = new Task({
         taskName: "Move Rack",
         taskDescr: "Please move rack 6.12 to the Farm area",
         completionStatus: "Completed",
-        dateAssigned:"06/05/2022",
-        dateDue:"11/05/2022"
+        dateDue: new Date(2022, 08, 20),
     });
     const task6 = new Task({
         taskName: "Move Rack",
         taskDescr: "Please move rack 7.23 to the Farm area",
         completionStatus: "Completed",
-        dateAssigned:"03/05/2022",
-        dateDue:"08/05/2022"
+        dateDue: new Date(2022, 08, 20),
     });
 
     task1.assignedTo = operator1;
@@ -339,6 +337,7 @@ const seedDB2 = async() => {
     await operator2.save()
     await operator3.save()
     await operator4.save()
+    await operator5.save()
 
     await engineer1.save()
     await engineer2.save()

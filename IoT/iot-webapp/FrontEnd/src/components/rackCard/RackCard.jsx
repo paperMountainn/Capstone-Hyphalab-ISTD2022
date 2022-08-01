@@ -72,7 +72,7 @@ export const RackCard = ({phaseData}) => {
       <Card color="black">
         
         <Card.Header>
-          <ProgressBar min={1} now={progress} label={`${progress}%`}/>
+          {/* <ProgressBar min={1} now={progress} label={`${progress}%`}/> */}
 
           {/* <Countdown value={deadline} onFinish={onFinish} format={`D  H  m  s ${days} `}/> */}
           
@@ -117,7 +117,7 @@ export const RackCard = ({phaseData}) => {
         </Card.Content>
         <Card.Content>
           {/* <Card.Description><b>Belongs To Rack: </b>{}</Card.Description> */}
-          <Card.Description><b>Belongs To Cycle: </b><InfoModal id={belongsToCycle.cycleName} /></Card.Description>
+          <Card.Description><b>Belongs To Cycle: </b><InfoModal cycleId={belongsToCycle._id} cycleName={belongsToCycle.cycleName}/></Card.Description>
         </Card.Content>
         <Card.Content>
           <Card.Description><b>Phase Duration: </b>{phaseDurationInDays} days</Card.Description>

@@ -5,7 +5,11 @@ const Cycle = require('../models/cycle');
 const Rack = require('../models/rack');
 
 router.get('/', async (req, res) => {
-    const cycles = await Cycle.find({}).sort({createdOn: -1})
+    const cycles = await Cycle.find({})
+    .sort({createdOn: -1})
+    .populate('belongsToRack')
+    .populate('containPhases')
+
     
     res.send(cycles);
 })
@@ -67,6 +71,12 @@ router.post('/new', async(req, res) => {
     res.send(newCycle._id)
 })
 
+router.get('/:cycleId', async(req, res)=>{
+    const cycle = await Cycle.findById(req.params.cycleId)
+    .populate('belongsToRack')
+    .populate('containPhases')
+    res.send(cycle)
+})
 
 
 module.exports = router;

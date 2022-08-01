@@ -3,7 +3,8 @@ const router = express.Router();
 const Rack = require('../models/rack');
 
 router.get('/', async (req, res) => {
-    const racks = await Rack.find({});
+    const racks = await Rack.find({})
+    .populate('containCycles')
     res.send(racks);
 })
 router.get('/avail-racks', async (req, res) => {
@@ -13,6 +14,12 @@ router.get('/avail-racks', async (req, res) => {
         currentlyInUse: false
     })
     res.send(racks);
+})
+
+router.get('/:rackId',  async(req, res)=>{
+    const rack = await Rack.findById(req.params.rackId)
+    .populate('containCycles')
+    res.send(rack)
 })
 
 router.patch('/use-rack/:rackId', async(req, res) => {

@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import axios from 'axios';
-import {Button, Modal, Icon, Form } from 'semantic-ui-react'
+import {Button, Modal, Icon, Form, Table } from 'semantic-ui-react'
 import { DatePicker, Space } from 'antd';
 import moment from 'moment';
 export const TaskFormModal = ({allOperatorData, engineerData}) => {
@@ -62,14 +62,15 @@ export const TaskFormModal = ({allOperatorData, engineerData}) => {
         const newTaskResponse = await axios.post('/task/new/', inputs)
         const newTaskId = newTaskResponse.data
         console.log(`response from api new task call : ${newTaskResponse.data}`)
+
         // operator receives task
-        
-
-        // engineer assigns the task
-
+        // task id, operator id
+        const operatorReceiveTaskResponse = await axios.post('/user/task', {taskId: newTaskId, operatorId: inputs.assignedTo, engineerId: inputs.assignedBy})
+        console.log(`response from operator new task call : ${operatorReceiveTaskResponse.data}`)
 
       }
-      createTask()
+      await createTask()
+      window.location.reload(false);
     }
 
     const disabledDate = (current) => {
@@ -102,6 +103,7 @@ export const TaskFormModal = ({allOperatorData, engineerData}) => {
           <label>Task Name</label>
           <input name="taskName" placeholder='Enter the name of task...' />
         </Form.Field>
+        
         <Form.TextArea onChange={handleChange} name="taskDescr" label='Task Description' placeholder='Describe the task...' />
         <Form.Select name="assignedBy" onChange={handleChange} label="Assigned By" options={engineerOption} placeholder='Assigned By' />
         <Form.Select name="assignedTo" onChange={handleChange} label="Select an Operator" options={allOperatorsOptions} placeholder='Assign To Operator' />

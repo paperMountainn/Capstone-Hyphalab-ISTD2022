@@ -12,12 +12,20 @@ router.get('/', async (req, res) => {
     res.send(allPhases);
 })
 
+
 router.get('/ongoing', async (req, res) => {
     const allPhases = await Phase
         .find({status: "ongoing"})
         .populate('belongsToRack')
         .populate('belongsToCycle');
     res.send(allPhases);
+})
+
+router.get('/:phaseId', async(req, res)=>{
+    const phase = await Phase.findById(req.params.phaseId)
+    .populate('belongsToCycle')
+    .populate('belongsToRack')
+    res.send(phase)
 })
 
 router.patch('/:phaseId/update-status', async(req, res)=>{

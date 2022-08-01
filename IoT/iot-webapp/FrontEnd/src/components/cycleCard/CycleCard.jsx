@@ -2,7 +2,8 @@ import React from 'react'
 import './cycleCard.scss'
 import { Card, Icon, Button} from 'semantic-ui-react'
 import { db_time_parser } from '../../utils/dateHelper';
-
+import { RackInfoModal } from '../rackInfoModal/RackInfoModal';
+import { PhaseInfoModal } from '../phaseInfoModal/PhaseInfoModal';
 export const CycleCard = ({cycleData}) => {
   // const cycleName = cycleData.cycleName
   const {belongsToRack, createdOn, containPhases, id, cycleName, cycleDescription, cycleStatus} = cycleData
@@ -46,7 +47,7 @@ export const CycleCard = ({cycleData}) => {
  
           <Card.Description><b>Belongs To Rack: </b>
           {
-            belongsToRack ? <a href='#'>{belongsToRack}</a> : <b>-</b>
+            belongsToRack ? <RackInfoModal rackId={belongsToRack._id} rackName={belongsToRack.rackName}/> : <b>-</b>
           }
           </Card.Description>
      
@@ -60,8 +61,9 @@ export const CycleCard = ({cycleData}) => {
           (containPhases.length != 0) ? 
           (containPhases.map((phase)=>{
             return(
-              <div key={phase}>
-              <a href='#'>{phase}</a>
+              <div key={phase._id}>
+              
+              <PhaseInfoModal phaseId={phase._id}/>
               </div>);
           }))
           :

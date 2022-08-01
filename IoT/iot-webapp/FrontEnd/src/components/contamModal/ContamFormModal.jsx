@@ -318,7 +318,7 @@ export const ContamFormModal = ({modalState, closeModal, rackName}) => {
         </Segment>
         :
         <div>
-        <Card.Group itemsPerRow={5}>
+        <Card.Group itemsPerRow={7}>
         {contamImgDocs && 
         contamImgDocs.map((contamDoc)=>{
           return(

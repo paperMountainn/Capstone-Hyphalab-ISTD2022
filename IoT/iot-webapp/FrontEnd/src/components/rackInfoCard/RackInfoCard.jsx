@@ -3,7 +3,7 @@ import './rackInfoCard.scss'
 import { Card, Icon, Button} from 'semantic-ui-react'
 import { IoFileTrayStacked } from "react-icons/io5";
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
-
+import { InfoModal } from '../infoModal/InfoModal';
 export const RackInfoCard = ({rackInfo}) => {
   const {containCycles, currentlyInUse, locatedIn, rackName, id} = rackInfo
   // console.log(containCycles)
@@ -41,10 +41,10 @@ export const RackInfoCard = ({rackInfo}) => {
           (containCycles.length != 0)
           ?
           (
-            containCycles.map((cycleId)=>{
+            containCycles.map((cycle)=>{
               return(
-                <div key={cycleId}>
-                  <a href='#'>{cycleId}</a>
+                <div key={cycle._id}>
+                  <InfoModal cycleId={cycle._id} cycleName={cycle.cycleName}/>
                 </div>
               )
             })

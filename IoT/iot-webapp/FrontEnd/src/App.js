@@ -114,14 +114,17 @@ import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RacksAll } from './pages/racksAll/RacksAll';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
-import { Tasks } from './pages/tasks/Tasks';
+import { OperatorTasks } from './pages/operatorTasks/OperatorTasks';
+import { OperatorDetailPage } from './pages/operatorDetailPage/OperatorDetailPage';
+import { EngineerDetailPage } from './pages/engineerDetailPage/EngineerDetailPage';
 import { AssignTasks } from './pages/assignTasks/AssignTasks';
-import { TasksEngineer } from './pages/tasksEngineer/TasksEngineer';
+import { EngineerTasks } from './pages/engineerTasks/EngineerTasks';
 import { Contaminations } from './pages/contaminations/Contaminations';
 import { LoginForm } from './pages/loginForm/LoginForm';
 import { Observations } from './pages/observations/Observations';
 import { Settings } from './pages/settings/Settings';
 import { UserProfile } from './pages/userProfile/UserProfile';
+
 // dbtests
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
@@ -197,13 +200,17 @@ const [password, setPassword] = useState('');
                             
                             {/* <Route path=":rackId" element={<RackDetail />} /> */}
                         </Route>
-                        <Route path="tasks">
-                            <Route index element={<Tasks/>} />
-                            
+                        <Route path="operator">
+                            <Route path="my-tasks" element={<OperatorTasks/>} />
+                            <Route path="profile" element={<OperatorDetailPage/>} />
                         </Route>
+
                         <Route path="engineer">
-                            <Route index element={<AssignTasks/>} />   
-                            <Route path="engineerTasks" element={<TasksEngineer />} />   
+                            
+                            <Route index path="assign-tasks" element={<AssignTasks/>} />   
+                            <Route index path="my-tasks" element={<EngineerTasks/>} />   
+                            <Route index path="profile" element={<EngineerDetailPage/>} />   
+                            
                         </Route>
                         {/* test db */}
                         <Route path="dbtest">

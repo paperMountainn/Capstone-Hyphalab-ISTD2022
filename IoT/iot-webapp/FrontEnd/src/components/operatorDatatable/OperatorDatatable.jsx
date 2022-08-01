@@ -1,11 +1,13 @@
-import './datatable.scss';
+import './operatorDatatable.scss';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import React, { useState, useEffect} from 'react'
 import axios from "axios";
 // import { taskColumns, taskRows } from './datatableSource';
-import { taskColumns, TaskRowsAPI } from './datatableSource';
+import { taskColumns, TaskRowsAPI } from './operatorDatatableSource';
 import { Link } from 'react-router-dom';
-
+import { db_time_parser } from '../../utils/dateHelper';
+import { OperatorTaskDetailModal } from '../operatorTaskDetailModal/OperatorTaskDetailModal';
+import { ConfirmModal } from '../confirmModal/ConfirmModal';
 // THIS IS OPERATOR DATATABLE
 
 // these are defined in datatablesource.js
@@ -56,11 +58,13 @@ import { Link } from 'react-router-dom';
 
 
 
-export const Datatable = () => {
+export const OperatorDatatable = () => {
   // const [data, setData] = useState(taskRows);
   const [taskList, setTaskList] = useState([]);
   const [sampleOperator, setSampleOperator] = useState(null)
 
+
+  
   useEffect(() => {
     const fetchOperator = async() => {
       const response1 = await axios.get('/user/operators')
@@ -71,9 +75,9 @@ export const Datatable = () => {
       const myTasks = response2.data
       let taskList = []
       for (let task of myTasks){
-        console.log(task)
-          const {_id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } = task
-          taskList.push({id: _id, taskName, taskDescr, completionStatus, dateAssigned, dateDue, assignedBy } )
+        // console.log(task)
+        const {_id, taskName, taskDescr, completionStatus, createdOn, dateDue, assignedBy } = task
+        taskList.push({id: _id, taskName, taskDescr, completionStatus, createdOn: db_time_parser(createdOn), dateDue: db_time_parser(dateDue), assignedBy: assignedBy.userName } )
       }
       setTaskList(taskList)
     }
@@ -86,9 +90,12 @@ export const Datatable = () => {
   const handleComplete = async (id) => {
     // for now upon completion is removal from the list, but updates to completed in the be
     // and it will retrieve again if you refresh
-    setTaskList(taskList.filter(item => item.id !== id));
-    const response = await axios.patch(`user/${id}`, {statusUpdate: "Completed"})
-    console.log(response.data)
+    // setTaskList(taskList.filter(item => item.id !== id));
+    
+    const response = await axios.patch(`/user/${id}`, {statusUpdate: "Completed"})
+    window.location.reload(false);
+    
+    // console.log(response.data)
     
   }
 
@@ -100,10 +107,14 @@ export const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/:someUserId" style={{ textDecoration:"none"}}>
+            {/* <Link to="/users/:someUserId" style={{ textDecoration:"none"}}>
               <div className='viewButton'>View</div>
-            </Link>
+            </Link> */}
+         
+            <OperatorTaskDetailModal rowDetail={params.row}/>
+         
             <div className='completeButton' onClick={()=>{handleComplete(params.row.id)}}>Complete</div>
+            <ConfirmModal />
           </div>
         );
       }

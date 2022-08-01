@@ -71,12 +71,12 @@ export const Sidebar = ({children}) => {
     const sideBarMainList = [
       {
           title:"My Tasks (Operator)",
-          link:"/tasks",
+          link:"/operator/my-tasks",
           icon:<Icon name="tasks" circular inverted color='blue'/>
       }, 
       {
         title:"Assign Tasks (Engineer)",
-        link:"/engineer",
+        link:"/engineer/assign-tasks",
         icon:<Icon name="tasks" circular inverted color='orange'/>
       },
       {
