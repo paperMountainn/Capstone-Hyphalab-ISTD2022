@@ -4,3 +4,4 @@ IoT/iot-webapp/ML-flask/ml-env
 IoT/iot-webapp/Backend/node_modules
 
 machine-learning/classification-model/data/
+iot-webapp/ML-flask/Flask-Contam-ML/flaskContamML/__pycache__

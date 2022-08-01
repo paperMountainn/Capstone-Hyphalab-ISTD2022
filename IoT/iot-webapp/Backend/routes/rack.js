@@ -3,7 +3,8 @@ const router = express.Router();
 const Rack = require('../models/rack');
 
 router.get('/', async (req, res) => {
-    const racks = await Rack.find({});
+    const racks = await Rack.find({})
+    .populate('containCycles')
     res.send(racks);
 })
 router.get('/avail-racks', async (req, res) => {
@@ -15,12 +16,20 @@ router.get('/avail-racks', async (req, res) => {
     res.send(racks);
 })
 
+router.get('/:rackId',  async(req, res)=>{
+    const rack = await Rack.findById(req.params.rackId)
+    .populate('containCycles')
+    res.send(rack)
+})
+
 router.patch('/use-rack/:rackId', async(req, res) => {
     // when a new phase is created, 
     // attach phase to a cycle alr created (in cycle patch)
     // add cycle to rack, only for new cycles
         // but if at farm phase then dont need. (have req.body send in the phaseType)
     // update rack to alr in use
+
+    // api call attach newly created Cycle to the Rack
     
     const { rackId } = req.params
     const { cycleId, phaseType } = req.body

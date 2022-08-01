@@ -18,7 +18,7 @@ export const RackCycles = () => {
     const allCyles = response.data
     let cycleList = []
     for (let cycle of allCyles){
-      // console.log(cycle)
+      console.log(cycle)
       const {belongsToRack, createdOn, containPhases, _id, cycleName, cycleDescription, cycleStatus} = cycle
       cycleList.push({belongsToRack, createdOn, containPhases, id: _id, cycleName, cycleDescription, cycleStatus})
     }
@@ -39,7 +39,7 @@ export const RackCycles = () => {
             {
               cycles
               ?
-              (<Card.Group itemsPerRow={3}>
+              (<Card.Group itemsPerRow={4}>
                 {cycles.map((cycleData)=> {
                   return(
                     <CycleCard cycleData={cycleData}/>

@@ -4,6 +4,10 @@ const Cycle = require('./cycle');
 
 // define the schema
 const rackSchema = new Schema({
+    createdOn:{
+        type: Date,
+        default: new Date()
+    },
     rackName: {
         type: String,
         required: true,

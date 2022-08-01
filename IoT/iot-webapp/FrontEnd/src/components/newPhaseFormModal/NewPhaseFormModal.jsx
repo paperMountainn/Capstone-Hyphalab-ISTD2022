@@ -47,11 +47,13 @@ const { RangePicker } = DatePicker;
 // ]
 
 export const NewPhaseFormModal = () => {
+
   const [open, setOpen] = useState(false);
   const [belongsToRackOptions, setBelongsToRackOptions] = useState([]);
   const [belongsToCycleOptions, setBelongsToCycleOptions] = useState([]);
-  const [inputs, setInputs] = useState({status: 'ongoing'});
-
+  const [inputs, setInputs] = useState({status: 'ongoing', phaseType:"incubation"});
+  
+  
   // const [createdPhaseId, setCreatedPhaseId] = useState('')
 
   // modal controls
@@ -65,22 +67,22 @@ export const NewPhaseFormModal = () => {
       const response2 = await axios.get(`/rack/avail-racks`) 
       const availCycleData = response1.data
       const availRackData = response2.data
-      // console.log(availRackData)
+      
 
       const cycleOptions = []
       const rackOptions = []
       for (let availCycle of availCycleData){
-        // console.log(availCycle)
+        
         const { cycleName, _id } = availCycle
         cycleOptions.push({text: cycleName, value: _id})
       }
       for (let availRack of availRackData){
-        // console.log(availCycle)
+        
         const { rackName, _id } = availRack
         rackOptions.push({text: rackName, value: _id})
       }
 
-      // console.log(cycleOptions)
+      
       setBelongsToCycleOptions(cycleOptions)
       setBelongsToRackOptions(rackOptions)
         
@@ -112,8 +114,10 @@ export const NewPhaseFormModal = () => {
       // console.log(`selected rack id : ${rackIdSelected}`)
       const cycleIdSelected = inputs.belongsToCycle
       const response1 = await axios.patch(`/rack/use-rack/${rackIdSelected}`, {cycleId: cycleIdSelected, phaseType:"incubation"}) 
+      
       // console.log(rackIdSelected)
       const response2 = await axios.patch(`/cycle/${cycleIdSelected}`, {phaseId: phaseId, rackId: rackIdSelected}) 
+
       console.log(`response from api patch rack call : ${response1.data}`)
       console.log(`response from api patch cycle call : ${response2.data}`)
 
@@ -122,7 +126,7 @@ export const NewPhaseFormModal = () => {
     await createPhase()
     
     // refresh page to show new phase card created 
-    // window.location.reload(false);
+    window.location.reload(false);
 
   }
 
@@ -176,80 +180,40 @@ export const NewPhaseFormModal = () => {
   };
 
   // options for rackPhases selection
-  const phaseTypeOptions = [
-    {text: 'Incubation', value: 'incubation' },
-    {text: 'Farming', value: 'farming' },
-  ]
+  // const phaseTypeOptions = [
+  //   {text: 'Incubation', value: 'incubation' },
+  //   {text: 'Farming', value: 'farming' },
+  // ]
   
 
   return (
     <div>
-      
-    
-        
-      {/* <Modal
-        
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          
-            <h4>Add New Phase</h4>
-            
-                
-                <Form onSubmit={(e)=> handleSubmit(e)}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control name="user-email" defaultValue={inputs.email || ""} onChange={handleChange} type="email" placeholder="Enter email" />
-                        <Form.Text className="text-muted">
-                        Input a description.
-                        </Form.Text>
-                    </Form.Group>
-                    
-
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control name="user" type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-
-                
-            
-            
-        
-   
-        </Box>
-      </Modal> */}
     <Modal
       className='modalclass'
       size='tiny'
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button basic color='black' icon labelPosition='right' onClick={handleOpen} className="button-open">
+      trigger={<Button basic color="black" icon labelPosition='right' onClick={handleOpen} className="button-open"
+      
+      >
+      
         
-      Add A New Phase
+      
       <Icon name='add' />
-  </Button>}
+      Add Incubation Phase
+    </Button>}
     >
-      <Modal.Header><h4>Add A New Phase <Icon name="add"/></h4></Modal.Header>
+      <Modal.Header><h4>Add A New Phase {<Icon name="add"/>}</h4></Modal.Header>
       <Modal.Content scrolling>
       <Form onSubmit={(e)=> handleSubmit(e)}>
 
-        <Form.Select name="phaseType" onChange={handleChange} label="Phase Type" options={phaseTypeOptions} placeholder='phase' />
-{/*         
-        <Form.Field onChange={handleChange}>
+        {/* <Form.Select name="phaseType" value="Incubation" onChange={handleChange} label="Phase Type" options={phaseTypeOptions} placeholder='phase' /> */}
+        
+        <Form.Field>
           <label>Phase Type</label>
-          <input name="user-email" placeholder='First Name' />
-        </Form.Field> */}
+          <input name="phaseType" value="incubation" readOnly placeholder='hi' />
+        </Form.Field>
             
         
         <Form.Field>
@@ -257,9 +221,9 @@ export const NewPhaseFormModal = () => {
             <Space direction='vertical'>
             {/* <DatePicker onChange={(date, dateString) => {onHandleDateChange(date, dateString, 2)}} /> */}
             <RangePicker
-              ranges={{
-                Today: [moment(), moment()],
-                'Two Weeks': [moment().startOf('week'), moment().endOf('week')],
+               ranges={{
+                '1 Week': [moment(), moment().add(7, 'days')],
+                '2 Weeks': [moment(), moment().add(14, 'days')],
               }}
               showTime
               format="YYYY/MM/DD HH:mm:ss"
@@ -273,31 +237,7 @@ export const NewPhaseFormModal = () => {
 
         <Form.Select name="belongsToRack" onChange={handleChange} label="Select a Rack to Start Phase with" options={belongsToRackOptions} placeholder='Rack Selection' />
         <Form.Select name="belongsToCycle" onChange={handleChange} label="Select a Cycle to Attach Phase to" options={belongsToCycleOptions} placeholder='Cycle Selection' />
-        {/* <Form.Group>
-          <Form.Field>
-            <label>Phase Start Date</label>
-            <Space direction='vertical'>
-            <DatePicker onChange={(date, dateString) => {onHandleDateChange(date, dateString, 1)}} />
-            </Space>
-          </Form.Field>
-          <Form.Field>
-            <label>Phase End Date</label>
-            <Space direction='vertical' size={12}>
-            <DatePicker onChange={(date, dateString) => {onHandleDateChange(date, dateString, 2)}} />
-            </Space>
-          </Form.Field>
-          
 
-        </Form.Group> */}
-    
-
-        {/* <Form.Field>
-          <label>Last Name</label>
-          <input placeholder='Last Name' />
-        </Form.Field> */}
-        {/* <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field> */}
         <Button type='submit'>Submit</Button>
       </Form>
         
@@ -359,4 +299,3 @@ export const NewPhaseFormModal = () => {
     </div>
   )
 }
-

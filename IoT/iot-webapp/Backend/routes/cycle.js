@@ -5,7 +5,12 @@ const Cycle = require('../models/cycle');
 const Rack = require('../models/rack');
 
 router.get('/', async (req, res) => {
-    const cycles = await Cycle.find({});
+    const cycles = await Cycle.find({})
+    .sort({createdOn: -1})
+    .populate('belongsToRack')
+    .populate('containPhases')
+
+    
     res.send(cycles);
 })
 router.get('/avail-cycles', async (req, res) => {
@@ -22,27 +27,39 @@ router.get('/avail-cycles', async (req, res) => {
 router.patch('/:cycleId', async(req, res) => {
     const { cycleId } = req.params
     const { phaseId, rackId } = req.body
-
+    
     console.log(req.body)
-    const rack = await Rack.findById(rackId)
+    // const rack = await Rack.findById(rackId)
     const cycle = await Cycle.findByIdAndUpdate(
         cycleId,
         {
             $set: {
                 // belongToRack: rackId,
                 cycleStatus: "ongoing",
-                belongToRack: rackId
+                belongsToRack: rackId
             },
             $push: {
                 containPhases: phaseId
             }
-
         }
     )
 
     console.log(rackId)
-    console.log(cycle.belongToRack)
-    res.send(`cycles now belong to rack: ${cycle.belongToRack}`)
+    console.log(cycle.belongsToRack)
+    res.send(`cycles now belong to rack: ${cycle.belongsToRack}`)
+})
+
+router.patch('/:cycleId/update-status', async(req, res)=>{
+    const { cycleId } = req.params
+    const cycle = await Cycle.findByIdAndUpdate(
+        cycleId,
+        {
+        $set:{
+            cycleStatus: "completed"
+        }
+    })
+    res.send("updated cycleStatus to completed")
+
 })
 
 
@@ -54,6 +71,12 @@ router.post('/new', async(req, res) => {
     res.send(newCycle._id)
 })
 
+router.get('/:cycleId', async(req, res)=>{
+    const cycle = await Cycle.findById(req.params.cycleId)
+    .populate('belongsToRack')
+    .populate('containPhases')
+    res.send(cycle)
+})
 
 
 module.exports = router;

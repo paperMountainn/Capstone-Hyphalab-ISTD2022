@@ -13,11 +13,27 @@ router.get('/:userId/myTasks', async (req, res) => {
     // const user = await User.findById(req.params.userId).populate('taskReceived')
     const myTasks = await Task.find({
         assignedTo: req.params.userId
-    }).populate('assignedTo')
+    })
+    .populate('assignedBy')
+    .populate('assignedTo')
     res.send(myTasks)
 })
 
+// read details of a specific task
+router.get('/:taskId', async(req, res)=>{
+    const task = await Task.findById(req.params.taskId)
+    .populate('assignedTo')
+    .populate('assignedBy')
+    res.send(task)
+})
 
+router.post('/new', async(req, res)=>{
+    // console.log(req.body)
+    const taskDetails = req.body
+    const newTask = new Task(taskDetails)
+    await newTask.save()
+    res.send(newTask._id)
+})
 
 
 

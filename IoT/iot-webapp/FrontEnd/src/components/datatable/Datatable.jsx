@@ -61,8 +61,6 @@ export const Datatable = () => {
   const [taskList, setTaskList] = useState([]);
   const [sampleOperator, setSampleOperator] = useState(null)
 
-
-  
   useEffect(() => {
     const fetchOperator = async() => {
       const response1 = await axios.get('/user/operators')

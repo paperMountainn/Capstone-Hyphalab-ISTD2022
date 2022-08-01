@@ -33,7 +33,7 @@ const cycleSchema = new Schema({
         required: true,
         enum: ['ongoing', 'completed', 'unused']
     },
-    belongToRack: {
+    belongsToRack: {
         type: Schema.Types.ObjectId,
         ref: 'Rack'
     },

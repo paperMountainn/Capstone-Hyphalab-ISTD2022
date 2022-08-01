@@ -12,11 +12,13 @@ const taskSchema = new Schema({
     },
     assignedTo: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     assignedBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     completionStatus: {
         type: String,
@@ -28,7 +30,8 @@ const taskSchema = new Schema({
         default: new Date()
     },
     dateDue: {
-        type: String
+        type: Date,
+        required: true
     }
 });
 const Task = mongoose.model('Task', taskSchema);

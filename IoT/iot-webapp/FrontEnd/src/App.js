@@ -114,22 +114,27 @@ import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RacksAll } from './pages/racksAll/RacksAll';
 import { RackDetail } from './pages/rackDetail/RackDetail';
 import { Sidebar } from 'semantic-ui-react';
-import { Tasks } from './pages/tasks/Tasks';
+import { OperatorTasks } from './pages/operatorTasks/OperatorTasks';
+import { OperatorDetailPage } from './pages/operatorDetailPage/OperatorDetailPage';
+import { EngineerDetailPage } from './pages/engineerDetailPage/EngineerDetailPage';
 import { AssignTasks } from './pages/assignTasks/AssignTasks';
-import { TasksEngineer } from './pages/tasksEngineer/TasksEngineer';
+import { EngineerTasks } from './pages/engineerTasks/EngineerTasks';
 import { Contaminations } from './pages/contaminations/Contaminations';
 import { LoginForm } from './pages/loginForm/LoginForm';
 import { Observations } from './pages/observations/Observations';
 import { Settings } from './pages/settings/Settings';
 import { UserProfile } from './pages/userProfile/UserProfile';
+
 // dbtests
 import { MyForm } from './pages/dbtest/Form';
 import { TodoList } from './pages/dbtest/TodoList';
 import { PutImg } from './pages/dbtest/PutImg';
+import { PutImg2 } from './pages/dbtest/PutImg2';
 import { MyButton } from './pages/reacttest/button/Button';
 import { DataRetrieve } from './pages/dbtest/DataRetrieve';
 import { MongoTry } from './pages/mongotry/MongoTry';
 import { MongoTryPhases } from './pages/mongotry/MongoTryPhases';
+import { CountDown } from './pages/mongotry/CountDown';
 import { TestFlask } from './pages/dbtest/TestFlask';
 
 // import * as firebase from 'firebase/app';
@@ -195,19 +200,24 @@ const [password, setPassword] = useState('');
                             
                             {/* <Route path=":rackId" element={<RackDetail />} /> */}
                         </Route>
-                        <Route path="tasks">
-                            <Route index element={<Tasks/>} />
-                            
+                        <Route path="operator">
+                            <Route path="my-tasks" element={<OperatorTasks/>} />
+                            <Route path="profile" element={<OperatorDetailPage/>} />
                         </Route>
+
                         <Route path="engineer">
-                            <Route index element={<AssignTasks/>} />   
-                            <Route path="engineerTasks" element={<TasksEngineer />} />   
+                            
+                            <Route index path="assign-tasks" element={<AssignTasks/>} />   
+                            <Route index path="my-tasks" element={<EngineerTasks/>} />   
+                            <Route index path="profile" element={<EngineerDetailPage/>} />   
+                            
                         </Route>
                         {/* test db */}
                         <Route path="dbtest">
                             <Route index element={<MyForm/>} />
                             <Route path="todolist" element={<TodoList/>} />
                             <Route path="putimg" element={<PutImg/>} />
+                            <Route path="putimg2" element={<PutImg2/>} />
                             <Route path="retrieveData" element={<DataRetrieve/>} />
                             <Route path="testFlask" element={<TestFlask />} />
                         </Route>
@@ -220,6 +230,7 @@ const [password, setPassword] = useState('');
                         <Route path="mongoTry">
                             <Route index element={<MongoTry />} />
                             <Route path="phase" element={<MongoTryPhases />} />
+                            <Route path="count-down" element={<CountDown />} />
                             {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
                         <Route path="login">

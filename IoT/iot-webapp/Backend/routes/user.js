@@ -11,14 +11,14 @@ router.get('/', async (req, res) => {
 router.get('/operators', async(req, res) => {
     const allOperators = await User.find({
         userType : 'Operator'
-    })
+    }).populate('taskReceived')
     res.send(allOperators)
 })
 
 router.get('/engineers', async(req, res) => {
     const allEngineers = await User.find({
         userType : 'Engineer'
-    })
+    }).populate('taskAssigned')
     res.send(allEngineers)
     
 })
@@ -40,37 +40,73 @@ router.patch('/:taskId', async(req, res)=> {
     
 })
 
-router.post('/engineer/task', async(req, res)=> {
-    const {completionStatus, taskName, taskDescr, assignedBy, assignedTo, dateDue} = req.body
-    const newTask = new Task(req.body)
-    await newTask.save()
-    await newTask.save().then(
-        (res)=> {
-            console.log("hi")
-            const engineer = User.findByIdAndUpdate(
-                assignedBy,
-                {
-                    $push: {
-                        taskAssigned: res._id
-                    }
-                }
-            ).then(()=>{
-                const user = User.findByIdAndUpdate(
-                    assignedTo,
-                    {
-                        $push: {
-                            taskReceived: res._id
-                        }
-                    }
-                )
-            }
-            )
+// router.post('/operator/task', async(req, res)=> {
+//     const {completionStatus, taskName, taskDescr, assignedBy, assignedTo, dateDue} = req.body
+//     const newTask = new Task(req.body)
+//     await newTask.save()
+//     await newTask.save().then(
+//         (res)=> {
+//             console.log("hi")
+//             const engineer = User.findByIdAndUpdate(
+//                 assignedBy,
+//                 {
+//                     $push: {
+//                         taskAssigned: res._id
+//                     }
+//                 }
+//             ).then(()=>{
+//                 const user = User.findByIdAndUpdate(
+//                     assignedTo,
+//                     {
+//                         $push: {
+//                             taskReceived: res._id
+//                         }
+//                     }
+//                 )
+//             }
+//             )
             
            
+//         }
+//     )
+//     res.send("complete")
+// })
+
+
+router.post('/task', async(req, res)=> {
+    const {taskId, operatorId, engineerId } = req.body
+    const operator = await User.findByIdAndUpdate(
+        operatorId,
+        {
+            $push:{
+                taskReceived: taskId
+            }
+
         }
     )
-    res.send("complete")
+    const engineer = await User.findByIdAndUpdate(
+        engineerId,
+        {
+            $push:{
+                taskAssigned: taskId
+            }
+        }
+    )
+    res.send(`Engineer ${engineer.userName}`)
 })
+
+// router.post('/task', async(req, res)=> {
+//     const {taskId, operatorId, engineerId } = req.body
+//     const operator = await User.findByIdAndUpdate(
+//         operatorId,
+//         {
+//             $push:{
+//                 taskReceived: taskId
+//             }
+
+//         }
+//     )
+// })
 
 
 

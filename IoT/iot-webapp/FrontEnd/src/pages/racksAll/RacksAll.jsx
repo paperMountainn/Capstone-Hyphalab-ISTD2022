@@ -7,6 +7,7 @@ import { rackNavItems } from '../../components/navbar/navbarLists';
 import { RackInfoCard } from '../../components/rackInfoCard/RackInfoCard';
 import { Card, Icon } from 'semantic-ui-react';
 
+
 export const RacksAll = () => {
   const [allRacks, setAllRacks] = useState([]);
   useEffect(() => {

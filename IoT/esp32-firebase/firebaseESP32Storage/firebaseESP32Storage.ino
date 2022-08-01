@@ -174,19 +174,19 @@ void initCamera(){
   config.pin_sscb_scl = SIOC_GPIO_NUM;
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
-  //config.xclk_freq_hz = 20000000;
-  config.xclk_freq_hz = 16500000;
+  config.xclk_freq_hz = 20000000;
+//  config.xclk_freq_hz = 16500000;
   config.pixel_format = PIXFORMAT_JPEG;
 
   if (psramFound()) {
     config.frame_size = FRAMESIZE_UXGA;
-//    config.jpeg_quality = 10;
-    config.jpeg_quality = 6;
+    config.jpeg_quality = 10;
+//    config.jpeg_quality = 6;
     config.fb_count = 2;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
-//    config.jpeg_quality = 12;
-    config.jpeg_quality = 6;
+    config.jpeg_quality = 12;
+//    config.jpeg_quality = 6;
     config.fb_count = 1;
   }
   // Camera init
@@ -241,7 +241,7 @@ void loop() {
     Serial.println (timestamp);
     
     // cloudPath = "/rack2/uploaded_images/" + String(ssid) + "/" + String(timestamp) + ".jpg";
-    cloudPath = "/rack2/uploaded_images/" + String(timestamp) + ".jpg";
+    cloudPath = "/Rack_1/uploaded_images/" + String(timestamp) + ".jpg";
     
     Serial.println(cloudPath);
     //MIME type should be valid to avoid the download problem.

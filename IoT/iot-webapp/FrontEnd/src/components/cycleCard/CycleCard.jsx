@@ -2,10 +2,11 @@ import React from 'react'
 import './cycleCard.scss'
 import { Card, Icon, Button} from 'semantic-ui-react'
 import { db_time_parser } from '../../utils/dateHelper';
-
+import { RackInfoModal } from '../rackInfoModal/RackInfoModal';
+import { PhaseInfoModal } from '../phaseInfoModal/PhaseInfoModal';
 export const CycleCard = ({cycleData}) => {
   // const cycleName = cycleData.cycleName
-  const {belongToRack, createdOn, containPhases, id, cycleName, cycleDescription, cycleStatus} = cycleData
+  const {belongsToRack, createdOn, containPhases, id, cycleName, cycleDescription, cycleStatus} = cycleData
   const cycleCreatedOn = db_time_parser(createdOn)
 
   const cycleIcon = (status) => {
@@ -28,7 +29,7 @@ export const CycleCard = ({cycleData}) => {
       {console.log("hi from cycle card")}
       {console.log(`cycleid:${id}`)}
       {console.log(`containPhases:${containPhases}`)}
-      {console.log(`belongToRack:${belongToRack}`)}
+      {console.log(`belongsToRack:${typeof(belongsToRack)}`)}
 
       <Card.Content className={cycleStatus}>
         <Card.Header>
@@ -44,9 +45,9 @@ export const CycleCard = ({cycleData}) => {
       </Card.Content>
       <Card.Content>
  
-          <Card.Description><b>Belong To Rack: </b>
+          <Card.Description><b>Belongs To Rack: </b>
           {
-            belongToRack ? {belongToRack} : <b>-</b>
+            belongsToRack ? <RackInfoModal rackId={belongsToRack._id} rackName={belongsToRack.rackName}/> : <b>-</b>
           }
           </Card.Description>
      
@@ -60,8 +61,9 @@ export const CycleCard = ({cycleData}) => {
           (containPhases.length != 0) ? 
           (containPhases.map((phase)=>{
             return(
-              <div key={phase}>
-              <a href='#'>{phase}</a>
+              <div key={phase._id}>
+              
+              <PhaseInfoModal phaseId={phase._id}/>
               </div>);
           }))
           :

@@ -63,12 +63,12 @@ export const mainPageNavItems = [
 ]
 
 export const taskPageNavItems = [
-    getItem(<Link to="/tasks">My Tasks</Link>, '1', <Icon name="sticky note outline" />),
-    getItem(<Link to="/">Operator Details</Link>, '2', <Icon name="user outline" />),
+    getItem(<Link to="/operator/my-tasks">My Tasks</Link>, '1', <Icon name="sticky note outline" />),
+    getItem(<Link to="/operator/profile">Operator Details</Link>, '2', <Icon name="user outline" />),
 ]
 
 export const engineerPageNavItems = [
-    getItem(<Link to="/engineer">Tasks Assigned</Link>, '1', <Icon name="sticky note" />),    
-    getItem(<Link to="/engineer/engineerTasks">My Tasks</Link>, '2', <Icon name="sticky note outline" />),
-    getItem(<Link to="/">Engineer Details</Link>, '3', <Icon name="user outline" />),
+    getItem(<Link to="/engineer/assign-tasks">Tasks Assigned</Link>, '1', <Icon name="sticky note" />),    
+    getItem(<Link to="/engineer/my-tasks">My Tasks</Link>, '2', <Icon name="sticky note outline" />),
+    getItem(<Link to="/engineer/profile">Engineer Details</Link>, '3', <Icon name="user outline" />),
 ]
