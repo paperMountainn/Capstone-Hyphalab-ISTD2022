@@ -6,6 +6,13 @@ import './farmSummary.scss';
 import { farmNavItems } from '../../components/navbar/navbarLists';
 import { GiMushroomsCluster } from "react-icons/gi";
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { HomeObservationImgCarousel } from '../../components/homeObservationImgCarousel/HomeObservationImgCarousel';
+import { Icon } from 'semantic-ui-react';
+const COLORS = {
+  temp: '#8884d8',
+  humidity: '#0088FE',
+  co2: '#82ca9d'
+}
 
 export const FarmSummary = () => {
   return (
@@ -13,22 +20,38 @@ export const FarmSummary = () => {
       <Sidebar>
           <Navbar navItems={farmNavItems} />
             <div className='ms-4'>
-              <h3 className='pb-2 pt-4'>
+              <h4 className='pb-2 pt-4'>
                 <GiMushroomsCluster className='icon'/>
                 {' '}Fruiting Area Summary
-              </h3>
+              </h4>
               <MDBRow>
                 <MDBCol lg='12'>
+                  <div>
+                    <Icon name="line graph" />
+                    Parameter Charts
+                  </div>
                   <MDBRow>
                     <MDBCol lg='4'>
-                      <Chart aspect={2/1} title="Temperature vs Time" parameter="temperature" location="/farm/temperature"/>
+                      <Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/>
                     </MDBCol>
                     <MDBCol lg='4'>
-                      <Chart aspect={2/1} title="Humidity vs Time" parameter="humidity" location="/farm/humidity"/>
+                      <Chart aspect={2/1} title="Humidity vs Time" color={COLORS.humidity} parameter="humidity" location="/farm/humidity"/>
                     </MDBCol>
                     <MDBCol lg='4'>
-                      <Chart aspect={2/1} title="CO2 vs Time" parameter="humidity" location="/farm/humidity"/> 
+                      <Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/co2"/> 
                     </MDBCol>
+                  </MDBRow>
+                  <MDBRow>
+                    <MDBCol lg='4'>
+                        <div className=" pb-4">
+                          <div className='pt-4'>
+                            <Icon name="camera" className='icon'/>
+                            Observation Images
+                          </div>
+                          <HomeObservationImgCarousel type="observe_farm"/>
+                        </div>
+                      </MDBCol>
+
                   </MDBRow>
                 </MDBCol>
               </MDBRow>

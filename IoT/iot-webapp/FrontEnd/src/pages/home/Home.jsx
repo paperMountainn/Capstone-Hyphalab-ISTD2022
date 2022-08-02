@@ -5,12 +5,11 @@ import { Sidebar } from '../../components/sidebar/Sidebar';
 import { mainPageNavItems } from '../../components/navbar/navbarLists';
 import './home.scss';
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
-import { MyCarousel } from '../../components/carousel/Carousel';
 import { Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
-
-
+import { HomeContamImgCarousel } from '../../components/homeContamImgCarousel/HomeContamImgCarousel';
+import { HomeObservationImgCarousel } from '../../components/homeObservationImgCarousel/HomeObservationImgCarousel';
 const COLORS = {
   temp: '#8884d8',
   humidity: '#0088FE',
@@ -101,10 +100,10 @@ export const Home = () => {
 
           <MDBRow>
             <MDBCol xl='6' className='pb-4'>
-              <h3 className="pb-2 pt-4">
+              <h4 className="pb-2 pt-4">
                 <GiMushroomGills className='icon'/>
                 {' '}Incubation Area Summary
-              </h3>
+              </h4>
               <MDBRow>
                 <MDBCol lg='6'>
                   <div ><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
@@ -120,7 +119,8 @@ export const Home = () => {
                     <Icon name="camera" className='icon'/>
                     Contamination Images
                   </div>
-                  <MyCarousel />
+                  {/* <MyCarousel /> */}
+                  <HomeContamImgCarousel />
                 </div>                
                 </MDBCol>
                 <MDBCol lg='6'>
@@ -129,17 +129,17 @@ export const Home = () => {
                     <Icon name="camera" className='icon'/>
                     Observation Images
                   </div>
-                  <MyCarousel />
+                  <HomeObservationImgCarousel type="observe_incub"/>
                 </div>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
 
             <MDBCol xl='6'>
-              <h3 className="pb-2 pt-4">
+              <h4 className="pb-2 pt-4">
               <GiMushroomsCluster className='icon'/>
               {' '}Fruiting Area Summary
-              </h3>
+              </h4>
               <MDBRow>
                 <MDBCol lg='6'>
                 <div ><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
@@ -158,7 +158,7 @@ export const Home = () => {
                   <Icon name="camera" className='icon'/>
                   Observation Images
                   </h6>
-                  <MyCarousel />
+                  <HomeObservationImgCarousel type="observe_farm"/>
                 </div>
                 </MDBCol>
               </MDBRow>

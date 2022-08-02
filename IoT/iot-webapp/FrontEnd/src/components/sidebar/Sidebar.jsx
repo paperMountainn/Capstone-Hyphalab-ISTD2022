@@ -7,10 +7,7 @@ import '../../styles/charts.css'
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
 import { IoFileTrayStacked } from "react-icons/io5";
 import 'antd/dist/antd.min.css';
-// import './index.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
-// import { FaCloudversify } from "react-icons/fa";
-// import DashboardIcon from '@mui/icons-material/Dashboard';
+import { Layout, Menu } from 'antd';
 import hyphaIcon from '../../static/LOGO14px.png'
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -79,16 +76,16 @@ export const Sidebar = ({children}) => {
         link:"/engineer/assign-tasks",
         icon:<Icon name="tasks" circular inverted color='orange'/>
       },
-      {
-          title:"User",
-          link:"/user",
-          icon:<Icon name="setting" circular inverted color='grey'></Icon>
-      },
-      {
-        title:"Settings",
-        link:"/settings",
-        icon:<Icon name="user circle" circular inverted color='grey'></Icon>
-      }
+      // {
+      //     title:"User",
+      //     link:"/user",
+      //     icon:<Icon name="setting" circular inverted color='grey'></Icon>
+      // },
+      // {
+      //   title:"Settings",
+      //   link:"/settings",
+      //   icon:<Icon name="user circle" circular inverted color='grey'></Icon>
+      // }
   
   ]
 
@@ -107,9 +104,9 @@ export const Sidebar = ({children}) => {
               </div>
               <Menu theme="light" defaultSelectedKeys={['3']} mode="inline" >
 
-              <Menu.Item icon={<img src={hyphaIcon}/>}> 
+              <Menu.Item icon={<img src="https://i.imgur.com/60mHIYK.png"/>}> 
                 {/* <img src={hyphaIcon}/> */}
-                  <Link to="/"><h5>HyphaLab</h5></Link>
+                  <Link to="/"><h4>Hypha</h4></Link>
                   {/* <h3>HyphaAPP</h3> */}
               </Menu.Item>
               <hr />
@@ -173,7 +170,7 @@ export const Sidebar = ({children}) => {
                   textAlign: 'center',
                 }}
               >
-                T-rackerApp ©2022 Created by HyphaLab
+                T-rackerApp ©2022 Created by Hypha
               </Footer>
             </Layout>
           </Layout>

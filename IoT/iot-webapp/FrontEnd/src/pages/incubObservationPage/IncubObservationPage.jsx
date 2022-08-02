@@ -5,7 +5,7 @@ import { ObservationCarousel } from '../../components/observationCarousel/Observ
 import { Icon } from 'semantic-ui-react';
 import { incubationNavItems } from '../../components/navbar/navbarLists';
 
-export const Observations = () => {
+export const IncubObservationPage = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -17,7 +17,7 @@ export const Observations = () => {
         <div className="container">
             <div className="top row">
 
-                <h3 className="pb-2 pt-4"><Icon name="camera" color="black" />Observation images</h3>
+                <h4 className="pb-2 pt-4"><Icon name="camera" color="black" />Observation images</h4>
                 <>
                     <div className="row">
                         <div className="col-md-4 pb-4"><ObservationCarousel type="observe_incub" openModal={handleOpen} rackName="Rack_1" /></div>

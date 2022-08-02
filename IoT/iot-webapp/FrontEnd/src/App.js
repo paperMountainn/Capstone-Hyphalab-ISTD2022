@@ -1,102 +1,3 @@
-// import React from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import SensorData from './SensorData';
-// import Stuff from './stuff';
-// import Dashboard from './pages/Dashboard';
-// import Temp from './pages/Temp';
-// import Humid from './pages/Humid';
-// import Light from './pages/Light';
-// import Camera from './pages/Camera';
-// import Navbar from './common/Navbar';
-// import SideBar from './common/SideBar';
-// import { sideBarFarmList } from './common/sideBarFarmList';
-// import Form from './Form';
-
-
-// const App = () => {
-//     const farmRoutes = () => {
-//         return (
-//             <div>
-//                 <Navbar />
-//                 <SideBar sideBarList={sideBarFarmList} >
-//                     <Route path="/farm" exact component={Dashboard} />
-//                     <Route path="/farm/temp" exact component={Temp} />
-//                     <Route path="/farm/humid" exact component={Humid} />
-//                     <Route path="/farm/light" exact component={Light} />
-//                     <Route path="/farm/cam" exact component={Camera} />
-
-//                     <Route path="/stuffs" exact component={Stuff} />
-//                     <Route path="/form" exact component={Form} />
-//                 </SideBar >
-//             </div>
-//         );
-//     }
-//     return (
-//         <Router>
-//             <Switch>
-              
-//                 {/* <Route path="/farm" exact component={Dashboard} />
-//                 <Route path="/farm/temp" exact component={SensorData} />
-//                 <Route path="/farm/humid" exact component={SensorData} />
-//                 <Route path="/farm/light" exact component={SensorData} />
-//                 <Route path="/farm/cam" exact component={SensorData} /> */}
-//                 <Route component={farmRoutes} />
-          
-                
-//                 <Route path="/incub/humid" exact component={SensorData} />
-//                 <Route path="/incub/temp" exact component={SensorData} />
-//                 <Route path="/incub/cam" exact component={SensorData} />
-//                 <Route path="/incub/contam" exact component={SensorData} />
-                
-//             </Switch>
-//         </Router>
-//     );
-// };
-
-// export default App;
-
-// // import React, { Component } from 'react';
-// // // import logo from './logo.svg';
-// // // import './App.css';
-
-// // class App extends Component {
-// // state = {
-// //     data: null
-// //   };
-
-// //   componentDidMount() {
-// //     this.callBackendAPI()
-// //       // .then(res => this.setState({ data: "hi" }))
-// //       // .catch(err => console.log(err));
-// //   }
-// //     // fetching the GET route from the Express server which matches the GET route from server.js
-// //   callBackendAPI = async () => {
-// //     const response = await fetch('/express_backend');
-// //     const body = await response.text();
-    
-
-// //     if (response.status !== 200) {
-        
-// //       throw Error(body.message) 
-// //     }
-// //     console.log(body)
-// //     this.setState({data: body})
-// //     return body;
-// //   };
-
-// //   render() {
-// //     return (
-// //       <div className="App">
-// //         <header className="App-header">
-// //         </header>
-// //         <h1>{this.state.data}</h1>
-// //       </div>
-// //     );
-// //   }
-// // }
-
-// // export default App;
-
 import React, {useState} from 'react';
 import {
     BrowserRouter,
@@ -106,14 +7,19 @@ import {
 
 import { Home } from './pages/home/Home';
 import { FarmSummary } from './pages/farmSummary/FarmSummary';
-import { ParamDetail } from './pages/paramDetail/ParamDetail';
+// import { ParamDetail } from './pages/paramDetail/ParamDetail';
+// import { IncubationDetail } from './pages/incubationDetail/IncubationDetail';
+import { IncubTempDetail } from './pages/incubTempDetail/IncubTempDetail';
+import { IncubHumDetail } from './pages/incubHumDetail/IncubHumDetail';
+import { FarmTempDetail } from './pages/farmTempDetail/FarmTempDetail';
+import { FarmHumDetail } from './pages/farmHumDetail/FarmHumDetail';
+import { FarmCo2Detail } from './pages/farmCo2Detail/FarmCo2Detail';
 import { IncubationSummary } from './pages/incubationSummary/IncubationSummary';
 import { RackPhases } from './pages/rackPhases/RackPhases';
 import { NewPhaseForm } from './pages/newPhaseForm/NewPhaseForm';
 import { RackCycles } from './pages/rackCycles/RackCycles';
 import { RacksAll } from './pages/racksAll/RacksAll';
 import { RackDetail } from './pages/rackDetail/RackDetail';
-import { Sidebar } from 'semantic-ui-react';
 import { OperatorTasks } from './pages/operatorTasks/OperatorTasks';
 import { OperatorDetailPage } from './pages/operatorDetailPage/OperatorDetailPage';
 import { EngineerDetailPage } from './pages/engineerDetailPage/EngineerDetailPage';
@@ -121,7 +27,9 @@ import { AssignTasks } from './pages/assignTasks/AssignTasks';
 import { EngineerTasks } from './pages/engineerTasks/EngineerTasks';
 import { Contaminations } from './pages/contaminations/Contaminations';
 import { LoginForm } from './pages/loginForm/LoginForm';
-import { Observations } from './pages/observations/Observations';
+// import { Observations } from './pages/observations/Observations';
+import { IncubObservationPage } from './pages/incubObservationPage/IncubObservationPage';
+import { FarmObservationPage } from './pages/farmObservationPage/FarmObservationPage';
 import { Settings } from './pages/settings/Settings';
 import { UserProfile } from './pages/userProfile/UserProfile';
 
@@ -172,21 +80,21 @@ const [password, setPassword] = useState('');
                             {/* /users render list */}
                             <Route index element={<FarmSummary />} />
                             {/* /users/adfasd renders Single */}
-                            <Route path="temperature" element={<ParamDetail />} />
+                            <Route path="temperature" element={<FarmTempDetail />} />
                             {/* /users/new renders New */}
-                            <Route path="humidity" element={<ParamDetail />} />
-                            <Route path="co2" element={<ParamDetail />} />
-                            <Route path="observations" element={<Observations />} />
+                            <Route path="humidity" element={<FarmHumDetail />} />
+                            <Route path="co2" element={<FarmCo2Detail />} />
+                            <Route path="observations" element={<FarmObservationPage />} />
                         </Route>
                         <Route path="incubation">
                             {/* /users render list */}
                             <Route index element={<IncubationSummary />} />
                             {/* /users/adfasd renders Single */}
-                            <Route path="temperature" element={<ParamDetail />} />
+                            <Route path="temperature" element={<IncubTempDetail />} />
                             {/* /users/new renders New */}
-                            <Route path="humidity" element={<ParamDetail />} />
+                            <Route path="humidity" element={<IncubHumDetail />} />
                             <Route path="contaminations" element={<Contaminations />} />
-                            <Route path="observations" element={<Observations />} />
+                            <Route path="observations" element={<IncubObservationPage />} />
                         </Route>
                         <Route path="rack">
                             {/* /products render list */}

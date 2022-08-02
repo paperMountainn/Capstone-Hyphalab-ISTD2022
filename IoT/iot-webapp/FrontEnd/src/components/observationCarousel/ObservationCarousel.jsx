@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { Card, Button, Icon } from 'semantic-ui-react';
 import { Carousel } from 'react-bootstrap';
-// import { FiAlertTriangle } from "react-icons/fi";
 import { projectStorage } from '../../config/firebase-config';
+import { ImageModal } from '../imageModal/ImageModal';
+import { db_time_parser } from '../../utils/dateHelper';
 
-import c1 from '../../static/c1.jpg';
-import c2 from '../../static/c2.jpg';
-import c3 from '../../static/c3.jpg';
-
-export const ObservationCarousel = ({ header, meta, openModal}) => {
+export const ObservationCarousel = ({rackName, openModal, type}) => {
+  console.log(rackName)
   const [index, setIndex] = useState(0);
   const [files, setFiles] = useState();
+  const [metas, setMetas] = useState();
   const [info, setInfo] = useState();
 
-  const folderRetrieved = "noncontam"
 
   const cardClass = (folderRetrieved) => {
     if (folderRetrieved == "contam"){
@@ -31,42 +29,51 @@ export const ObservationCarousel = ({ header, meta, openModal}) => {
   useEffect(() => {
     const fetchImages = async () => {
 
-        let result = await projectStorage.ref('/data/rack1/observationImages').listAll();
-        // let metadata = await projectStorage.ref('data').getMetadata();
-        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL());
+        let result = await projectStorage.ref(`${rackName}/${type}`).listAll();
+        let urlPromises = result.items.map(imageRef => imageRef.getDownloadURL())
+
     
-        return Promise.all(urlPromises);
+        return Promise.all(urlPromises)
+    }
+    const fetchMetadatas = async() => {
+      let result = await projectStorage.ref(`${rackName}/${type}`).listAll();
+      let metaPromises = result.items.map(imageRef => imageRef.getMetadata())
+      return Promise.all(metaPromises)
     }
     
     const loadImages = async () => {
         const urls = await fetchImages();
-        urls.forEach(function(item, index){
-          // console.log(item, index)
-        });
-        // console.log(urls[1])
-        setFiles(urls);
+        const metaDatas = await fetchMetadatas();
+        console.log("hi")
+        console.log(urls)
+        console.log(metaDatas)
+        setFiles(urls)
+        setMetas(metaDatas)
     }
     loadImages();
     }, []);
 
-    console.log(files)
+    
 
 
   return (
-    <Card >
+    <Card color='blue'>
       <Card.Content>
       <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false}>
-        {files ? 
-        files.map((url)=>(
+        {(files && metas)? 
+        files.map((url, i)=>(
               
               <Carousel.Item>
+                {type=="observe_incub" ? <p>Incubation Area</p> : <p>Fruiting Area</p>}
                 <img 
                 className="d-block w-100" 
                 key={url} 
                 style={{width:"100px"}} 
                 src={url} />
-                <h3 >{header}</h3>
-                <Card.Meta>{meta}</Card.Meta>
+                <h5>{rackName} <Icon name="camera" color='blue'/> </h5>
+                <h6>Image Date: {db_time_parser(new Date(metas[i].timeCreated))}</h6>
+                {/* <Card.Meta>{metas[i].timeCreated}</Card.Meta> */}
+                
               {/* <div className="pt-3" align="center"> */}
               {/* <Button onClick={openModal}>More Details</Button>  */}
               {/* </div> */}
@@ -77,12 +84,16 @@ export const ObservationCarousel = ({ header, meta, openModal}) => {
         }
       
       </Carousel>
+      <ImageModal imgArr={files} title={`${rackName} Observation Images`}/>
+      {/* <div className="pt-3" align="center">
+        <Button data-testid="button" onClick={openModal}><Icon name="magnify"/>Check</Button> 
+      </div> */}
 
       
       
       
       </Card.Content>
     </Card>
-
+  
   )
 }

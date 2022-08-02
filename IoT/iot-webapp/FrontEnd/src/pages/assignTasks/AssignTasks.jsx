@@ -47,9 +47,15 @@ export const AssignTasks = () => {
       <Navbar navItems={engineerPageNavItems}/>
       
       <div className='stuffs'>
-      <h4>Operators and Tasks Assigned</h4>
+      <h4>
+            {' '}<Icon name="cloudsmith" />Operators and Task Assigned
+      </h4>
+      
+      
 
-        <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
+      <h6>{' '}<Icon color="grey" name="user" />Engineer Name: {engineer.engineerName}</h6>
+      <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
+        
         {(operators && engineer)
         ?
         (<Card.Group itemsPerRow={3}>

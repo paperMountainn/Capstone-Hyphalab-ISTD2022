@@ -3,9 +3,9 @@ import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import { ObservationCarousel } from '../../components/observationCarousel/ObservationCarousel';
 import { Icon } from 'semantic-ui-react';
-import { incubationNavItems } from '../../components/navbar/navbarLists';
+import { farmNavItems } from '../../components/navbar/navbarLists';
 
-export const Observations = () => {
+export const FarmObservationPage = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -13,17 +13,17 @@ export const Observations = () => {
     return (
         
         <Sidebar>
-        <Navbar navItems={incubationNavItems}/>
+        <Navbar navItems={farmNavItems}/>
         <div className="container">
             <div className="top row">
 
-                <h3 className="pb-2 pt-4"><Icon name="camera" color="black" />Observation images</h3>
+                <h4 className="pb-2 pt-4"><Icon name="camera" color="black" />Observation images</h4>
                 <>
                     <div className="row">
-                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_incub" openModal={handleOpen} rackName="Rack_1" /></div>
-                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_incub" openModal={handleOpen} rackName="Rack_2" /></div>
-                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_incub" openModal={handleOpen} rackName="Rack_3" /></div>
-                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_incub" openModal={handleOpen} rackName="Rack_4" /></div>
+                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_farm" openModal={handleOpen} rackName="Rack_1" /></div>
+                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_farm" openModal={handleOpen} rackName="Rack_2" /></div>
+                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_farm" openModal={handleOpen} rackName="Rack_3" /></div>
+                        <div className="col-md-4 pb-4"><ObservationCarousel type="observe_farm" openModal={handleOpen} rackName="Rack_4" /></div>
                     </div>
 
                     <div className="row">

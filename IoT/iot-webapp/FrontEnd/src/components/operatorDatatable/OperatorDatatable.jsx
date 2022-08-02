@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { db_time_parser } from '../../utils/dateHelper';
 import { OperatorTaskDetailModal } from '../operatorTaskDetailModal/OperatorTaskDetailModal';
 import { ConfirmModal } from '../confirmModal/ConfirmModal';
+import { Icon } from 'semantic-ui-react';
 // THIS IS OPERATOR DATATABLE
 
 // these are defined in datatablesource.js
@@ -68,10 +69,11 @@ export const OperatorDatatable = () => {
   useEffect(() => {
     const fetchOperator = async() => {
       const response1 = await axios.get('/user/operators')
-      const op_uid = response1.data[0]._id
-      console.log(op_uid)
-      setSampleOperator(op_uid)
-      const response2 = await axios.get(`/task/${op_uid}/myTasks`) 
+      const operator = response1.data[0]
+      // console.log("asdfasdfasd")
+      // console.log(response1.data[0])
+      
+      const response2 = await axios.get(`/task/${operator._id}/myTasks`) 
       const myTasks = response2.data
       let taskList = []
       for (let task of myTasks){
@@ -79,6 +81,7 @@ export const OperatorDatatable = () => {
         const {_id, taskName, taskDescr, completionStatus, createdOn, dateDue, assignedBy } = task
         taskList.push({id: _id, taskName, taskDescr, completionStatus, createdOn: db_time_parser(createdOn), dateDue: db_time_parser(dateDue), assignedBy: assignedBy.userName } )
       }
+      setSampleOperator(operator)
       setTaskList(taskList)
     }
 
@@ -123,12 +126,7 @@ export const OperatorDatatable = () => {
 
   return (
     <div className='dataTable'>
-      <div className="datatableTitle">
-        Your tasks
-        {/* <Link className="link" to="/users/new" style={{ textDecoration:"none"}}>
-          Add New User
-        </Link> */}
-      </div>
+    {sampleOperator && <h6>{' '}<Icon color="grey" name="user" />Operator Name: {sampleOperator.userName}</h6>}
       <div style={{ height: 500, width: '100%' }}>
         <DataGrid
           className='datagrid'
