@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Task = require('../models/task');
 // connect to mongoose from Express
 mongoose.connect(
-    'mongodb://localhost:27017/controlled-environment', 
+    'mongodb+srv://admin:admin@cluster0.4fcsl.mongodb.net/controlled-environment', 
     { 
         useNewUrlParser: true, 
         useUnifiedTopology: true,
@@ -345,4 +345,4 @@ const seedDB2 = async() => {
     await engineer4.save()
     console.log("seeding complete")
 }
-// seedDB2();
+seedDB2();

@@ -12,7 +12,8 @@ const rackRoutes = require('./routes/rack');
 const morgan = require('morgan');
 // connect to mongoose from Express
 mongoose.connect(
-    'mongodb://localhost:27017/controlled-environment', 
+    'mongodb+srv://admin:admin@cluster0.4fcsl.mongodb.net/controlled-environment', 
+    // 'mongodb://localhost:27017/controlled-environment', 
     { 
         useNewUrlParser: true, 
         useUnifiedTopology: true,
@@ -54,3 +55,4 @@ app.all("*", (req, res, next) => {
 app.listen(port, () => {
     console.log(`LISTENING ON PORT ${port}, connected to react!`);
 })
+
