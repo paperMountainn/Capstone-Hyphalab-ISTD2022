@@ -65,9 +65,10 @@ export const Contaminations = () => {
                         var data = new FormData()
                         data.append('file', blob , 'file')
                         
-                        const stuff =  axios.post('http://127.0.0.1:5001/receive', data).then(
+                        const stuff =  axios.post('http://127.0.0.1:5000/receive', data).then(
                         (response) => {
                             const isContam = response.data
+                            console.log(response)
                             // console.log(isContam)
     
                             let httpRef = projectStorage.refFromURL(file_url)
@@ -160,18 +161,11 @@ export const Contaminations = () => {
         
         <Sidebar>
         <Navbar navItems={incubationNavItems}/>
-        <div className="container">
-            <div className="top row">
+        {/* <div className="container">
+            <div className="top row"> */}
 
                 {/* <h3 className="pt-4">Contamination Observation</h3> */}
-                <h3 className='pb-2 pt-4'><Icon name="bug" />Contamination Observation</h3>
-
-                <div className="row">
-                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open1} closeModal={setOpen1} rackName="Rack_1"/></div>
-                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open2} closeModal={setOpen2} rackName="Rack_2"/></div>
-                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open3} closeModal={setOpen3} rackName="Rack_3"/></div>
-                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open4} closeModal={setOpen4} rackName="Rack_4"/></div>
-                </div>
+                <h4 className='pb-2 pt-4'><Icon name="bug" />Contamination Observation</h4>
 
                   
                 
@@ -186,13 +180,20 @@ export const Contaminations = () => {
                     <div className="col-md-4 pb-4"><ContamCarousel openModal={handleOpen} rackName="Rack_3" meta="Growth Date: 10/06/2022"/></div> */}
                 </div>
 
+                <div className="row">
+                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open1} closeModal={setOpen1} rackName="Rack_1"/></div>
+                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open2} closeModal={setOpen2} rackName="Rack_2"/></div>
+                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open3} closeModal={setOpen3} rackName="Rack_3"/></div>
+                    <div className="col-md-4 pb-4"><ContamFormModal modalState={open4} closeModal={setOpen4} rackName="Rack_4"/></div>
+                </div>
+
             
                 
                 
          
 
-            </div>
-        </div>
+            {/* </div>
+        </div> */}
 
         </Sidebar>
     )

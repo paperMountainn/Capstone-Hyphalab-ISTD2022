@@ -29,6 +29,7 @@ export const ContamCarousel = ({ rackName, openModal}) => {
             src={doc.url} />
             <h5>{rackName}</h5>
             <h6>Image Date: {db_time_parser(new Date(doc.createdAt.seconds*1000))}</h6>
+            <Card.Meta>Contaminations<Icon name="exclamation triangle" color='red'/></Card.Meta>
           </Carousel.Item>
           
           )                
@@ -43,9 +44,10 @@ export const ContamCarousel = ({ rackName, openModal}) => {
             <img 
             className="d-block w-100" 
             style={{width:"100px"}} 
-            src='https://react.semantic-ui.com/images/wireframe/image.png' />
-            <h5 title="Header" data-testid="header"  >No Images yet</h5>
-            <Card.Meta>Null</Card.Meta>
+            src='https://i.imgur.com/Cl8NpAc.png' />
+            <h5>{rackName}</h5>
+            <Card.Meta>No Contaminations <Icon name="check" color='green'/></Card.Meta>
+            
         </Carousel.Item>
         )
       }

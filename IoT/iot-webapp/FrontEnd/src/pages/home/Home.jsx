@@ -4,13 +4,13 @@ import { Navbar } from '../../components/navbar/Navbar';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import { mainPageNavItems } from '../../components/navbar/navbarLists';
 import './home.scss';
+import { RiTempHotLine } from "react-icons/ri";
 import { GiMushroomGills, GiMushroomsCluster } from "react-icons/gi";
-import { MyCarousel } from '../../components/carousel/Carousel';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Popup, Button, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
-
-
+import { HomeContamImgCarousel } from '../../components/homeContamImgCarousel/HomeContamImgCarousel';
+import { HomeObservationImgCarousel } from '../../components/homeObservationImgCarousel/HomeObservationImgCarousel';
 const COLORS = {
   temp: '#8884d8',
   humidity: '#0088FE',
@@ -19,7 +19,7 @@ const COLORS = {
 
 
 export const Home = () => {
-  console.log("home")
+  // console.log("home")
   return (
     <div>
       <Sidebar>
@@ -101,10 +101,36 @@ export const Home = () => {
 
           <MDBRow>
             <MDBCol xl='6' className='pb-4'>
-              <h3 className="pb-2 pt-4">
+              <h4 className="pb-2 pt-4">
                 <GiMushroomGills className='icon'/>
-                {' '}Incubation Area Summary
-              </h3>
+                {' '}Incubation Area Summary &nbsp;
+                <Popup header={
+                <h5>
+                  
+                  <GiMushroomGills className='icon'/>&nbsp;
+                  Incubation Area 
+                  
+                </h5>
+                  } wide position='bottom left' 
+                  content=
+                  {<>
+                  {/* <p>The incubation area monitors 3 growth parameters: </p> */}
+                  <List>
+                  <p>The <b>incubation area</b> is where we wait for mycelium (mushroom roots!) to spread for 1 week.</p>
+                  <p>We monitor 2 essential growth parameters with <i>real-time interactive graphs</i>. <Icon name="line graph"/></p>
+                  <p><RiTempHotLine /> Temperature / °C</p>
+                  <p><Icon name="cloud"/> Humidity / %</p>
+                  <p>Hover over to see the values! <Icon loading name="hand pointer outline"/></p>
+                  <hr />
+                  <p>Click <Icon name="hand pointer outline"/>on the graphs to go to the details page of a specific growth parameter.</p>
+                
+                
+                  </List>
+                  
+                  </>}
+                  trigger={<Button icon='info' circular color="brown" inverted size="mini"/>} 
+                />
+              </h4>
               <MDBRow>
                 <MDBCol lg='6'>
                   <div ><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/incubation/temperature"/></div>
@@ -117,29 +143,122 @@ export const Home = () => {
                 <MDBCol lg='6'>
                 <div >
                   <div className='pt-4'>
-                    <Icon name="camera" className='icon'/>
-                    Contamination Images
+                    
+                    <h5 className='pb-2 pt-2'>
+                      <Icon name="camera" className='icon'/>Contamination Images &nbsp;
+                      <Popup header={
+                      <h5>
+                  
+                  <Icon name="camera"/>&nbsp;
+                  Contamination Observation 
+                  
+                  </h5>
+                      } wide="very" position='bottom left' 
+                      content=
+                      {<>
+                      {/* <p>The incubation area monitors 3 growth parameters: </p> */}
+                      <List>
+                      <p>The <b>contamination images</b> shows contaminated samples in the incubation area. </p>
+                      <p>During the <b>incubation stage</b>, the samples are <b>most susceptible</b> to contamination. </p>
+                      <p>Contaminations are usually <span style={{color:"green"}}>green</span> in color. It is crucial that we remove them timely to prevent their spread!</p>
+                      <hr />
+                      <p>Click on <Link to="#">View Images <Icon name="magnify"/></Link>to check the contaminated samples!</p>
+                      <p>To toggle between different Racks, click on the <Link to="#"><b>&lt;</b></Link> and <Link to="#"><b>&gt;</b></Link> arrows.</p>
+                      <p>For more details, visit the <Link to="#">Observation Page<Icon name="arrow alternate circle right"/></Link>.</p>
+                    
+                    
+                      </List>
+                      
+                      </>}
+                      trigger={<Button icon='info' circular color="brown" inverted size="mini"/>} 
+                    />
+                    </h5>
+                    
                   </div>
-                  <MyCarousel />
+                  {/* <MyCarousel /> */}
+
+                  <HomeContamImgCarousel />
                 </div>                
                 </MDBCol>
                 <MDBCol lg='6'>
                 <div >
                   <div className='pt-4'>
+                  <h5 className='pb-2 pt-2'>
                     <Icon name="camera" className='icon'/>
-                    Observation Images
+
+                    Observation Images&nbsp;
+                    <Popup header={
+                      <h5>
+                    
+                      <Icon name="camera"/>&nbsp;
+                      Observation Images
+                    
+                      </h5>
+                      } wide="very" position='bottom left' 
+                      content=
+                      {<>
+                      {/* <p>The incubation area monitors 3 growth parameters: </p> */}
+                      <List>
+                        <p>Observation images are akin to CCTV images.
+                        It is important that we have <b>real-time</b> observation of what is going on in the incubation area.
+                        </p>
+
+                        <p>The images in <b>Rack_2</b> are what we will expect to see during the incubation stage - Fluffy white mycelium roots are spreading throughout the sample. There might be some pinning (little mushroom buds <GiMushroomGills className='icon'/>) as well.</p>
+                        <p>You might find yourself in <b>Rack_1</b>! <Icon name='smile outline'/></p>
+                        
+
+                        <hr />
+                        <p>Click on <Link to="#">View Images <Icon name="magnify"/></Link>to check the images.</p>
+                        <p>To toggle between different Racks, click on the <Link to="#"><b>&lt;</b></Link> and <Link to="#"><b>&gt;</b></Link> arrows.</p>
+                        <p>For more details, visit the <Link to="#">Observation Page <Icon name="arrow alternate circle right"/></Link>.</p>
+                      
+                    
+                      </List>
+                      
+                      </>}
+                      trigger={<Button icon='info' circular color="brown" inverted size="mini"/>} 
+                    />
+                  </h5>
                   </div>
-                  <MyCarousel />
+                  <HomeObservationImgCarousel type="observe_incub"/>
                 </div>
                 </MDBCol>
               </MDBRow>
             </MDBCol>
 
             <MDBCol xl='6'>
-              <h3 className="pb-2 pt-4">
+              <h4 className="pb-2 pt-4">
               <GiMushroomsCluster className='icon'/>
-              {' '}Fruiting Area Summary
-              </h3>
+              {' '}Fruiting Area Summary&nbsp;
+              <Popup header={
+                <h5>
+                  
+                  <GiMushroomsCluster className='icon'/>&nbsp;
+                  Fruiting Area 
+                  
+                </h5>
+                  } wide position='bottom left' 
+                  content=
+                  {<>
+                  {/* <p>The incubation area monitors 3 growth parameters: </p> */}
+                  <List>
+                  <p>The <b>fruiting area</b> is where we wait for mushrooms to grow big and become ready to be harvested! It takes around 2 weeks.</p>
+                  <p>We monitor 3 essential growth parameters with <i>real-time interactive graphs</i>  to maximise yield and minimise time of growth. <Icon name="line graph"/></p>
+                  <p><RiTempHotLine /> Temperature / °C</p>
+                  <p><Icon name="cloud"/> Humidity / %</p>
+                  <p><Icon name="cloudsmith"/> CO<sub>2</sub> / %</p>
+                  <p>Hover over to see the values! <Icon loading name="hand pointer outline"/></p>
+                  <hr />
+                  <p>Click <Icon name="hand pointer outline"/>on the graphs to go to the details page of a specific growth parameter.</p>
+                
+                
+                  </List>
+                  
+                  </>}
+                  trigger={<Button icon='info' circular color="brown" inverted size="mini"/>} 
+                />
+
+              </h4>
               <MDBRow>
                 <MDBCol lg='6'>
                 <div ><Chart aspect={2/1} title="Temperature vs Time" color={COLORS.temp} parameter="temperature" location="/farm/temperature"/></div>
@@ -150,15 +269,50 @@ export const Home = () => {
               </MDBRow>
               <MDBRow>
                 <MDBCol lg='6'>
-                <div className="pt-4"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
+                <div className="pt-5"><Chart aspect={2/1} title="CO2 vs Time" color={COLORS.co2} parameter="co2" location="/farm/humidity"/></div>
                 </MDBCol>
                 <MDBCol lg='6'>
-                <div >
-                  <h6 className='pt-4'>
-                  <Icon name="camera" className='icon'/>
-                  Observation Images
-                  </h6>
-                  <MyCarousel />
+                <div>
+                <div className='pt-4'>
+                
+                <h5 className='pb-2 pt-2'>
+                    <Icon name="camera" className='icon'/>
+
+                    Observation Images&nbsp;
+                    <Popup header={
+                      <h5>
+                    
+                      <Icon name="camera"/>&nbsp;
+                      Observation Images
+                    
+                      </h5>
+                      } wide="very" position='bottom left' 
+                      content=
+                      {<>
+                      {/* <p>The incubation area monitors 3 growth parameters: </p> */}
+                      <List>
+                        <p>Observation images are akin to CCTV images.
+                        It is important that we have <b>real-time</b> observation of what is going on in the fruiting area.
+                        </p>
+
+                        <p>The images in <b>Rack_2</b> are what we will expect to see during the farming/fruiting stage - little mushrooms are already growing! <GiMushroomsCluster className='icon'/></p>
+                        <p>You might find yourself in <b>Rack_1</b>! <Icon name='smile outline'/></p>
+                        
+
+                        <hr />
+                        <p>Click on <Link to="#">View Images <Icon name="magnify"/></Link>to check the images.</p>
+                        <p>To toggle between different Racks, click on the <Link to="#"><b>&lt;</b></Link> and <Link to="#"><b>&gt;</b></Link> arrows.</p>
+                        <p>For more details, visit the <Link to="#">Observation Page <Icon name="arrow alternate circle right"/></Link>.</p>
+                      
+                    
+                      </List>
+                      
+                      </>}
+                      trigger={<Button icon='info' circular color="brown" inverted size="mini"/>} 
+                    />
+                  </h5>
+                  </div>
+                  <HomeObservationImgCarousel type="observe_farm"/>
                 </div>
                 </MDBCol>
               </MDBRow>

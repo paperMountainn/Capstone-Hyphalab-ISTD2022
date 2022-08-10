@@ -10,7 +10,7 @@ import { Card, Icon } from 'semantic-ui-react';
 import { NewPhaseFormModal } from '../../components/newPhaseFormModal/NewPhaseFormModal';
 
 export const RackPhases = () => {
-  const [phases, setPhases] = useState([]);
+  const [phases, setPhases] = useState();
 
   useEffect(() => {
     const fetchResults = async() => {
@@ -39,7 +39,7 @@ export const RackPhases = () => {
             <NewPhaseFormModal modalDetails={{ phaseType:"incubation", icon: <Icon name='add'/>, color: "black"}} />
             {phases 
             ?
-              (<Card.Group itemsPerRow={3}>
+              (<Card.Group itemsPerRow={3} stackable={true} doubling={true}>
                  {phases.map((phaseData)=>{
                    return(
                      <RackCard key={phaseData.id} phaseData={phaseData}/> 
@@ -49,7 +49,7 @@ export const RackPhases = () => {
                </Card.Group>) 
             :
 
-            (<Icon name='sync alternate' loading />)
+            (<Icon name='sync alternate' loading size='big' />)
               
             }
        

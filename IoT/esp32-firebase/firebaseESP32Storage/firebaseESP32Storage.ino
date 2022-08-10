@@ -220,7 +220,7 @@ void setup() {
   Firebase.begin(&configF, &auth);
   Firebase.reconnectWiFi(true);
 }
-
+int count = 0;
 void loop() {
   boolean takeNewPhoto = true;
   if (takeNewPhoto) {
@@ -241,13 +241,31 @@ void loop() {
     Serial.println (timestamp);
     
     // cloudPath = "/rack2/uploaded_images/" + String(ssid) + "/" + String(timestamp) + ".jpg";
-    cloudPath = "/Rack_1/uploaded_images/" + String(timestamp) + ".jpg";
+    cloudPath = "/Rack_1/observe_incub/" + String(timestamp) + ".jpg";
     
     Serial.println(cloudPath);
     //MIME type should be valid to avoid the download problem.
     //The file systems for flash and SD/SDMMC can be changed in FirebaseFS.h.
     if (Firebase.Storage.upload(&fbdo, STORAGE_BUCKET_ID /* Firebase Storage bucket id */, FILE_PHOTO /* path to local file */, mem_storage_type_flash /* memory storage type, mem_storage_type_flash and mem_storage_type_sd */, cloudPath /* path of remote file stored in the bucket */, "image/jpeg" /* mime type */)){
       Serial.printf("\nDownload URL: %s\n", fbdo.downloadURL().c_str());
+        FirebaseJson content;
+//        String documentPath = "a0/b0/c0/d" + String(count);
+        String documentPath = "Rack_1/26-06-2022/observe_incub/" + String(timestamp);
+              // double
+        content.set("fields/url/stringValue", fbdo.downloadURL().c_str());
+        content.set("fields/createdAt/stringValue", String(timestamp));
+        
+        String doc_path = "projects/";
+        doc_path += FIREBASE_PROJECT_ID;
+        doc_path += "/databases/(default)/documents/coll_id/doc_id"; // coll_id and doc_id are your collection id and document id
+        Serial.print("Create a document... ");
+        count++;
+        if (Firebase.Firestore.createDocument(&fbdo, FIREBASE_PROJECT_ID, "" /* databaseId can be (default) or empty */, documentPath.c_str(), content.raw()))
+            Serial.printf("ok\n%s\n\n", fbdo.payload().c_str());
+        else
+            Serial.println(fbdo.errorReason());
+        
+        
     }
     else{
       Serial.println(fbdo.errorReason());

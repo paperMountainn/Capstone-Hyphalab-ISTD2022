@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './rackInfoModal.scss'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import { Button, Segment, Icon, Card, Image, Modal, Form, Checkbox } from 'semantic-ui-react'
 import { IoFileTrayStacked } from "react-icons/io5";
 import { db_time_parser } from '../../utils/dateHelper';
@@ -30,7 +31,7 @@ export const RackInfoModal = ({rackId, rackName}) => {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-       <a href="#">{rackName}</a>
+       <Link to="#">{rackName}</Link>
        
       }
       

@@ -3,6 +3,7 @@ import './infoModal.scss'
 import axios from "axios";
 import { Button, Segment, Icon, Card, Image, Modal, Form, Checkbox } from 'semantic-ui-react'
 import { db_time_parser } from '../../utils/dateHelper';
+import { Link } from 'react-router-dom';
 export const InfoModal = ({cycleId, cycleName}) => {
 
   const [open, setOpen] = useState(false);
@@ -44,7 +45,7 @@ export const InfoModal = ({cycleId, cycleName}) => {
       onOpen={() => setOpen(true)}
       open={open}
       trigger={
-     <a href="#">{cycleName}</a>
+     <Link to="#">{cycleName}</Link>
      
     }
     

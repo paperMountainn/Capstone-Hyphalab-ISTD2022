@@ -39,7 +39,8 @@ function getItem(label, key, icon, children, type) {
 export const farmNavItems = [
     getItem(<Link to="/farm/temperature">Temperature</Link>, '1', <RiTempHotLine />),
     getItem(<Link to="/farm/humidity">Humidity</Link>, '2', <Icon name="cloud" />),
-    getItem(<Link to="/farm/observations">Observation Images</Link>, '3', <Icon name="camera" />)
+    getItem(<Link to="/farm/co2">CO2</Link>, '3', <Icon name="cloudsmith" />),
+    getItem(<Link to="/farm/observations">Observation Images</Link>, '4', <Icon name="camera" />)
     ];
 
 export const incubationNavItems = [
@@ -64,11 +65,11 @@ export const mainPageNavItems = [
 
 export const taskPageNavItems = [
     getItem(<Link to="/operator/my-tasks">My Tasks</Link>, '1', <Icon name="sticky note outline" />),
-    getItem(<Link to="/operator/profile">Operator Details</Link>, '2', <Icon name="user outline" />),
+    // getItem(<Link to="/operator/profile">Operator Details</Link>, '2', <Icon name="user outline" />),
 ]
 
 export const engineerPageNavItems = [
     getItem(<Link to="/engineer/assign-tasks">Tasks Assigned</Link>, '1', <Icon name="sticky note" />),    
-    getItem(<Link to="/engineer/my-tasks">My Tasks</Link>, '2', <Icon name="sticky note outline" />),
-    getItem(<Link to="/engineer/profile">Engineer Details</Link>, '3', <Icon name="user outline" />),
+    // getItem(<Link to="/engineer/my-tasks">My Tasks</Link>, '2', <Icon name="sticky note outline" />),
+    // getItem(<Link to="/engineer/profile">Engineer Details</Link>, '3', <Icon name="user outline" />),
 ]

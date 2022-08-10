@@ -11,8 +11,8 @@ export const AssignTasks = () => {
 
   // retrieve all operators and corr tasks assigned to them
 
-  const [operators, setOperators] = useState([])
-  const [engineer, setEngineer] = useState([])
+  const [operators, setOperators] = useState()
+  const [engineer, setEngineer] = useState()
   useEffect(()=>{
     const fetchOperatorsAndEngineer = async() => {
       const response1 = await axios.get('/user/operators')
@@ -47,12 +47,22 @@ export const AssignTasks = () => {
       <Navbar navItems={engineerPageNavItems}/>
       
       <div className='stuffs'>
-      <h4>Operators and Tasks Assigned</h4>
-
-        <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
-        {(operators && engineer)
+      <h4>
+            {' '}<Icon name="sticky note" />Operators and Task Assigned
+      </h4>
+      
+      {(operators && engineer)&&
+       <>
+       <h6>{' '}<Icon color="grey" name="user" />Engineer Name: {engineer.engineerName}</h6>
+       <TaskFormModal allOperatorData={operators} engineerData={engineer}/>
+       </>
+      }
+     
+        
+        {
+        (operators && engineer)
         ?
-        (<Card.Group itemsPerRow={3}>
+        (<Card.Group itemsPerRow={3} stackable={true} doubling={true}>
           {operators.map((operatorData)=>{
             return(
               <OperatorCard key={operatorData._id} operatorData={operatorData} engineerData={engineer} /> 
@@ -60,7 +70,7 @@ export const AssignTasks = () => {
           })}
         </Card.Group>) 
         :
-        (<Icon name='sync alternate' loading />)
+        (<Icon name='sticky note' size='big' loading />)
         }
       </div>
       

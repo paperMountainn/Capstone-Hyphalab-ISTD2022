@@ -318,14 +318,14 @@ export const ContamFormModal = ({modalState, closeModal, rackName}) => {
         </Segment>
         :
         <div>
-        <Card.Group itemsPerRow={7}>
+        <Card.Group itemsPerRow={5} stackable={true} doubling={true}>
         {contamImgDocs && 
         contamImgDocs.map((contamDoc)=>{
           return(
           <>
             <Card color='red' className='contam-card'>
-            <Label as='a' color='red' attached=''>
-              Contamination
+            <Label as='a' color='red' >
+            <Icon name="bug"/>Contamination !
             </Label>
               <Image fluid src={contamDoc.url} alt="contamination image" />
               <Card.Content>
@@ -361,7 +361,7 @@ export const ContamFormModal = ({modalState, closeModal, rackName}) => {
           <>
             <Card color='green' className='no-contam-card'>
               <Label as='a' color='green' attached>
-                No Contamination
+              <Icon name="thumbs up outline"/>No Contamination
               </Label>
               <Image fluid src={noContamDoc.url} alt="contamination image" />
               <Card.Content>
@@ -397,10 +397,10 @@ export const ContamFormModal = ({modalState, closeModal, rackName}) => {
         <Icon name='check' />
           Confirm
         </Button>
-        <Button onClick={()=>setButton("stuff")} color="grey" basic icon labelPosition='left'>
+        {/* <Button onClick={()=>setButton("stuff")} color="grey" basic icon labelPosition='left'>
           <Icon name='sticky note outline' />
             Assign Task
-        </Button>
+        </Button> */}
         
         </div>
         

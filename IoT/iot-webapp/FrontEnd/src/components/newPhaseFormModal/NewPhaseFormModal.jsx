@@ -62,11 +62,15 @@ export const NewPhaseFormModal = () => {
   
   // upon modal rendering:
   useEffect(()=>{
+    let isMounted = true; 
     const fetchCycleAndRackOptions = async() => {
       const response1 = await axios.get(`/cycle/avail-cycles`) 
       const response2 = await axios.get(`/rack/avail-racks`) 
       const availCycleData = response1.data
       const availRackData = response2.data
+      console.log("susan hi")
+      console.log(availCycleData)
+      console.log(availRackData)
       
 
       const cycleOptions = []
@@ -82,10 +86,12 @@ export const NewPhaseFormModal = () => {
         rackOptions.push({text: rackName, value: _id})
       }
 
-      
-      setBelongsToCycleOptions(cycleOptions)
-      setBelongsToRackOptions(rackOptions)
-        
+      if (isMounted){
+        setBelongsToCycleOptions(cycleOptions)
+        setBelongsToRackOptions(rackOptions)
+          
+      }
+     
     }
     
     // fetchResults()

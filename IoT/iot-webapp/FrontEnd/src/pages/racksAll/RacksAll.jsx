@@ -9,7 +9,7 @@ import { Card, Icon } from 'semantic-ui-react';
 
 
 export const RacksAll = () => {
-  const [allRacks, setAllRacks] = useState([]);
+  const [allRacks, setAllRacks] = useState();
   useEffect(() => {
     // retrieve all cycles
     const fetchAllRacks = async() => {
@@ -47,7 +47,7 @@ export const RacksAll = () => {
                 }
               </Card.Group>)
               :
-              (<Icon name='circle notch' loading />)
+              (<Icon name='circle notch' size='big' loading />)
             }
              
           </div>
