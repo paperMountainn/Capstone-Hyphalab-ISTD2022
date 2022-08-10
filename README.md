@@ -52,6 +52,8 @@ It is used for these two mushroom growth stages, the incubation stage, and the f
 5. Engineer-Operator Task Management
 
 ### Demonstration Video <a name="demo-video"></a>
+Click on the Image.
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/uHFUnVc.png)](https://youtu.be/ZHgEOacjoyY)
 
 ## Project Structure <a name="proj-structure"></a>
 ### T-rackerApp Structure <a name="trackerapp-structure"></a>
