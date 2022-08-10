@@ -65,9 +65,10 @@ export const Contaminations = () => {
                         var data = new FormData()
                         data.append('file', blob , 'file')
                         
-                        const stuff =  axios.post('http://127.0.0.1:5001/receive', data).then(
+                        const stuff =  axios.post('http://127.0.0.1:5000/receive', data).then(
                         (response) => {
                             const isContam = response.data
+                            console.log(response)
                             // console.log(isContam)
     
                             let httpRef = projectStorage.refFromURL(file_url)
@@ -160,8 +161,8 @@ export const Contaminations = () => {
         
         <Sidebar>
         <Navbar navItems={incubationNavItems}/>
-        <div className="container">
-            <div className="top row">
+        {/* <div className="container">
+            <div className="top row"> */}
 
                 {/* <h3 className="pt-4">Contamination Observation</h3> */}
                 <h4 className='pb-2 pt-4'><Icon name="bug" />Contamination Observation</h4>
@@ -191,8 +192,8 @@ export const Contaminations = () => {
                 
          
 
-            </div>
-        </div>
+            {/* </div>
+        </div> */}
 
         </Sidebar>
     )

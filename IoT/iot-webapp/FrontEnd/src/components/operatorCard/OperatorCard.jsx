@@ -3,6 +3,7 @@ import './operatorCard.scss'
 import { Card, Icon, Button, Image, Table, Label, Menu} from 'semantic-ui-react'
 import { TaskDetailModal } from '../taskDetailModal/TaskDetailModal'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { profileImgs } from './operatorProfileImgs'
 export const OperatorCard = ({operatorData, engineerData}) => {
@@ -78,17 +79,17 @@ export const OperatorCard = ({operatorData, engineerData}) => {
                                     { (taskAssigned.find(taskA => taskA._id === taskR._id)? true: false) ? 
                                         <>
                                         {completionStatusRender(taskR.completionStatus)}
-                                        <a href="#">
+                                        <Link to="#">
                                             <TaskDetailModal assignedByYou={true} taskDetailProps={taskDetailModalProp(taskR)}/>
-                                        </a>&nbsp;
+                                        </Link>&nbsp;
                                         <Icon name="hand point left outline"/>
                                         </> 
                                         : 
                                         <>
                                         {completionStatusRender(taskR.completionStatus)}
-                                        <a href='#'>
+                                        <Link to="#">
                                             <TaskDetailModal taskDetailProps={taskDetailModalProp(taskR)} assignedByYou={false}/>
-                                        </a>
+                                        </Link>
                                         </>
                                         }
                                 </div>

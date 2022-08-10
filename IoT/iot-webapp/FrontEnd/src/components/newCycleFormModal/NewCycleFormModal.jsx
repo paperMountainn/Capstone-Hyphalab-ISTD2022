@@ -20,7 +20,7 @@ export const NewCycleFormModal = () => {
             const response = await axios.post('/cycle/new/', inputs)
             console.log(`response from api call POST /cycle/new: ${response.data}`)
         }
-        createCycle()
+        await createCycle()
         window.location.reload(false);
 
     }

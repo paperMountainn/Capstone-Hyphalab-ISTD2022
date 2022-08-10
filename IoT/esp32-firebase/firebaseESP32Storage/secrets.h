@@ -22,3 +22,5 @@
 #define DATABASE_URL "https://iot-webapp-28f3a-default-rtdb.asia-southeast1.firebasedatabase.app/"
 // Firebase Storage
 #define STORAGE_BUCKET_ID "iot-webapp-28f3a.appspot.com"
+
+#define FIREBASE_PROJECT_ID "iot-webapp-28f3a"

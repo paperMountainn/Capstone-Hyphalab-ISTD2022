@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Card, Button, Icon, Image } from 'semantic-ui-react';
-import { projectStorage } from '../../config/firebase-config';
+import { projectStorage, projectFirestore } from '../../config/firebase-config';
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './homeObservationImgCarousel.scss'
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { ImageModal } from '../imageModal/ImageModal';
 export const HomeObservationImgCarousel = ({type}) => {
     const [index, setIndex] = useState(0);
@@ -13,9 +14,19 @@ export const HomeObservationImgCarousel = ({type}) => {
     const [rack4Obs, setRack4Obs] = useState()
     
     const rackNames = ['Rack_1','Rack_2', 'Rack_3', 'Rack_4']
+    
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+    const link = (type) => {
+        if (type == "observe_incub"){
+            return("incubation")
+        }
+        else if (type == "observe_farm"){
+            return("farm")
+        }
+    }
 
     useEffect(() => {
         const fetchImages = async (rackName) => {
@@ -26,12 +37,33 @@ export const HomeObservationImgCarousel = ({type}) => {
         
             return Promise.all(urlPromises);
         }
+        
+        
+        const unsub1 = projectFirestore.collection("Rack_1").doc('26-06-2022').collection('observe_incub')
+        // .orderBy('createdAt', 'asc')
+        .orderBy('createdAt', 'desc')
+        .onSnapshot((snapshot)=> {
+          let documents = []
+          snapshot.forEach( doc => {
+              // want to store data + id in the array
+            //   documents.push({...doc.data(), id: doc.id})
+            //   documents.push(doc.)
+            const url = doc.data().url
+            //   console.log(doc.data().url)
+              documents.push(url)
+          })
+        //   console.log("docs here")
+        //   console.log(documents)
+        //   console.log(documents[0])
+          setRack1Obs(documents)
+        })
+        
         const loadImages = async(rackName) => {
             const urls = await fetchImages(rackName)
             switch (rackName){
-                case "Rack_1":
-                    setRack1Obs(urls)
-                    break
+                // case "Rack_1":
+                //     setRack1Obs(urls)
+                //     break
                 case "Rack_2":
                     setRack2Obs(urls)
                     break
@@ -51,6 +83,38 @@ export const HomeObservationImgCarousel = ({type}) => {
             console.log("stuff")
             
         }
+        // unsub1()
+        if (type == "observe_incub"){
+            return () =>{
+                unsub1()
+            }
+        }
+        return () =>{
+            // unsub1()
+            if (type == "observe_incub"){
+                unsub1()
+            }
+            else if (type == "observe_farm") {
+                const loadRack_1 = async(rackName) => {
+                    const urls = await fetchImages(rackName)
+                    setRack1Obs(urls)
+                }
+                loadRack_1()
+            }
+
+        }
+        // else if (type == "observe_farm") {
+        //     // const urls = await fetchImages("Rack_1")
+        //     const loadRack_1 = async(rackName) => {
+        //         const urls = await fetchImages(rackName)
+        //         setRack1Obs(urls)
+        //     }
+        //     loadRack_1()
+        //     // setRack1Obs(urls)
+        // }
+        // return () =>{
+        //     unsub1()
+        // }
         
         }, []);
     
@@ -58,6 +122,7 @@ export const HomeObservationImgCarousel = ({type}) => {
     <div>
         {(rack1Obs && rack2Obs && rack3Obs && rack4Obs) ?
         <Carousel fade={true} touch className='carousel' activeIndex={index} onSelect={handleSelect} interval={null} indicators={false} >
+            
                <Carousel.Item >
                 {type=="observe_incub" ? <p>Incubation Area</p> : <p>Fruiting Area</p>}
                 {(rack1Obs.length != 0) ? 
@@ -71,7 +136,9 @@ export const HomeObservationImgCarousel = ({type}) => {
                 
                 
                 <h3>{rackNames[0]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_1 Observation Images" imgArr={rack1Obs}/>
-                <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                
+                {/* <><h3>{rackNames[0]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_1 Observation Images" imgArr={rack1Obs}/></> */}
+                <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -83,7 +150,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 />
                     No observations
                     <h3>{rackNames[0]}<Icon name="check" color='green'/></h3>
-                    <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -101,7 +168,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 
                 
                 <h3>{rackNames[1]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_2 Observation Images" imgArr={rack2Obs}/>
-                <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -114,7 +181,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 />
                     No observations
                     <h3>{rackNames[1]}<Icon name="check" color='green'/></h3>
-                    <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -131,8 +198,8 @@ export const HomeObservationImgCarousel = ({type}) => {
                 />
                 
                 
-                <h3>{rackNames[2]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_3 Contamination Images" imgArr={rack3Obs}/>
-                <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h3>{rackNames[2]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_3 Observation Images" imgArr={rack3Obs}/>
+                <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -144,7 +211,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 />
                     No observations
                 <h3>{rackNames[2]}<Icon name="check" color='green'/></h3>
-                <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -163,7 +230,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 
                 
                 <h3>{rackNames[3]} <Icon name="camera" color='blue'/> </h3><ImageModal title="Rack_4 Observation Images" imgArr={rack4Obs}/>
-                <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -175,7 +242,7 @@ export const HomeObservationImgCarousel = ({type}) => {
                 />
                     No observations
                     <h3>{rackNames[3]}<Icon name="check" color='green'/></h3>
-                    <Link to="/incubation/observations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to={`/${link(type)}/observations`}><p>Observation Page  <Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           

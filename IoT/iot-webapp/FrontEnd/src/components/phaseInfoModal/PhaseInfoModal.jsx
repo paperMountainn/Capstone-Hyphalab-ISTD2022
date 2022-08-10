@@ -3,6 +3,7 @@ import './phaseInfoModal.scss'
 import axios from "axios";
 import { Button, Segment, Icon, Card, Image, Modal, Form, Checkbox } from 'semantic-ui-react'
 import { db_time_parser } from '../../utils/dateHelper';
+import { Link } from 'react-router-dom';
 export const PhaseInfoModal = ({phaseId}) => {
     const [open, setOpen] = useState(false);
     const [phase, setPhase] = useState(null)
@@ -35,7 +36,7 @@ export const PhaseInfoModal = ({phaseId}) => {
     onOpen={() => setOpen(true)}
     open={open}
     trigger={
-   <a href="#">{phaseId}</a>
+   <Link to="#">{phaseId}</Link>
    
   }
   

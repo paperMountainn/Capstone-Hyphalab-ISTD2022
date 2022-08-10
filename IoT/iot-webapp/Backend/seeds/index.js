@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Task = require('../models/task');
 // connect to mongoose from Express
 mongoose.connect(
-    'mongodb+srv://admin:admin@cluster0.4fcsl.mongodb.net/controlled-environment', 
+    "mongodb+srv://admin:admin@cluster0.4fcsl.mongodb.net/controlled-environment",
     { 
         useNewUrlParser: true, 
         useUnifiedTopology: true,
@@ -46,6 +46,36 @@ const seedDB1 = async() => {
         locatedIn:'null',
         currentlyInUse: false
     })
+    const rack5 = new Rack({
+        rackName: 'Rack_5',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack6 = new Rack({
+        rackName: 'Rack_6',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack7 = new Rack({
+        rackName: 'Rack_7',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack8 = new Rack({
+        rackName: 'Rack_8',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack9 = new Rack({
+        rackName: 'Rack_9',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
+    const rack10 = new Rack({
+        rackName: 'Rack_10',
+        locatedIn:'null',
+        currentlyInUse: false
+    })
    
 
     // var rackq = await Rack.findOne( { rackName: "Rack 2" } ); 
@@ -79,6 +109,26 @@ const seedDB1 = async() => {
         cycleName:"cycle 5",
         cycleDescription: "This is Cycle 5",
         cycleStatus: "completed"
+    })
+    const cycle6 = new Cycle({
+        cycleName:"cycle 6",
+        cycleDescription: "This is Cycle 6",
+        cycleStatus: "unused"
+    })
+    const cycle7 = new Cycle({
+        cycleName:"cycle 7",
+        cycleDescription: "This is Cycle 7",
+        cycleStatus: "unused"
+    })
+    const cycle8 = new Cycle({
+        cycleName:"cycle 8",
+        cycleDescription: "This is Cycle 8",
+        cycleStatus: "unused"
+    })
+    const cycle9 = new Cycle({
+        cycleName:"cycle 9",
+        cycleDescription: "This is Cycle 9",
+        cycleStatus: "unused"
     })
 
     const phase1 = new Phase({
@@ -206,6 +256,11 @@ const seedDB1 = async() => {
     await cycle3.save()
     await cycle4.save()
     await cycle5.save()
+    await cycle6.save()
+    await cycle7.save()
+    await cycle8.save()
+    await cycle9.save()
+    
 
     await phase1.save()
     await phase2.save()
@@ -221,6 +276,13 @@ const seedDB1 = async() => {
     await rack2.save()
     await rack3.save()
     await rack4.save()
+    await rack5.save()
+    await rack6.save()
+    await rack7.save()
+    await rack8.save()
+    await rack9.save()
+    await rack10.save()
+
 
     console.log("seeding rack stuffs complete")
 }
@@ -304,6 +366,12 @@ const seedDB2 = async() => {
         completionStatus: "Completed",
         dateDue: new Date(2022, 08, 20),
     });
+    const task7 = new Task({
+        taskName: "Move Rack",
+        taskDescr: "Please move rack 4 to the Incubation area",
+        completionStatus: "Incompleted",
+        dateDue: new Date(2022, 08, 20),
+    });
 
     task1.assignedTo = operator1;
     task2.assignedTo = operator1;
@@ -311,6 +379,7 @@ const seedDB2 = async() => {
     task4.assignedTo = operator2;
     task5.assignedTo = operator3;
     task6.assignedTo = operator3;
+    task7.assignedTo = operator4;
 
     task1.assignedBy = engineer1;
     task2.assignedBy = engineer1;
@@ -318,13 +387,17 @@ const seedDB2 = async() => {
     task4.assignedBy = engineer3;
     task5.assignedBy = engineer2;
     task6.assignedBy = engineer2;
+    task7.assignedBy = engineer2;
 
     engineer1.taskAssigned.push(task1, task2)
     engineer2.taskAssigned.push(task3, task5, task6)
     engineer3.taskAssigned.push(task4)
+    engineer2.taskAssigned.push(task7)
+
     operator1.taskReceived.push(task1, task2)
     operator2.taskReceived.push(task3, task4)
     operator3.taskReceived.push(task5, task6)
+    operator4.taskReceived.push(task7)
 
     await task1.save()
     await task2.save()
@@ -332,6 +405,7 @@ const seedDB2 = async() => {
     await task4.save()
     await task5.save()
     await task6.save()
+    await task7.save()
     
     await operator1.save()
     await operator2.save()
@@ -343,6 +417,6 @@ const seedDB2 = async() => {
     await engineer2.save()
     await engineer3.save()
     await engineer4.save()
-    console.log("seeding complete")
+    console.log("seeding task stuff complete")
 }
 seedDB2();

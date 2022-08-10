@@ -61,7 +61,7 @@ import { Icon } from 'semantic-ui-react';
 
 export const OperatorDatatable = () => {
   // const [data, setData] = useState(taskRows);
-  const [taskList, setTaskList] = useState([]);
+  const [taskList, setTaskList] = useState();
   const [sampleOperator, setSampleOperator] = useState(null)
 
 
@@ -128,6 +128,7 @@ export const OperatorDatatable = () => {
     <div className='dataTable'>
     {sampleOperator && <h6>{' '}<Icon color="grey" name="user" />Operator Name: {sampleOperator.userName}</h6>}
       <div style={{ height: 500, width: '100%' }}>
+        {taskList ? 
         <DataGrid
           className='datagrid'
           rows={taskList && taskList}
@@ -137,9 +138,12 @@ export const OperatorDatatable = () => {
           rowsPerPageOptions={[5]}
           checkboxSelection
         />
+        : (<Icon name='sticky note outline' loading size='big'/>)
+        }
+{/*         
         <Link className="link" to="/users/new" style={{ textDecoration:"none"}}>
           
-        </Link>
+        </Link> */}
       </div>
     </div>
   )

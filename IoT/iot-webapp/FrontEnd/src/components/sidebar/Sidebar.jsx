@@ -102,7 +102,7 @@ export const Sidebar = ({children}) => {
               <div >
                
               </div>
-              <Menu theme="light" defaultSelectedKeys={['3']} mode="inline" >
+              <Menu theme="light" openKeys="subMenu" mode="inline" >
 
               <Menu.Item icon={<img src="https://i.imgur.com/60mHIYK.png"/>}> 
                 {/* <img src={hyphaIcon}/> */}
@@ -114,17 +114,19 @@ export const Sidebar = ({children}) => {
               <Menu.Item icon={<Icon circular inverted color='grey' name="home"/>}>
                 <Link to="/">Summary</Link>
               </Menu.Item>
+
+              {/* original submenu */}
+              <Menu.Item icon={<GiMushroomGills style={{marginLeft:"7px"}}/>}>
+                  <Link to="/incubation">Incubation Area</Link>
+              </Menu.Item>
+              <Menu.Item icon={<GiMushroomsCluster style={{marginLeft:"7px"}}/>}>
+                  <Link to="/farm">Fruiting Area</Link>
+              </Menu.Item>
+              <Menu.Item icon={<IoFileTrayStacked style={{marginLeft:"7px"}}/>}>
+                  <Link to="/rack">Rack Phases</Link>
+              </Menu.Item>
               
-                <Menu.SubMenu icon={<Icon name="line graph" circular inverted color='grey'/>} title="Monitoring">
-                  {/* <Menu.Item>item 3</Menu.Item> */}
-                  {monitoringSubList.map((item)=> {
-                      return (
-                          <Menu.Item key={item.title} icon={item.icon}>
-                              <Link to={item.link}>{item.title}</Link>
-                          </Menu.Item>
-                      );
-                })}
-                </Menu.SubMenu>
+            
                 {sideBarMainList.map((item)=> {
                       return (
                           <Menu.Item key={item.title} icon={item.icon}>

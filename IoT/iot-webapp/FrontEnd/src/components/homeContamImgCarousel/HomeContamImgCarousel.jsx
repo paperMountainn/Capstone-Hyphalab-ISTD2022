@@ -79,7 +79,7 @@ export const HomeContamImgCarousel = () => {
                 
                 
                 <h3>{rackNames[0]} <Icon name="exclamation triangle" color='red'/> </h3><ImageModal title="Rack_1 Contamination Images" imgArr={rack1Contam}/>
-                <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -92,7 +92,7 @@ export const HomeContamImgCarousel = () => {
                     
                     <h3>{rackNames[0]}<Icon name="check" color='green'/></h3>
                     No Contaminations
-                    <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -109,7 +109,7 @@ export const HomeContamImgCarousel = () => {
                 
                 
                 <h3>{rackNames[1]} <Icon name="exclamation triangle" color='red'/> </h3><ImageModal title="Rack_2 Contamination Images" imgArr={rack2Contam}/>
-                <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -123,7 +123,7 @@ export const HomeContamImgCarousel = () => {
                     
                     <h3>{rackNames[1]}<Icon name="check" color='green'/></h3>
                     No Contaminations
-                    <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -140,7 +140,7 @@ export const HomeContamImgCarousel = () => {
                 
                 
                 <h3>{rackNames[2]} <Icon name="exclamation triangle" color='red'/> </h3><ImageModal title="Rack_3 Contamination Images" imgArr={rack3Contam}/>
-                <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -153,7 +153,7 @@ export const HomeContamImgCarousel = () => {
                     
                 <h3>{rackNames[2]}<Icon name="check" color='green'/></h3>
                 No Contaminations
-                <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           
@@ -171,7 +171,7 @@ export const HomeContamImgCarousel = () => {
                 
                 
                 <h3>{rackNames[3]} <Icon name="exclamation triangle" color='red'/> </h3><ImageModal title="Rack_4 Contamination Images" imgArr={rack4Contam}/>
-                <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 :
                 <>
@@ -184,7 +184,7 @@ export const HomeContamImgCarousel = () => {
                     
                     <h3>{rackNames[3]}<Icon name="check" color='green'/></h3>
                     No Contaminations
-                    <Link to="/incubation/contaminations"><p>Go to Observation Page  <Icon name="arrow alternate circle right"/></p></Link>
+                    <h4><Link to="/incubation/contaminations"><p>Observation Page<Icon name="arrow alternate circle right"/></p></Link></h4>
                 </>
                 }
           

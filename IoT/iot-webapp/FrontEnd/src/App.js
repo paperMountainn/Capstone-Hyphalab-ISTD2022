@@ -5,6 +5,7 @@ import {
     Route,
   } from "react-router-dom";
 
+import LandingPage from './pages/landingPage/LandingPage';
 import { Home } from './pages/home/Home';
 import { FarmSummary } from './pages/farmSummary/FarmSummary';
 // import { ParamDetail } from './pages/paramDetail/ParamDetail';
@@ -44,6 +45,7 @@ import { MongoTry } from './pages/mongotry/MongoTry';
 import { MongoTryPhases } from './pages/mongotry/MongoTryPhases';
 import { CountDown } from './pages/mongotry/CountDown';
 import { TestFlask } from './pages/dbtest/TestFlask';
+import { ParamRtdb } from './pages/dbtest/ParamRtdb';
 
 // import * as firebase from 'firebase/app';
 // import { app } from './config/firebase-config-steph';
@@ -75,6 +77,9 @@ const [password, setPassword] = useState('');
                 <Routes>
                     <Route path='/'>
                         <Route index element={<Home />}></Route>
+                        {/* <Route path="hi">
+                            <Route index element={<LandingPage />}/>
+                        </Route> */}
                         {/* <Sidebar /> */}
                         <Route path="farm">
                             {/* /users render list */}
@@ -128,6 +133,7 @@ const [password, setPassword] = useState('');
                             <Route path="putimg2" element={<PutImg2/>} />
                             <Route path="retrieveData" element={<DataRetrieve/>} />
                             <Route path="testFlask" element={<TestFlask />} />
+                            <Route path="paramRTDB" element={<ParamRtdb />} />
                         </Route>
                         <Route path="reacttest">
                             <Route index element={<MyButton label="click me"/>} />
@@ -141,14 +147,14 @@ const [password, setPassword] = useState('');
                             <Route path="count-down" element={<CountDown />} />
                             {/* <Route path="testButton" element={<TodoList/>} /> */}
                         </Route>
-                        <Route path="login">
+                        {/* <Route path="login">
                             <Route index element={<LoginForm 
                                                     title="Login"
                                                     setEmail={setEmail}
                                                     setPassword={setPassword}
                                                     handleAction={() => handleAction(1)}
                                                     />} />
-                        </Route>
+                        </Route> */}
                         <Route path="register">
                             <Route index element={<LoginForm title="Register"
                                                             setEmail={setEmail}
@@ -156,12 +162,12 @@ const [password, setPassword] = useState('');
                                                             handleAction={() => handleAction(2)}
                                                             />} />
                         </Route>
-                        <Route path="user">
+                        {/* <Route path="user">
                             <Route index element={<UserProfile />} />
                         </Route>
                         <Route path="settings">
                             <Route index element={<Settings />} />
-                        </Route>
+                        </Route> */}
                     </Route>
                 </Routes>
         </BrowserRouter>
