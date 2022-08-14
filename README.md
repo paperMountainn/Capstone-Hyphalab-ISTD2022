@@ -39,9 +39,7 @@ The T-rackerApp is a web-application that is used by mushroom farmers to increas
 
 It is used for these two mushroom growth stages, the incubation stage, and the fruiting stage, which are the crux of the end-to-end mushroom growth process.
 
-#### [Technical Documentation](https://docs.google.com/document/d/1bp3JN2mwAVIE5qnYJ_XPm3Lm5joN__wfxMt7xaWsARk/edit?usp=sharing)
-
-#### [User Guide](https://docs.google.com/document/d/1JVcStmPJS-rqQn4QfGiUEFJt1uvWqL7TmXm4HrD_0Cw/edit?usp=sharing)
+#### [Technical Documentation and User Guide](https://docs.google.com/document/d/1JVcStmPJS-rqQn4QfGiUEFJt1uvWqL7TmXm4HrD_0Cw/edit?usp=sharing)
 
 ## Features and Demonstration Video <a name="features-and-demo"></a>
 
@@ -52,6 +50,8 @@ It is used for these two mushroom growth stages, the incubation stage, and the f
 5. Engineer-Operator Task Management
 
 ### Demonstration Video <a name="demo-video"></a>
+Click on the Image.
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/uHFUnVc.png)](https://youtu.be/ZHgEOacjoyY)
 
 ## Project Structure <a name="proj-structure"></a>
 ### T-rackerApp Structure <a name="trackerapp-structure"></a>
@@ -98,7 +98,7 @@ b. Comment out the lines in `app.js` line 17 with //, and remove the // infront 
 ```
 // connect to mongoose from Express
 mongoose.connect(
-    //"mongodb+srv://admin:admin@cluster0.4fcsl.mongodb.net/controlled-environment",
+    //"mongodb+srv://admin:<password>@cluster0.4fcsl.mongodb.net/controlled-environment",
 'mongodb://localhost:27017/controlled-environment', 
 { 
     useNewUrlParser: true, 
